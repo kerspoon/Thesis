@@ -1,0 +1,179 @@
+Changelog for Writer2LaTeX version 1.0 -> 1.2
+
+---------- version 1.1.3 ----------
+
+[w2x] The standard configuration cleanxhtml.xml now maps footnote and endnote references to <sup>
+
+[w2x] EPUB bugfix: Now includes the entire heading in NCX even if it contains formatting (which is ignored)
+
+[w2l] Added help content for custom format
+
+[all] Filter: Fixed bug with filenames containing spaces and other special characters
+
+[w2x] EPUB bugfix: URL encode links to document parts in the .ncx and .opf files
+
+[w2x] EPUB export no longer generates a title page reference if there is no title page
+
+[w2x] Added (temporary) option zen_hack to support a special requirement from the ePub Zen Garden styles
+  (own style for number prefix. This should be replaced by a style map scheme later..)
+
+[w2x] Ignore linked images in EPUB export (EPUB files cannot reference external resources)
+
+[w2x] Added support for break-after and break-before
+
+[w2l] Features that were postponed to w2l 1.4 has been hidden from the UI
+
+[w4l] TeX import has been hidden from the UI (postponed to w2l 1.4)
+
+[w2l] Now exports apostrophe, single and double quotes using ' and ` characters (this creates nicer looking LaTeX files and
+  fixes a problem with hyphenation of words containing apostrophes)
+
+[w2x] New style map "heading" to map styles applied to headings to custom styles. 
+
+[w2x] The option "use_list_hack" has been renamed to "list_formatting" with the new values "css1", "css1_hack" and "hard_labels".
+  The two first values corresponds to "false" and "true" of the old option. The new value requests that
+  list labels are exported as part of the text rather than by style. This allows for full support of list numbering.
+
+[w2x] Now includes a space after the list label if the list style defines that the label is followed by a tab or a space
+
+[w2l] Now recognize the "numbered formula" AutoText provided with OOo as a display equation
+
+[w2l] Bugfix: Display equations in flat XML are now recognized correctly
+
+[w2x] Bugfix: Now adds XML prolog for XHTML 1.1 documents
+
+[w2x] XHTML templates without <head> and/or <body>are now allowed. If no content element is found, the
+  root element is used
+
+[w2x] Added help content for export dialogs
+
+---------- version 1.1.2 ----------
+
+[w2l] Added help content for export dialog
+
+[all] API change: Added the method readStyleSheet to the Converter interface
+
+[w2x] The custom configuration now supports an optional xhtml template (writer2xhtml-template.xhtml)
+  in the same directory as writer2xhtml.xml
+
+[w2x] The xhtml configuration now also supports complex options in the API
+
+[w2x] Bugfix: Corrected problem with relative links (this affected package format only)
+
+[w2x] Added EPUB export
+
+[all] API change: The interface ConverterResult supports an additional method to access the
+  meta data of the source document. A new interface MetaData has been introduced to support this
+
+[all] API change: The interface ConverterResult supports additional methods providing pointers to
+  headings and index tables in the document. A new interface TocEntry has been introduced to support this 
+
+[all] API change: New methods getMIMEType() and isMasterDocument() added to the OutputFile
+  interface. The latter is used to identify files that are part of the main document flow
+  (only the XHTML export generates more that one master document currently)
+
+[w2x] Added user interface to edit custom configuration
+
+---------- version 1.1.1 ----------
+
+[w2l] Added user interface to edit custom configuration
+
+[w2x] Added two attribute style maps: "underline" and "overstrike"
+
+[w2l] Style maps now (again) works in tables
+
+[w2l] Bugfix: Font is now selected correctly in list labels
+
+[w2x] New option formulas (values starmath, latex, image+starmath (default), image+latex)
+  to control export of formulas in xhtml 1.0 strict
+  
+[w2x] Avoid exporting redundant lang+dir information
+
+[w2x] New option multilingual (default true) to turn of export of language information
+  (except on the root element <html>)
+
+[w2x] New option template_ids (default empty) to give the id's used to identity the parts
+  of an xhtml template in the order content,header,footer,panel
+
+[w2x] New option pretty_print (default true) to turn of pretty printing of xhtml source
+
+[w2l] Bugfix: Avoid null pointer exception on empty metadata (date)
+
+[w2x] Bugfix: Avoid null pointer exception on empty metadata (subject, keywords)
+
+[w2x] Adapted to work with MathML without namespace (fix for change in OOo 3.2)
+
+[w2l] Adapted to work with MathML without namespace (fix for change in OOo 3.2)
+
+[w4l] Added help files
+
+[w2x] Bugfix: A textposition of 0% is no longer considered to be superscript
+
+[all] OFFICE_HOME and URE_HOME in build.xml renamed to OFFICE_CLASSES and URE_CLASSES,
+  which should now point directly to the directory containing the jars
+
+[w2x] Added support for text:start-value in outline numbering and list styles (the latter
+  is only relevant if use_list_hack is true)
+
+[all] Use zeropadding on exported images (ie. file-img001 etc.)
+
+[w2l] Bugfix: Add \par after display equation when formatting>=convert_most
+
+[w2l] The custom preamble is now available in the API as a normal option "custom-preamble"
+
+[all] Extended configuration API with the new notion "complex" options
+
+[w2l] Bugfix (ODF 1.1): Allow soft page breaks in display equations
+
+[w2l] Added new value "convert_geometry" for the option "page_formatting"
+  (export geometry but not header and footer)
+
+[w2x] Use svg:title as alternative text on graphics if svg:desc is not present
+
+[all] Bugfix: Filtername (Writer2LaTeX/Writer2xhtml) was not displayed in error messages
+
+[w2x] New option hexadecimal_entities with values true (default) and false.
+  When this option is set to true, numeric character entities are exported
+  using hexadecimal numbers, otherwise decimal numbers are used
+
+[w2x] Export tabs as ASCII TAB rather than space
+
+[w2l] Allow additional characters in bibliography keys (_, - and :)
+
+[w2l] Bugfix: Fixed crash when using the option external_bibtex_files
+
+[w2l] New options: table_first_head_style, table_head_style, table_foot_style and
+  table_last_foot_style. These can be used to access the advanced table head/table foot
+  features of supertabular and longtable: If the first paragraph in the first cell in
+  a row uses one of the styles given by these optons, the row is exported as part of the
+  first head, head, foot or last foot.
+
+[w2x] Added XHTML 1.1 (without MathML) as target format. Internally Writer2xhtml uses
+  the non-existing MIME type application/xhtml11 for this
+
+[w2l] Bugfix: Continued numbering now works correctly for lists that continue at level>1
+
+[w2l] Added support for the new list formatting of ODT 1.2 (implemented in OOo 3.0)
+
+[all] Filter: Filters out characters that are illegal in xml
+  (this fixes a problem with rtf documents imported in OOo)
+
+[w2x] Introduced hack to set link attributes using the link name:
+  accepts a semicolon separated list of name=value, for example
+  title=link to next page;rel=next
+
+[all] Added icon and publisher information to the extensions
+
+[w2l] Added XeTeX as possible backend in dialog
+
+[all] Bugfix: Paragraphs containing only fields are no longer lost
+
+[w4l] Added Writer4LaTeX extension
+
+[all] Buildfile is adapted to work with separated ure and office (OOo 3.0+)
+
+[all] Bugfix: Corrected path to descriptions in oxt
+
+[w2x] Bugfix: Corrected typo in german translation of navigation bar
+
+[all] Raised requirement from Java 1.4 to Java 5

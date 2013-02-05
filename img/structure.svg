@@ -1,0 +1,989 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.47 r22583"
+   sodipodi:docname="structure.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   sodipodi:modified="TRUE"
+   version="1.1">
+  <defs
+     id="defs4">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective146" />
+    <marker
+       style="overflow:visible"
+       inkscape:stockid="InfiniteLineEnd"
+       id="InfiniteLineEnd"
+       refX="0"
+       refY="0"
+       orient="auto">
+      <g
+         id="g4203">
+        <circle
+           id="circle4205"
+           r="0.8"
+           cy="0"
+           cx="3" />
+        <circle
+           id="circle4207"
+           r="0.8"
+           cy="0"
+           cx="6.5" />
+        <circle
+           id="circle4209"
+           r="0.8"
+           cy="0"
+           cx="10" />
+      </g>
+    </marker>
+    <marker
+       inkscape:stockid="RazorWire"
+       id="RazorWire"
+       refX="0"
+       refY="0"
+       orient="auto">
+       style=&quot;overflow:visible&quot;&gt;
+      <path
+   id="path4212"
+   transform="scale(0.8,0.8)"
+   style="fill:#808080;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.1pt"
+   d="M 0.022727273,-0.74009011 L 0.022727273,0.69740989 L -7.7585227,3.0099099 L 10.678977,3.0099099 L 3.4914773,0.69740989 L 3.4914773,-0.74009011 L 10.741477,-2.8963401 L -7.7272727,-2.8963401 L 0.022727273,-0.74009011 z " />
+</marker>
+    <marker
+       style="overflow:visible"
+       inkscape:stockid="InfiniteLineStart"
+       id="InfiniteLineStart"
+       refX="0"
+       refY="0"
+       orient="auto">
+      <g
+         id="g4194"
+         transform="translate(-13,0)">
+        <circle
+           id="circle4196"
+           r="0.8"
+           cy="0"
+           cx="3"
+           d="M 3.8,0 C 3.8,0.44182781 3.4418278,0.80000001 3,0.80000001 2.5581722,0.80000001 2.2,0.44182781 2.2,0 c 0,-0.44182781 0.3581722,-0.80000001 0.8,-0.80000001 0.4418278,0 0.8,0.3581722 0.8,0.80000001 z" />
+        <circle
+           id="circle4198"
+           r="0.8"
+           cy="0"
+           cx="6.5"
+           d="M 7.3,0 C 7.3,0.44182781 6.9418278,0.80000001 6.5,0.80000001 6.0581722,0.80000001 5.7,0.44182781 5.7,0 c 0,-0.44182781 0.3581722,-0.80000001 0.8,-0.80000001 0.4418278,0 0.8,0.3581722 0.8,0.80000001 z" />
+        <circle
+           id="circle4200"
+           r="0.8"
+           cy="0"
+           cx="10"
+           d="M 10.8,0 C 10.8,0.44182781 10.441828,0.80000001 10,0.80000001 9.5581722,0.80000001 9.2,0.44182781 9.2,0 c 0,-0.44182781 0.3581722,-0.80000001 0.8,-0.80000001 0.441828,0 0.8,0.3581722 0.8,0.80000001 z" />
+      </g>
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Lend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow2Lend"
+       style="overflow:visible;">
+      <path
+         id="path4361"
+         style="font-size:12.0;fill-rule:evenodd;stroke-width:0.62500000;stroke-linejoin:round;"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         transform="scale(1.1) rotate(180) translate(1,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow2Mend"
+       style="overflow:visible;">
+      <path
+         id="path4355"
+         style="font-size:12.0;fill-rule:evenodd;stroke-width:0.62500000;stroke-linejoin:round;"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         transform="scale(0.6) rotate(180) translate(0,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mstart"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow2Mstart"
+       style="overflow:visible">
+      <path
+         id="path4358"
+         style="font-size:12.0;fill-rule:evenodd;stroke-width:0.62500000;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         transform="scale(0.6) translate(0,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Lstart"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow2Lstart"
+       style="overflow:visible">
+      <path
+         id="path4364"
+         style="font-size:12.0;fill-rule:evenodd;stroke-width:0.62500000;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         transform="scale(1.1) translate(1,0)" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10"
+     objecttolerance="10"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="544.18809"
+     inkscape:cy="815.42537"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     inkscape:window-width="1280"
+     inkscape:window-height="949"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     showgrid="false"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g3195"
+       transform="translate(198.36269,45.365556)"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\physicalstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <rect
+         ry="0.99999815"
+         rx="0.99999994"
+         y="135.47241"
+         x="102.70413"
+         height="56.276287"
+         width="141.96083"
+         id="rect2160"
+         style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:10;stroke-opacity:1" />
+      <text
+         id="text3141"
+         y="157.36703"
+         x="108.08631"
+         style="font-size:20px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           y="157.36703"
+           x="108.08631"
+           id="tspan3143"
+           sodipodi:role="line">Transmission</tspan><tspan
+           id="tspan3161"
+           y="182.36703"
+           x="108.08631"
+           sodipodi:role="line">Network</tspan></text>
+    </g>
+    <a
+       id="a3173"
+       transform="translate(63.564818,40.406102)" />
+    <g
+       id="g3538"
+       transform="translate(-109.09648,71.77336)"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\physicalstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <text
+         id="text3153"
+         y="247.27061"
+         x="191.92899"
+         style="font-size:20px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           y="247.27061"
+           x="191.92899"
+           id="tspan3155"
+           sodipodi:role="line">Distributed</tspan><tspan
+           id="tspan3157"
+           y="272.27061"
+           x="191.92899"
+           sodipodi:role="line">Generation</tspan></text>
+      <rect
+         ry="0.99999815"
+         rx="0.99999994"
+         y="224.18321"
+         x="180.54756"
+         height="56.276287"
+         width="141.96083"
+         id="rect3191"
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:10;stroke-opacity:1" />
+    </g>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;marker-start:url(#Arrow2Mstart);marker-end:url(#Arrow2Mend);stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 307.12524,120.84525 L 350.58249,179.83797"
+       id="path3212"
+       inkscape:connector-type="polyline"
+       inkscape:connection-start="#g3181"
+       inkscape:connection-end="#g3195"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\physicalstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;marker-end:url(#Arrow2Mend);stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 436.96923,120.84525 L 393.51198,179.83797"
+       id="path3214"
+       inkscape:connector-type="polyline"
+       inkscape:connection-start="#g3186"
+       inkscape:connection-end="#g3195"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\physicalstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;marker-start:url(#Arrow2Mstart);marker-end:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;display:inline"
+       d="M 372.04724,294.90404 L 372.04724,238.11426"
+       id="path3216"
+       inkscape:connector-type="polyline"
+       inkscape:connection-start="#g3532"
+       inkscape:connection-end="#g3195"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\physicalstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;marker-start:url(#Arrow2Mstart);marker-end:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;display:inline"
+       d="M 311.15403,411.0716 L 361.71233,353.2854"
+       id="path3218"
+       inkscape:connector-type="polyline"
+       inkscape:connection-start="#g2310"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\physicalstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;marker-start:none;marker-end:url(#Arrow2Mend);stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;display:inline"
+       d="M 214.41191,324.09472 L 299.91721,324.09472"
+       id="path3220"
+       inkscape:connector-type="polyline"
+       inkscape:connection-start="#g3538"
+       inkscape:connection-end="#g3532"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\physicalstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:bold;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="128.28937"
+       y="32.108112"
+       id="text4404"><tspan
+         sodipodi:role="line"
+         id="tspan4406"
+         x="128.28937"
+         y="32.108112">Flow of Electricity Through a Power System</tspan></text>
+    <g
+       id="g4480"
+       transform="translate(-427.79959,758.71826)"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\economicstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <text
+         id="text4482"
+         y="100.92033"
+         x="474.89352"
+         style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           style="font-size:20px"
+           y="100.92033"
+           x="474.89352"
+           id="tspan4484"
+           sodipodi:role="line">Generator /</tspan><tspan
+           style="font-size:20px"
+           y="125.92033"
+           x="474.89352"
+           sodipodi:role="line"
+           id="tspan3484">Interconnect</tspan></text>
+      <rect
+         ry="0.99999815"
+         rx="0.99999994"
+         y="78.721252"
+         x="467.43088"
+         height="56.276287"
+         width="141.96083"
+         id="rect4486"
+         style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:10;stroke-opacity:1" />
+    </g>
+    <g
+       id="g4498"
+       transform="translate(195.96959,406.17502)"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\economicstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <text
+         id="text4500"
+         y="466.4534"
+         x="396.96964"
+         style="font-size:20px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           y="466.4534"
+           x="396.96964"
+           id="tspan4502"
+           sodipodi:role="line">End User</tspan></text>
+      <rect
+         ry="0.99999815"
+         rx="0.99999994"
+         y="431.2645"
+         x="372.47656"
+         height="56.276287"
+         width="141.96083"
+         id="rect4504"
+         style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:10;stroke-opacity:1" />
+    </g>
+    <g
+       id="g4551"
+       transform="translate(-101.52031,760.73856)"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\economicstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <text
+         id="text4516"
+         y="110.35667"
+         x="496.34561"
+         style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+         xml:space="preserve"
+         sodipodi:linespacing="125%"><tspan
+           style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;font-family:Bitstream Vera Sans"
+           y="110.35667"
+           x="496.34561"
+           sodipodi:role="line"
+           id="tspan4522">Supplier</tspan></text>
+      <rect
+         ry="0.99999815"
+         rx="0.99999994"
+         y="76.700951"
+         x="426.01462"
+         height="56.276287"
+         width="141.96083"
+         id="rect4520"
+         style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:10;stroke-opacity:1" />
+    </g>
+    <g
+       id="g4540"
+       transform="translate(134.85539,877.44783)"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\economicstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <text
+         id="text4532"
+         y="99.440529"
+         x="119.65638"
+         style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+         xml:space="preserve"
+         sodipodi:linespacing="125%"><tspan
+           style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;font-family:Bitstream Vera Sans"
+           y="99.440529"
+           x="122.83997"
+           sodipodi:role="line"
+           id="tspan4534">System</tspan><tspan
+           style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;font-family:Bitstream Vera Sans"
+           y="124.44053"
+           x="119.65638"
+           sodipodi:role="line"
+           id="tspan4538">Operator</tspan></text>
+      <rect
+         ry="0.99999815"
+         rx="0.99999994"
+         y="78.460587"
+         x="49.227722"
+         height="56.276287"
+         width="141.96083"
+         id="rect4536"
+         style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:10;stroke-opacity:1" />
+    </g>
+    <g
+       id="g4562"
+       transform="translate(-364.15999,-120.20815)"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\economicstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <text
+         sodipodi:linespacing="125%"
+         xml:space="preserve"
+         style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+         x="618.5741"
+         y="734.63092"
+         id="text4556"><tspan
+           id="tspan4558"
+           sodipodi:role="line"
+           x="618.5741"
+           y="734.63092"
+           style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;font-family:Bitstream Vera Sans">Regulator</tspan></text>
+      <rect
+         style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:10;stroke-opacity:1"
+         id="rect4560"
+         width="141.96083"
+         height="56.276287"
+         x="548.2431"
+         y="700.97522"
+         rx="0.99999994"
+         ry="0.99999815" />
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Mend);display:inline"
+       d="m 874.56926,541.32769 -100.94145,0.99094"
+       id="path4593"
+       inkscape:connector-type="polyline" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;marker-end:url(#Arrow2Mend);stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;display:inline"
+       d="M 145.0477,701.99553 L 220.62754,638.04336"
+       id="path4599"
+       inkscape:connector-type="polyline"
+       inkscape:connection-end="#g4562"
+       inkscape:connection-start="#g4661"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\economicstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;marker-end:url(#Arrow2Mend);stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;display:inline"
+       d="M 362.00198,701.99553 L 288.53627,638.04336"
+       id="path4601"
+       inkscape:connector-type="polyline"
+       inkscape:connection-end="#g4562"
+       inkscape:connection-start="#g4680"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\economicstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:bold;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="116.43382"
+       y="547.67462"
+       id="text4609"><tspan
+         sodipodi:role="line"
+         id="tspan4611"
+         x="116.43382"
+         y="547.67462">Flow of Money Through a Power System</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;marker-end:url(#Arrow2Mend);stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;display:inline"
+       d="M 567.44615,865.57766 L 467.45514,865.57766"
+       id="path4651"
+       inkscape:connector-type="polyline"
+       inkscape:connection-start="#g4498"
+       inkscape:connection-end="#g4551"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\economicstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <g
+       id="g4661"
+       transform="translate(-9.596431,624.53494)"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\economicstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <text
+         id="text4663"
+         y="99.440529"
+         x="119.65638"
+         style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+         xml:space="preserve"
+         sodipodi:linespacing="125%"><tspan
+           style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;font-family:Bitstream Vera Sans"
+           y="99.440529"
+           x="122.83997"
+           sodipodi:role="line"
+           id="tspan4667">Transmission </tspan><tspan
+           style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;font-family:Bitstream Vera Sans"
+           y="124.44053"
+           x="119.65638"
+           sodipodi:role="line"
+           id="tspan4673">Owner</tspan></text>
+      <rect
+         ry="0.99999815"
+         rx="0.99999994"
+         y="78.460587"
+         x="49.227722"
+         height="56.276287"
+         width="141.96083"
+         id="rect4669"
+         style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:10;stroke-opacity:1" />
+    </g>
+    <g
+       id="g4680"
+       transform="translate(275.26658,624.53494)"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\economicstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <text
+         id="text4682"
+         y="99.440529"
+         x="119.65638"
+         style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+         xml:space="preserve"
+         sodipodi:linespacing="125%"><tspan
+           style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;font-family:Bitstream Vera Sans"
+           y="99.440529"
+           x="122.83997"
+           sodipodi:role="line"
+           id="tspan4684">Distribution</tspan><tspan
+           style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;font-family:Bitstream Vera Sans"
+           y="124.44053"
+           x="119.65638"
+           sodipodi:role="line"
+           id="tspan4686">Owner</tspan></text>
+      <rect
+         ry="0.99999815"
+         rx="0.99999994"
+         y="78.460587"
+         x="49.227722"
+         height="56.276287"
+         width="141.96083"
+         id="rect4688"
+         style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:10;stroke-opacity:1" />
+    </g>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;marker-end:url(#Arrow2Mend);stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;display:inline"
+       d="M 323.4943,731.13367 L 182.59212,731.13367"
+       id="path4810"
+       inkscape:connector-type="polyline"
+       inkscape:connection-end="#g4661"
+       inkscape:connection-start="#g4680"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\economicstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;marker-end:url(#Arrow2Mend);stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;display:inline"
+       d="M 323.49431,865.57765 L 182.59212,865.57766"
+       id="path4812"
+       inkscape:connector-type="polyline"
+       inkscape:connection-start="#g4551"
+       inkscape:connection-end="#g4480"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\economicstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;marker-end:url(#Arrow2Mend);stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;display:inline"
+       d="M 395.47472,836.43951 L 395.47472,760.27181"
+       id="path4814"
+       inkscape:connector-type="polyline"
+       inkscape:connection-start="#g4551"
+       inkscape:connection-end="#g4680"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\economicstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;marker-start:none;marker-end:url(#Arrow2Mend);stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;display:inline"
+       d="M 110.6117,836.43951 L 110.61171,760.27181"
+       id="path4818"
+       inkscape:connector-type="polyline"
+       inkscape:connection-end="#g4661"
+       inkscape:connection-start="#g4480"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\economicstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;marker-end:url(#Arrow2Mend);stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;display:inline"
+       d="M 333.73615,836.43951 L 172.35028,760.27181"
+       id="path4822"
+       inkscape:connector-type="polyline"
+       inkscape:connection-start="#g4551"
+       inkscape:connection-end="#g4661"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\economicstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;marker-start:url(#Arrow2Mstart);marker-end:url(#Arrow2Mend);stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;display:inline"
+       d="M 146.1405,894.7158 L 219.53473,954.90842"
+       id="path4824"
+       inkscape:connector-type="polyline"
+       inkscape:connection-end="#g4540"
+       inkscape:connection-start="#g4480"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\economicstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <g
+       id="g3532"
+       transform="translate(-54.162332,71.720831)"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\physicalstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <path
+         id="rect3167"
+         d="M 356.22916,224.18321 C 402.88277,224.18321 449.53639,224.18321 496.19,224.18321 C 498.46936,228.14905 496.54289,233.79933 497.17878,238.43766 C 497.18154,252.24157 497.26313,266.04601 497.11165,279.84947 C 491.57796,281.29595 485.40095,280.02612 479.61932,280.4595 C 438.48927,280.4595 397.35921,280.4595 356.22916,280.45951 C 353.94977,276.49369 355.87627,270.84339 355.24037,266.20506 C 355.23761,252.40115 355.15604,238.59671 355.3075,224.79325 L 355.67637,224.34945 L 356.22916,224.18321 L 356.22916,224.18321 z "
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:10;stroke-opacity:1" />
+      <text
+         id="text2280"
+         y="247.27742"
+         x="368.05725"
+         style="font-size:20px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           y="247.27742"
+           x="368.05725"
+           id="tspan2282"
+           sodipodi:role="line">Distribution</tspan><tspan
+           id="tspan2284"
+           y="272.27742"
+           x="368.05725"
+           sodipodi:role="line">Networks</tspan></text>
+    </g>
+    <g
+       id="g2304"
+       transform="translate(-22.223356,34.436495)"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\physicalstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <text
+         id="text2288"
+         y="169.59038"
+         x="591.92908"
+         style="font-size:20px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           y="169.59038"
+           x="591.92908"
+           id="tspan2290"
+           sodipodi:role="line">Industrial</tspan><tspan
+           id="tspan2297"
+           y="194.59038"
+           x="591.92908"
+           sodipodi:role="line">End User</tspan></text>
+      <rect
+         ry="0.99999815"
+         rx="0.99999994"
+         y="146.40147"
+         x="567.43597"
+         height="56.276287"
+         width="141.96083"
+         id="rect2292"
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:10;stroke-opacity:1" />
+    </g>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;marker-start:url(#Arrow2Mstart);stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;display:inline"
+       d="M 544.21262,208.97611 L 444.02765,208.97611"
+       id="path2316"
+       inkscape:connector-type="polyline"
+       inkscape:connection-start="#g2304"
+       inkscape:connection-end="#g3195"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\physicalstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;marker-start:url(#Arrow2Mstart);marker-end:url(#Arrow2Mend);stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 289.59851,954.90842 L 360.93974,894.7158"
+       id="path3448"
+       inkscape:connector-type="polyline"
+       inkscape:connection-start="#g4540"
+       inkscape:connection-end="#g4551"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\economicstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;marker-end:url(#Arrow2Mend);stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;display:inline"
+       d="M 172.35027,836.43951 L 333.73615,760.27181"
+       id="path3452"
+       inkscape:connector-type="polyline"
+       inkscape:connection-start="#g4480"
+       inkscape:connection-end="#g4680"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\economicstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="520.12665"
+       y="674.38245"
+       id="text3456"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\economicstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3458"
+         x="520.12665"
+         y="674.38245">licence fee</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="203.04065"
+       y="859.44342"
+       id="text3464"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\economicstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3466"
+         x="203.04065"
+         y="859.44342">bilateral contracts</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="221.20309"
+       y="879.62616"
+       id="text3468"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\economicstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3470"
+         x="221.20309"
+         y="879.62616">exchanges</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="520.16766"
+       y="927.10327"
+       id="text3472"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\economicstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3474"
+         x="520.16766"
+         y="927.10327">balancing payments </tspan><tspan
+         sodipodi:role="line"
+         x="520.16766"
+         y="942.10327"
+         id="tspan3502">imbalance payments</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="506.10678"
+       y="862.43323"
+       id="text3476"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\economicstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3478"
+         x="506.10678"
+         y="862.43323">bills</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="201.02036"
+       y="727.09308"
+       id="text3480"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\economicstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3482"
+         x="201.02036"
+         y="727.09308">connection charges</tspan></text>
+    <g
+       id="g3588"
+       transform="translate(6,0)"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\economicstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <text
+         id="text3460"
+         y="789.72253"
+         x="514.23798"
+         style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           y="789.72253"
+           x="514.23798"
+           id="tspan3462"
+           sodipodi:role="line">use of system charges</tspan></text>
+      <text
+         id="text3486"
+         y="805.15491"
+         x="514.5954"
+         style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           y="805.15491"
+           x="514.5954"
+           id="tspan3488"
+           sodipodi:role="line">connection charges</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:72px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="473.0806"
+       y="690.99487"
+       id="text3494"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\economicstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3496"
+         x="473.0806"
+         y="690.99487">}</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:72px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="473.08054"
+       y="815.24365"
+       id="text3504"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\economicstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3506"
+         x="473.08054"
+         y="815.24365">}</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:72px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="470.05014"
+       y="950.60406"
+       id="text3508"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\economicstructure.png"><tspan
+         sodipodi:role="line"
+         id="tspan3510"
+         x="470.05014"
+         y="950.60406">}</tspan></text>
+    <g
+       id="g2310"
+       transform="translate(-140.54908,98.994942)"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\physicalstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <text
+         id="text3149"
+         y="336.26556"
+         x="365.72223"
+         style="font-size:20px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           y="336.26556"
+           x="365.72223"
+           id="tspan3151"
+           sodipodi:role="line">Commercial</tspan><tspan
+           id="tspan2302"
+           y="361.26556"
+           x="365.72223"
+           sodipodi:role="line">End User</tspan></text>
+      <rect
+         ry="0.99999815"
+         rx="0.99999994"
+         y="313.07666"
+         x="355.22916"
+         height="56.276287"
+         width="141.96083"
+         id="rect3193"
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:10;stroke-opacity:1" />
+    </g>
+    <g
+       id="g3181"
+       transform="translate(-100.21778,-16.162441)"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\physicalstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <text
+         id="text3133"
+         y="112.92033"
+         x="321.24881"
+         style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           style="font-size:20px"
+           y="112.92033"
+           x="321.24881"
+           id="tspan3135"
+           sodipodi:role="line">Interconnect</tspan></text>
+      <rect
+         ry="0.99999815"
+         rx="0.99999994"
+         y="79.7314"
+         x="314.89786"
+         height="56.276287"
+         width="141.96083"
+         id="rect3163"
+         style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:10;stroke-opacity:1" />
+    </g>
+    <g
+       id="g3186"
+       transform="translate(-79.977319,-15.152294)"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\physicalstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <text
+         id="text3137"
+         y="112.92033"
+         x="486.89352"
+         style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           style="font-size:20px"
+           y="112.92033"
+           x="486.89352"
+           id="tspan3139"
+           sodipodi:role="line">Generator</tspan></text>
+      <rect
+         ry="0.99999815"
+         rx="0.99999994"
+         y="78.721252"
+         x="467.43088"
+         height="56.276287"
+         width="141.96083"
+         id="rect3165"
+         style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:10;stroke-opacity:1" />
+    </g>
+    <g
+       id="g3512"
+       transform="translate(41.315784,98.994942)"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\physicalstructure.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <g
+         id="g3522">
+        <text
+           xml:space="preserve"
+           style="font-size:20px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+           x="375.72223"
+           y="336.26556"
+           id="text3514"><tspan
+             sodipodi:role="line"
+             id="tspan3516"
+             x="375.72223"
+             y="336.26556">Domestic</tspan><tspan
+             sodipodi:role="line"
+             x="375.72223"
+             y="361.26556"
+             id="tspan3518">End User</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:10;stroke-opacity:1"
+           id="rect3520"
+           width="141.96083"
+           height="56.276287"
+           x="346.13779"
+           y="313.07666"
+           rx="0.99999994"
+           ry="0.99999815" />
+      </g>
+    </g>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;marker-end:url(#Arrow2Mend);stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;display:inline"
+       d="M 400.0771,353.2854 L 438.87202,411.0716"
+       id="path3528"
+       inkscape:connector-type="polyline"
+       inkscape:connection-end="#g3512"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="D:\My Dropbox\University\thesis\img\physicalstructure.png" />
+  </g>
+</svg>

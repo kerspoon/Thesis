@@ -1,0 +1,246 @@
+% This file was converted to LaTeX by Writer2LaTeX ver. 1.1.3
+% see http://writer2latex.sourceforge.net for more info
+\documentclass[letterpaper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb,amsfonts,textcomp}
+\usepackage{color}
+\usepackage{array}
+\usepackage{supertabular}
+\usepackage{hhline}
+\usepackage{hyperref}
+\hypersetup{pdftex, colorlinks=true, linkcolor=blue, citecolor=blue, filecolor=blue, urlcolor=blue, pdftitle=, pdfauthor=James Brooks, pdfsubject=, pdfkeywords=}
+% Outline numbering
+\setcounter{secnumdepth}{0}
+\makeatletter
+\newcommand\arraybslash{\let\\\@arraycr}
+\makeatother
+% Page layout (geometry)
+\setlength\voffset{-1in}
+\setlength\hoffset{-1in}
+\setlength\topmargin{2cm}
+\setlength\oddsidemargin{2cm}
+\setlength\textheight{23.94cm}
+\setlength\textwidth{17.59cm}
+\setlength\footskip{0.0cm}
+\setlength\headheight{0cm}
+\setlength\headsep{0cm}
+% Footnote rule
+\setlength{\skip\footins}{0.119cm}
+\renewcommand\footnoterule{\vspace*{-0.018cm}\setlength\leftskip{0pt}\setlength\rightskip{0pt plus 1fil}\noindent\textcolor{black}{\rule{0.25\columnwidth}{0.018cm}}\vspace*{0.101cm}}
+% Pages styles
+\makeatletter
+\newcommand\ps@Standard{
+  \renewcommand\@oddhead{}
+  \renewcommand\@evenhead{}
+  \renewcommand\@oddfoot{}
+  \renewcommand\@evenfoot{}
+  \renewcommand\thepage{\arabic{page}}
+}
+\makeatother
+\pagestyle{Standard}
+\setlength\tabcolsep{1mm}
+\renewcommand\arraystretch{1.3}
+\title{}
+\author{James Brooks}
+\date{2008-02-18}
+\begin{document}
+\section{Machine Equations }
+James Brooks - Monday 21 May 2007
+
+Taken from - [Chan 92 p.12]
+
+\begin{equation*}
+\begin{gathered}I_{d}=Y_{\Re
+}(E_{d}''-V_{d})-Y_{d}''(E_{q}''-V_{q})\\I_{q}=Y_{\Re
+}(E_{q}''-V_{q})+Y_{q}''(E_{d}''-V_{d})\\\mathit{pE}_{d}''=\frac{1}{T_{\mathit{qo}''}}\{(x_{q}-x_{q}'')I_{q}-E_{d}''-\mathit{aE}_{d}''\}\\\mathit{pE}_{q}'=\frac{1}{T_{\mathit{do}'}}\{V_{f}-(x_{d}-x_{d}')I_{d}-E_{q}'-\mathit{aE}_{q}'\}\\\mathit{pE}_{q}''=\frac{1}{T_{\mathit{do}''}}\{E_{q}'+\mathit{aE}_{q}'-(x_{d}'-x_{d}'')I_{d}-E_{q}''-\mathit{aE}_{q}''\}\end{gathered}
+\end{equation*}
+Where:
+
+\begin{equation*}
+Y_{d}''=-{\frac{X_{q}''}{(R_{a})^{2}+(X_{d}''\times X_{q}'')}}
+\end{equation*}
+\begin{equation*}
+Y_{q}=-{\frac{X_{d}''}{(R_{a})^{2}+(X_{d}''\times X_{q}'')}}
+\end{equation*}
+\begin{equation*}
+Y_{\Re }=\frac{R_{a}}{(R_{a})^{2}+(X_{d}''\times X_{q}'')}
+\end{equation*}
+{\bfseries
+States}
+
+ $I_{d}$ \ \ Direct axis current \ 
+
+ $I_{q}$ \ \ Quadrature axis current
+
+ $E_{d}''$ \ \ Direct axis voltage behind transient reactance
+
+ $E_{q}'$ \ \ Quadrature axis voltage behind transient reactance
+
+ $E_{q}''$ \ \ Quadrature axis voltage behind sub-transient reactance
+
+{\bfseries
+Variables}
+
+ $V_{d}$ \ \ Direct access component of terminal voltage
+
+ $V_{q}$ \ \ Quadrature axis component of terminal voltage
+
+ $V_{f}$ \ \ Field voltage referred to stator terminals
+
+{\bfseries
+Parameters}
+
+ $T_{\mathit{qo}}''$ \ \ Quadrature axis open-circuit sub-transient time
+constant
+
+ $T_{\mathit{do}}'$ \ \ Direct axis open-circuit transient time constant
+
+ $T_{\mathit{do}}''$ \ \ Direct axis open-circuit sub-transient time
+constant
+
+ $X_{d}$ \ \ Direct axis reactance
+
+ $X_{d}'$ \ \ Direct axis transient reactance
+
+ $X_{d}''$ \ \ Direct axis sub-transient reactance
+
+ $X_{q}$ \ \ Quadrature axis reactance
+
+ $X_{q}''$ \ \ Quadrature axis sub-transient reactance
+
+ $R_{a}$ \ \ Winding resistance
+
+
+\bigskip
+
+ $\dot{x}_{n}$ \ \ The dot n\textsuperscript{th} state
+
+ $x_{n}$ \ \ The n\textsuperscript{th} state
+
+ $u_{n}$ \ \ The n\textsuperscript{th} input
+
+
+$\left\{\begin{matrix}\dot{x}_{1}\\\dot{x}_{2}\\\dot{x}_{3}\\\dot{x}_{4}\\\dot{x}_{5}\end{matrix}\right\}=\left\{\begin{matrix}0&0&m_{1}&0&m_{2}\\0&0&m_{3}&0&m_{4}\\0&m_{5}&m_{6}&0&0\\m_{7}&0&0&m_{8}&0\\m_{9}&0&0&m_{10}&m_{11}\end{matrix}\right\}\left\{\begin{matrix}x_{1}\\x_{2}\\x_{3}\\x_{4}\\x_{5}\end{matrix}\right\}+\left\{\begin{matrix}n_{1}&n_{2}&0\\n_{3}&n_{4}&0\\0&0&0\\0&0&n_{5}\\0&0&0\end{matrix}\right\}\left\{\begin{matrix}u_{1}\\u_{2}\\u_{3}\end{matrix}\right\}$
+$\begin{gathered}m_{1}=Y_{\Re
+}\\m_{2}=-Y_{d}''\\m_{3}=-Y_{q}''\\m_{4}=Y_{\Re
+}\\m_{5}=\frac{X_{q}-X_{q}''}{T_{\mathit{qo}}''}\\m_{6}=\frac{a-1}{T_{\mathit{qo}}''}\\m_{7}=\frac{X_{d}-X_{d}'}{T_{\mathit{do}}'}\\m_{8}=\frac{a-1}{T_{\mathit{do}}'}\\m_{9}=\frac{X_{d}'-X_{d}''}{T_{\mathit{do}}''}\\m_{10}=\frac{a+1}{T_{\mathit{do}}''}\\m_{11}=\frac{a-1}{T_{\mathit{do}}''}\end{gathered}$
+$\begin{gathered}n_{1}=-Y_{\Re
+}\\n_{2}=Y_{d}''\\n_{3}=Y_{q}''\\n_{4}=-Y_{\Re
+}\\n_{5}=\frac{1}{T_{\mathit{do}}'}\end{gathered}$
+
+Network Interface
+
+
+\bigskip
+
+
+\bigskip
+
+\begin{equation*}
+(E_{\Re }''+jE_{\Im }'')-(V_{\Re }+jV_{\Im })=(R_{a}+jX'').(I_{\Re
+}+jI_{\Im })
+\end{equation*}
+or if there is a generator transformer:
+
+\begin{equation*}
+n\times (E_{\Re }''+jE_{\Im }'')-(V_{\Re }+jV_{\Im
+})=(R_{a}+jX''+R_{t}+jX_{t})\times n\times (I_{\Re }+jI_{\Im })
+\end{equation*}
+
+\bigskip
+
+\clearpage
+States:\ \  $E_{d}',E_{d}'',E_{q}',E_{q}'',\omega ,\delta ,V_{a}$
+
+Inputs:\ \ 
+$aE_{d}',aE_{d}'',aE_{q}',aE_{q}'',T_{a},V_{d},V_{q},E_{\mathit{fd}}$(A.K.A.
+non-integrable states)
+
+Parameters:\ \ 
+$\begin{gathered}x_{d},x_{d}',x_{d}'',x_{q},x_{q}',x_{q}'',T_{\mathit{do}}',T_{\mathit{do}}'',T_{\mathit{qo}}',T_{\mathit{qo}}''\\M,Y_{\Re
+},Y_{\Im
+},\mathit{Tap},D_{a},T_{\mathit{lo}},T_{\mathit{mo}},f_{\mathit{wm}},f_{0}=50\end{gathered}$(A.K.A.
+constants)
+
+States - PSSENG tsmmat.c 762 FormMachineMatrix(), 
+
+\begin{equation*}
+\begin{gathered}\dot{E}_{d}'=\frac{1}{T_{\mathit{qo}'}}\{-E_{d}'-aE_{d}'+I_{q}(x_{q}-x_{q}')\}\\\dot{E}_{d}''=\frac{1}{T_{\mathit{qo}''}}\{E_{d}'-E_{d}''+aE_{d}'-aE_{d}''+I_{q}(x_{q}'-x_{q}'')\}\\\dot{E}_{q}'=\frac{1}{T_{\mathit{do}'}}\{V_{a}-E_{q}'-aE_{q}'+I_{d}(x_{d}-x_{d}')\}\\\dot{E}_{q}''=\frac{1}{T_{\mathit{do}''}}\{E_{q}'-E_{q}''+aE_{q}'-aE_{q}''+I_{d}(x_{d}'-x_{d}'')\}\\\dot{\omega
+}=T_{a}\div M\\\dot{\delta }=\omega \\\dot{V}_{a}=?\end{gathered}
+\end{equation*}
+Inputs (A.K.A. non-integrable states) - PSSENG tsmgrp.c 722
+SolveMachineGroups()
+
+\begin{equation*}
+\begin{gathered}aE_{d}'=\alpha \cdot {E_{d}'}\cdot
+{\frac{x_{q}}{x_{d}}}\\aE_{d}''=\alpha \cdot {E_{d}''}\cdot
+{\frac{x_{q}}{x_{d}}}-(I_{q}\cdot (x_{q}-x_{q}')-E_{d}'-aE_{d}')\cdot
+{\frac{T_{\mathit{qo}}''}{T_{\mathit{qo}}'}}\\aE_{q}'=\alpha \cdot
+{E_{q}'}\\aE_{q}''=\alpha \cdot {E_{q}''}-(E_{\mathit{fd}}-I_{d}\cdot
+(x_{d}-x_{d}')-E_{q}'-aE_{q}')\cdot
+{\frac{T_{\mathit{do}}''}{T_{\mathit{do}}'}}\\T_{a}=t_{m}-t_{e}-T_{\mathit{lo}}-D_{a}\ast
+\omega \\V_{d}=\frac{\sin (\delta )\cdot V_{\Re }+\cos (\delta )\cdot
+V_{\Im }}{\mathit{Tap}}\\V_{q}=\frac{\cos (\delta )\cdot V_{\Re }+\sin
+(\delta )\cdot V_{\Im
+}}{\mathit{Tap}}\\E_{\mathit{fd}}=V_{a}\end{gathered}
+\end{equation*}
+Outputs:
+
+ $\begin{gathered}I_{\Re }=\cos (\delta )\cdot I_{\mathit{njq}}+\sin
+(\delta )\cdot I_{\mathit{njd}}\\I_{\Im }=\sin (\delta )\cdot
+I_{\mathit{njq}}-\cos (\delta )\cdot I_{\mathit{njd}}\end{gathered}$
+$\begin{gathered}I_{\mathit{njq}}=(Y_{g\Re }\cdot E_{q}'')+(Y_{g\Im
+}\cdot E_{d}'')\\I_{\mathit{njd}}=(Y_{g\Re }\cdot E_{d}'')-(Y_{g\Im
+}\cdot E_{q}'')\end{gathered}$
+
+Where:
+
+\begin{flushleft}
+\tablefirsthead{}
+\tablehead{}
+\tabletail{}
+\tablelasttail{}
+\begin{supertabular}{|m{4.794cm}|m{7.896cm}|m{4.2980003cm}|}
+\hline
+\begin{equation*}
+\begin{gathered}t_{m}=\frac{T_{\mathit{mo}}}{1.0+(\frac{\omega }{2\pi
+\cdot f_{0}})}\\{}\\t_{e}=\frac{(E_{q}''\cdot {I_{q}})+(E_{d}''\cdot
+{I_{d}})}{1.0+\frac{f_{\mathit{wm}}}{2\pi \cdot f_{0}}}\end{gathered}
+\end{equation*}
+ &
+\begin{equation*}
+\alpha
+=\mathit{CalcSat}(\sqrt{(E_{q}'')^{2}+(E_{d}'')^{2}},\mathit{SatTab})
+\end{equation*}
+~
+
+\begin{equation*}
+\begin{gathered}I_{d}=Y_{\Re }(E_{d}''-V_{d})-Y_{\Im
+}(E_{q}''-V_{q})\\I_{q}=Y_{\Re }(E_{q}''-V_{q})+Y_{\Im
+}(E_{d}''-V_{d})\end{gathered}
+\end{equation*}
+~
+
+ $(V_{\Re },V_{\Im })$ Bus Bar Voltages &
+ $E_{\mathit{fd}},V_{a}$ Strange or only partly used states. 
+$E_{\mathit{fd}}$ does not connect to a state. $V_{a}$ cannot change as
+it doesn't have any elements in it's matrix row. \\\hline
+\end{supertabular}
+\end{flushleft}
+
+\bigskip
+
+\begin{equation*}
+\begin{gathered}(I_{d}+j\cdot I_{q})\cdot (R_{a}+j\cdot
+X'')=(E_{d}''+j\cdot E_{q}'')-(V_{d}-j\cdot V_{q})\\...\\I_{d}=Y_{\Re
+}(E_{d}''-V_{d})-Y_{\Im }(E_{q}''-V_{q})\\I_{q}=Y_{\Re
+}(E_{q}''-V_{q})+Y_{\Im }(E_{d}''-V_{d})\\I_{\Re }=\cos (\delta )\cdot
+I_{q}+\sin (\delta )\cdot I_{d}\\I_{\Im }=\sin (\delta )\cdot
+I_{q}-\cos (\delta )\cdot I_{d}\end{gathered}
+\end{equation*}
+
+\bigskip
+\end{document}

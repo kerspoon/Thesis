@@ -1,0 +1,83 @@
+
+its it's
+busbar, bus-bar, busbars, bus
+therefor, therefore
+Monte, Monty
+long-term, long term
+nonlinear, non linear, non-linear
+load-flow, power-flow, load flow, power flow
+1 2 3 4 5 6 7 8 9 (make them: one two etc)
+modelled modeled modaled modal model
+severe sever
+asses assess
+
+form / from
+affect, effect
+we, I, you
+
+-------------------------------------------------------------------------------
+
+
+ + research `wilmar` model <http://www.wilmar.risoe.dk/>
+ + Literature Review: comparing security assessment schemes
+ + search for papers on "wind speed correlation"
+ + <http://www.google.co.uk/search?q=wind+speed+equation>
+
+
+
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+
+
+
+
+Notes
+====
+<http://en.wikipedia.org/wiki/Droop_speed_control> `It can be mathematically shown that if all machines synchronized to a system have the same droop speed control, they will share load proportionate to the machine ratings`
+
+Thesis Notes
+====
+
+Need to look at where my work fits in the larger picture:
+
+ 1. economics - market model - wind market
+ 2. a practicable usable system, say how SO can use it including how they make decisions when they have a system that fails (X,Y,Z)
+ 3. think more about how do decide the threshold.  
+
+-------------------------------------------------------------------------------
+
+Long Term
+====
+
+ + how do I quickly simulate an unbalanced power system
+    * could use dynamic simulation for now
+    * research droop to fake the governor/inertia
+    * speak to maths person about how many simulations I actually need
+    * look into adding a *generic* set of dynamic data to the IEEE-RTS. 
+    * see how long CPF/PSSENG would take to convert/find data and simulate.
+    * anyone I can talk to who makes power system simulators (old students)
+    * anyone who can help me get a dynamic simulation of the IEEE-RTS
+
+ + how do I generate a range of probability of acceptability (SCOPF)
+    * not yet needed. see what range we naturally get
+
+ + how do I include wind power
+    * where do I put the wind
+    * how do I incorporate wind into an OPF?
+    * look into using Perlin Noise as a wind speed forecast.
+    * anyone I can talk to who forecasts wind/ makes a wind sampling model?
+
+-------------------------------------------------------------------------------
+
+GA test algorithms:
+ + http://en.wikipedia.org/wiki/Rosenbrock_function
+ + N-dimensional Perlin Noise
+ + Rastrigin function i
+-------------------------------------------------------------------------------
+
+% ================================================================== %
+\section{Network}
+
+\todo{The network will need to be strengthened. Significant NIMBY opposition. more interconnection. smart metering. smart tripping. automatic controls. computer aided. SCADA. FACTS, HVDC. adaptive auto-reclosure}
+

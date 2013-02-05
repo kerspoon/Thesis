@@ -1,0 +1,101 @@
+
+% ------------------------------------------------------------------------------
+
+\section{arrillaga}
+
+155 - 158 - basic intro
+160-161 - advanced equations
+avr , gov , pss 
+network equation
+integration 179
+188 - structure of dynamic sim
+saturation
+induction machines
+loads
+245 emtp
+351 numerical integration methods: accuracy, stability stiffness
+
+
+% ------------------------------------------------------------------------------
+\section{my transfer report}
+
+29 - 33 : design of dynamic simulator.
+
+\section{kundur}
+
+dq0 transformation
+per unit
+magnetic saturation
+pi lines
+255 load flow
+static & dynamic loads
+induction motors
+335 PSS
+HVDC
+836 numerical integration methods
+balanced or unbalenced. 
+stifness A-stable
+explicit vs implicit methods
+eoler, predictor corrector, runge kutta, 
+diagram 13.8 page 849 structure of a generator for analysis
+
+% ------------------------------------------------------------------------------
+\section{zhang}
+
+33 optimal power flow
+stability constrainded opf
+63 TRANSIENT STABILITY ASSESSMENT
+
+SCOPF - stability constrained (abstract) later called security constrained (P35). 
+contingency constrained opf
+OPF definition see weedy or wood \& wollenburg
+3.2.1 definition of economic dispatch; - use the equations as well.
+constraints: network:- generation - demand - loss = 0 
+constraints: engineering:- generating limits (P and Q) voltage limits, transformer tap positions, line limits (either as current or MVA - determined by thermal rating and weather forecast), spinning reserve limit. 
+
+opf is nonlinera, non-convex, large-scele static optimisation problem with both continious and discrete control variables. 
+
+Techniques: (p41)
+  nonlinear programming
+  linear programming 
+  interior point methods
+  nondeterministic searching methods such a GA 
+
+stability constrained opf is a member of secuity constrained opf family
+
+why is stability constrained opf needed
+why isn't is used now 
+
+dynamic simulation
+----
+
+mathamticallay, the transient stability of a power system could be characterized by the solution of a set of nonlinear differential-algebraic equations the represent the dynamics of system components and the relationshop of voltages and currents of the transmission network. 
+
+can be solved many ways; transient energy function and time domain simulation are two such methods.
+
+how do you get the secuirty from the output? look at rotor angles and voltage etc... 
+
+sensitivity analysis: how a change in one thing affects everything else. works best in a linear region 
+
+% ------------------------------------------------------------------------------
+\section{weedy}
+
+per unit
+reactive power
+AVR 117
+229 load flows
+266 opf
+statem stability p319
+
+% ------------------------------------------------------------------------------
+ 
+Modified load flow
+----
+
+what is load flow, how does it work, what results can you get.
+what is OPF, how does it work
+why do I need to modify the load flow (fix_mismatch)
+
+When an imbalance occurs in a power system it has a transient that effects the entire system. Because a load flow cannot model this transient one bus is assumed to cope withall the changes. This is the slack bus. But in a larg
+
+% ------------------------------------------------------------------------------
