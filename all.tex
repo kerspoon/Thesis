@@ -1594,12 +1594,16 @@ This chapter covers how security assessment schemes are themselves assessed. It 
 
 
 % ================================================================== %
-\chapter{Results}
+\chapter{Computer Program}
 % ================================================================== %
 
-This chapter presents the implementation details and results of the Monte Carlo Sampling program.
+The aim of this chapter is to detail the development of a computer program made to test and compare SAS. It is then tested using rough analytical calculations.
 
-\section{The IEEE Reliability Test System 96\label{lbl_RTS}}
+\section{Program Design}
+
+\subsection{The IEEE Reliability Test System 96\label{lbl_RTS}}
+
+\todo{replace one area with three area}
 
 The IEEE Reliability Test System 96 (IEEE-RTS) \cite{Grigg1999} is a sample power system with a thorough set of data for operation, emissions, and reliability. It was for this reason that it was chosen as the test system for this work. Only area A was used, which is composed of 32 generating units, 24 busbars, 38 lines, 17 loads and two voltage levels.
 
@@ -1711,9 +1715,15 @@ G33 & 23 & 1150 & 100 \\
 \end{table}
 
 
-\section{Monte Carlo Sampler Program}\label{sec_mc_results}
 
-\subsection{Implementation}
+% ================================================================== %
+\subsection{Monte Carlo Sampler Program}\label{sec_mc_results}
+
+
+\todo{add wind talk? (maybe here maybe later)}
+\todo{a lot of this can be moved into the discussion but I'm not sure if it should.}
+
+\subsubsection{Implementation}
 
 Stage one consists of sampling to generate a range of realistic operating conditions. Outages of lines, busbars and generators are calculated from their mean time to fail (MTTF) and mean time to repair (MTTR) as per Eqn \ref{eqn_outage}. For components that have a failure rate specified, instead of a MTTF, a simple conversion was performed. Busbar failure rate is not included in the original paper so a value of 0.025 was chosen to be consistent with values in the literature \cite{Allan1991,Billinton1993,Brown2004,Evans1997}. Failure rate is given in failures per year and MTTF and MTTR is given in hours. Included in the paper is the probability that the tripping of certain lines will cause tripping of others. This effect was also taking into account in this work.
 
@@ -1733,7 +1743,7 @@ A more realistic measure should take better account of the correlation between t
   P_f = {1 - e^{- \lambda t}}
 \end{equation}
 
-\subsection{Data Types}
+\subsubsection{Data Types}
 
 The sampling program is based around four main data types, each associated with a file type. These are created and modified with a number of scripts.
 
@@ -1757,7 +1767,7 @@ Due to the slow start-up and shutdown time of Matlab simulations were done in ba
 
 In the flow diagram (Image \ref{samplerflow}) the process for Stage 1 is detailed. Here it includes simulation but that is not strictly necessary. In addition to the batch file it was possible to gather statistics about the samples and simulations. These statistics are analysed later.
 
-\subsection{Demand Forecast Analysis}
+\subsubsection{Demand Forecast Analysis}
 
 The IEEE-RTS supplied data for demand level that is based upon the season, hour and week. This section looks at how the load level fluctuates then uses the MCS to form aggregate data.
 
@@ -1777,7 +1787,7 @@ When sampled this data-set give the probability density as shown in Image \ref{a
 
 Stage 2 took the load forecast and create a forecast error. This was simple taken as a normal distribution. The results of quantisation give the graph in \ref{aggregateforecasterror}. It has a relatively small effect when compared to the forecast itself but a 10\% increase in power demand is significant both in it's frequency and effect.
 
-\subsection{Outage Frequencies}
+\subsubsection{Outage Frequencies}
 
 \image{outagefrequencies}{Component Outage (Stage 1) Frequencies}{outagefrequencies.png}
 
@@ -1786,6 +1796,571 @@ Stage 2 took the load forecast and create a forecast error. This was simple take
 Looking at the number of components that have failed or are on outage in each sample give the graphs in \ref{outagefrequencies} and \ref{failurefrequencies}. Rather unexpectedly it says that up to 8 simultaneous component outages can occur in one million samples. This would seriously weaken the network. There is a 77\% change of at least one component outage, hence it is much more likely that the system is not at it's full generating capacity. Generator failures accounted for most of these outages with only 3\% of samples having at least one line failure and only 0.1\% of samples having any busbar failures.
 
 Stage 2 outages, or components failures, tell a similar story on a much smaller scale. These represent problems that occur to the system during delivery. This means that in 4 samples out of a million, three unrelated failures all occurred within the same half hour period. This will cause extreme stress to the system but it is an unlikely event. Though independent samples should not be though of as a time series, one millions half-hour samples represents a time period of about 60 years. Taken in the context that Edison set up the first ever power system about 130 years ago this million samples is bound to include some very unlikely events.
+
+
+\section{Program Structure}
+
+The program itself was written mostly in Python and is available on-line at \url{http://github.com/kerspoon/kiribati} it uses a load-flow program as the core power system simulator. Owing to it's speed CPF  was selected as the simulator for this program.
+
+\todo{cite and describe cpf}
+
+It has a number of functions which all take input from the command line. This allows it to be combined together easily and intermediate parts written out to file.
+
+\subsubsection{Generate Base Cases}
+
+\todo{see: http://stackoverflow.com/questions/1966425/source-code-highlighting-in-latex}
+
+\begin{verbatim}
+# generate 10 unique base cases and save to file.
+python main.py base-case 10 > base.csv
+\end{verbatim}
+
+This option outputs a list of base-cases to the command line. The base cases are generated using Monte Carlo Sampling as described in [chapter XXX], taking in to account MTTF, MTTR, CROW failures, and Load-level.
+
+The parameter is the number of unique base cases to output. For instance if two base cases had a bus bar level of 0.55 and only G23 on outage then it would output a single line.
+
+The advantage of this is that it will cause only one simulation to be run. This has a very dramatic effect on the speed of computation with no loss of accuracy. In one run of 256 billion samples there were only 100,000 simulations required.
+
+The output is a comma separated value file (CSV), meaning it can be opened in any spreadsheet program or text editor. Here is an example output.
+
+\begin{verbatim}
+    1, outage, None, , 0.75, G22, G23, G86, G71, G16, G65
+    1, outage, None, , 0.7, G62, G23, G91, C30
+    1, outage, None, , 0.55, G80, G99, G65
+    1, outage, None, , 0.5, G6
+    1, outage, None, , 0.65, G39, G35, G1, G90
+    1, outage, None, , 0.45, G84, G68, G71, G78
+    1, outage, None, , 0.65, G30, G5, G3, G68, G44, G66, G98
+    1, outage, None, , 0.5, G80, G57
+\end{verbatim}
+
+Each line is one base case. The first column is the number of base-cases that had the following result. So in the example above the line produced would be:
+
+\begin{verbatim}
+    2, outage, None, , 0.55, G23
+\end{verbatim}
+
+The second column is the type of the sample. For base-cases it is always outage but it will change for contingencies or n-x runs.
+
+The third and fourth detail the results of simulation which are not defined until simulate is run on the file.
+
+The fifth column is the load level. This number is the percentage of the peak that all loads will be scaled to. For instance if the load for a particular bus was 6.2 before the sample was applied and the load-level was 0.5 the resulting bus level would be 3.1, this is applied equally across the busses.
+
+The rest of the columns list the names of components that are not to be included in the simulation. In base-cases this represents maintenance or previously fail components that are not available during the delivery period. In contingencies it represents components that will fail during the current delivery period.
+
+Obviously the base-cases it produces are dependent on the input files which specify the components and probabilities. As the only power system considered in this thesis is the RTS the file names are hard coded into the program.
+
+
+\subsubsection{Generate Monte Carlo Contingencies}
+
+\begin{verbatim}
+# generate 1000 unique contengencies
+# using the base cases in base.csv and save to file.
+python main.py contingency 1000 < base.csv > contingency.csv
+\end{verbatim}
+
+This option first generates contengencies based upon the probabilistic
+change during the deliver period. It then combines the contengencies
+with the base cases given on the standard input.
+
+For example if there we only two base cases given:
+
+\begin{verbatim}
+1, outage, None, , 0.5, G1
+1, outage, None, , 1.0, G2
+\end{verbatim}
+
+Then it may output something like the following:
+
+\begin{verbatim}
+0, base, None, , 1.0
+1, failure, None, , 0.95, A1
+1, failure, None, , 1.05, A2
+1, outage, None, , 0.5, G1
+1, combined, None, , 0.475, G1, A1
+1, combined, None, , 0.525, G1, A2
+1, outage, None, , 1.0, G2
+1, combined, None, , 0.95, G2, A1
+1, combined, None, , 1.05, G2, A2
+\end{verbatim}
+
+The output here is in sections, first is the raw base base with no
+changes, then the contengencies not combines with a base-case. Next is
+the first base case in the input followed by that base case combined
+with each contengency given before in turn. This is repeated for all
+base cases. This means there will be:
+
+x = (B+1)*(C+1)
+
+samples in the output file, and hence that many simulations to perform.
+
+Note that the same samples are used for each base case. This does not
+neccessarily represent reality but as long as there are enough samples
+it is not a limiting factor to the accuracy of the results.
+
+If the command line option \texttt{noInput} is given just the failures
+are put into the output and any base-cases are ignored.
+
+\subsubsection{Generate N-x Contingencies}
+
+\begin{verbatim}
+# generate all single component failures
+# using the base cases in base.csv and save to file.
+python main.py n-x 1 < base.csv > n-1.csv
+\end{verbatim}
+
+This option generates contingencies but this time they are not from
+Monte Carlo. The parameter specifies the number of simultaneous outages
+to consider. For example, if the parameter is one then only single
+component outages are considered. This would cause one contingency per
+system component. In the RTS this would cause 289 contingencies to be
+created, as there are 289 components.
+
+If the parameter is 2 using the RTS as the input file there will be
+41,616 contengencies.
+
+Like the \texttt{contengency} option it combines the set of
+contengencies with each base case ready for simulation.
+
+\subsubsection{Simulate}
+
+\begin{verbatim}
+# generate all single component failures
+# using the base cases in base.csv and save to file.
+python main.py simulate < in.csv > results.csv
+\end{verbatim}
+
+This takes base cases or contengencies and simluates them in turn using
+CPF. The results from each simulation are categorised as either
+acceptable or unacceptable. Unacceptable means there was: divergence,
+islanding, or a component out of static limits. This is to represent
+whether a system operator would have to perform emergency action to keep
+the system running acceptably.
+
+The output file is of the same format as the input, the only change is
+to the third and fourth column to set the results.
+
+As the file is read in and simulated one line at a time stopping the
+program will result in a certain portion of the simulations correctly
+run. This was useful to quickly check results before simulating a large
+run.
+
+It is possible to specify all steps in one go, elimating intermediate
+files. Unfortunatly this gives no feedback as to progress, it also means
+that all steps have to be run again if a change is needed.
+
+\subsubsection{Analyse}
+
+\begin{verbatim}
+# summarize the results of a block of simulations
+python main.py analyse < results.csv > analysis.csv
+\end{verbatim}
+
+The final stage of the program takes the output from a simulation of
+contengencies combined with base cases and condenses them down. It
+doesn't matter whether the contengencies were generated using monte
+carlo or n-x.
+
+For each base case it counts the total number of unacceptable samples,
+this gives the probability of acceptability, which is used in the final
+assesment.
+
+For example if the input file was:
+
+\begin{verbatim}
+0, base, True, ok, 1.0
+1, failure, True, ok, 0.95, A1
+4, failure, True, ok, 1.05, A2
+1, outage, True, ok, 0.5, G1
+1, combined, True, ok, 0.475, G1, A1
+4, combined, False, ok, 0.525, G1, A2
+1, outage, True, ok, 1.0, G2
+1, combined, False, ok, 0.95, G2, A1
+4, combined, False, ok, 1.05, G2, A2
+\end{verbatim}
+
+Then the analysis would produce:
+
+\begin{verbatim}
+0, base, True, ok, 1.0
+0, 5
+1, outage, True, ok, 0.5, G1
+4, 5
+1, outage, True, ok, 1.0, G2
+5, 5
+\end{verbatim}
+
+It alternates between printing out the base-case and printing the number
+of acceptable cases. Note that it does not simply count the number of
+lines as certain line represent more than one sample, as can be seen in
+the example.
+
+\subsubsection{Utilities}
+
+In addition to the main use of the program it also has two utility
+functions.
+
+Test prints out the results of simulating a number of interesting
+base-cases that stress the program in different ways. It also prints the
+file that is used as an input for CPF. A file that if normally never
+seen. This is to ensure that it is being produced properly for a number
+of edge cases. The cases selected also make sure that the simulator is
+tested on a number of edge cases as well.
+
+Finally there is a command to delete all files from previous runs so
+that the working directory is clear to start again.
+
+\subsubsection{Flow Diagram}
+
+\todo{image}
+
+\section{Testing}
+
+To ensure the proper operation of the program there were various test
+performed these ranged from: quick checks of individial functions;
+checking simulation output with hand worked examples; to an analysis of
+how many samples were actually needed to ensure that it was not the
+limiting factor.
+
+\subsubsection{Unit Tests}
+
+The simplest of these checks are the small unit tests. These are best
+described by David Thomas et al. in Pragmatic Unit Testing:
+
+\begin{verbatim}
+A unit test is a piece of code written by a developer which exercises a very small, specific area of functionality in the code being tested.
+\end{verbatim}
+
+While the program was being developed unit-test were programmed to run
+every time the code was, that was if any change I had made broke
+anything I would find out straight away.
+
+The extract of code below makes sure that the individual function
+\texttt{quantised\_01} does what I expect it to on a few hand worked
+examples.
+
+\begin{verbatim}
+class Tester_quantised(ModifiedTestCase):
+    def test_01(self):
+        self.assertEqual(quantised_01(0.00), 0.00)
+        self.assertEqual(quantised_01(0.005), 0.01)
+        self.assertEqual(quantised_01(0.0049), 0.00)
+        self.assertEqual(quantised_01(0.0149), 0.01)
+        self.assertEqual(quantised_01(0.9999), 1.00)
+\end{verbatim}
+
+These functions althouth not individually useful in calcluating anything
+to do with power systems form the building blocks the make a useful
+program and the unit tests are there to make sure that foundation is
+solid.
+
+\subsubsection{Module Tests}
+
+Module tests are the next logical level up from unit tests and could
+probably be consider unit tests in and of themselves. They test the
+boundries of modules as seen externally. This makes sure that the
+interaction of the modules class and its helper functions all work
+together properly.
+
+For example the \texttt{buslevel} module has two main functions exported
+for other modules to use. If we ensure that these two functions work
+then no further testing of the internals should be neccessary. One of
+the functions takes as an input the week of the year, day of the week
+and hour of the day to produce a single forecast load figure. These can
+easily be hand worked so for example the first hour of the year (01/Jan
+at 00:00) should give a load forecast of 0.537 times the base level.
+This is what is checked in the first assertion in the code below:
+
+\begin{verbatim}
+def test_peak_load(self):
+    self.assertAlmostEqual(forecast_load(0, "Monday", 0), 0.537, 3)
+    self.assertAlmostEqual(forecast_load(0, "Sunday", 0), 0.504, 3)
+    self.assertAlmostEqual(forecast_load(51, "Sunday", 23), 0.578, 3)
+    self.assertAlmostEqual(forecast_load(37, "Tuesday", 12), 0.646, 3)
+\end{verbatim}
+
+Another example ensures that the samples which form the basis of all
+input and output of the program are able to be read and printed
+properly. It does this by reading in some test cases then printing then
+back out and checking they match the original file.
+
+\begin{verbatim}
+def util_readwrite_match(self, inp):
+    batch = list(input_scenario(StringIO(inp)))
+    stream = StringIO()
+    output_scenario(batch, stream)
+    self.assertEqual(stream.getvalue(), inp)
+
+def test_1(self):
+    self.util_readwrite_match("""1, outage, False, bad, 0.55, G49, G32, G22, G12\n""")
+    self.util_readwrite_match("""999, failure, True, ok, 1.0\n""")
+    self.util_readwrite_match("""999, combined, None, ok, 0.01, A1\n""")
+    self.util_readwrite_match("""1, combined, False, component out of limits, 0.525, G31, G66\n""")
+\end{verbatim}
+
+\subsubsection{Fix Power Mismatch}
+
+This is another example of a module test but is a special case as it
+changed the functionality of the load-flow program used for all
+simulations, hence it is worth documenting.
+
+Load-flow programs cannot be run with any mismatch. This is by design,
+if there is a masmatch it will be cancel out during calcluation by the
+slack-bus. If there are significant mismatches, such as from removing
+certain generatios as is needed for this PhD it can lead to problems.
+The simulation may end up testing the ability of the slack-bus to cope
+with changing power level rather than the entire system. For this reason
+the expected mismatch is averaged across all suitable generators
+according to their current power levels.
+
+The code ensures that generators power limits are observed so that if a
+generator was to hit a limit it is simple set at full power and the rest
+of the power distributed among the other generators.
+
+Certain generators are not suitable for varyation, these are the ones
+where power output is not controlable, for example wind turbines. In
+these cases is taken to to be of a fixed value and the rest of the
+generators must make up the difference.
+
+Sometimes the power requirement is too high to be met by the available
+generation. This is a problem of adaquacy and as such the particular
+case can be marked as unsuitable even before a simulation is run. This
+did occasionally happen during simulation but it was rare. It required
+either the power to be over 15\% higher than the forecast maximum or
+that the power was still very high and large generating units were out
+of service. As this could happen in a real power system it is not a
+problem with the simulation but accuratly represents a problem in the
+system.
+
+The code for this is givin in \cite{appedix XXX}.
+
+Below is an example of one of the tests for the mismatch fixing code. It
+checks that two generators that both have current have a power of 1 p.u.
+and a mismatch of 1 p.u. result in the mismatch being split equally.
+Note that it would not always be split equally. If one generator had a
+limit of less than 1.5 or the initial powers of the generator dofferred
+from each other the resulting power on each generating unit would be
+different.
+
+\begin{verbatim}
+def test_2(self):
+    current_power = [1, 1]
+    max_limits = [2, 2]
+    min_limits = [-2, -2]
+
+    res = fix_mismatch(1.0, current_power, max_limit, min_limit)
+    self.assertAlmostEqualList(res, [1.5, 1.5])
+\end{verbatim}
+
+\subsubsection{Integration Testing of Monte Carlo Simulation}
+
+The monte carlo simulation spanned a number of modules. It had code to
+read in the input files, generate random numbers in various
+distributions, and output the results. As such the testing involved is
+no longer know as unit tests and becomes integration testing:
+
+\begin{quote}
+Integration testing shows that the major subsystems that make up the project work and play well with each other. [XXX the pragmatic programmer]
+\end{quote}
+
+If the monte carlo simulation was working correctly it should have an
+output that almost matches the theoretical results. For example the
+theoretical result of tossing a coin 1000 times would be 500 head and
+500 tails. If the monte carlo sampler was working it should give results
+similar to this.
+
+The exact analytical solution to the problem we are simulating is
+complex involving failures that change the probability of other events
+occuring such as CROW failures {[}see XXX the monte carlo description in
+this chapter{]}. These effects should be dwarfed by the overall
+probabilities and as such were ignored.
+
+\paragraph{Theoretical Results}
+
+\todo{take from old thesis}
+
+\paragraph{Monte carlo Results and comparason}
+
+\todo{take from old thesis}
+
+\subsubsection{Testing The Simulator}
+
+Although the simulator has been used before and has formed an important
+part of other PhD thesis {[}XXX - chan, dale?, berry?{]} it was
+important to ensure it worked in the content of what was done for this
+work. There was also addition code that took a sample and created the
+input file, properly modified, to represent it.
+
+14 test cases were generated that tested a variety of code paths and
+covered a range of edge cases. These are given in the code below.
+
+\begin{verbatim}
+def main_test(out_stream):
+    """print the results and the intermediate file for
+       a number of interesting scenarios. So we can check
+       by hand if the intermediate file generator and the
+       simulator are doing the correct thing.
+    """
+
+    batch_string = ""
+    batch_string += "1, base, None, , 1.0\n"            # base - as normal
+    batch_string += "1, half, None, , 0.5\n"            # half load power
+    batch_string += "1, tenth, None, , 0.1\n"           # tenth load power
+    batch_string += "1, island, None, , 1.0, B11\n"     # island
+    batch_string += "1, slack, None, , 1.0, G12\n"      # removed 1 slack bus
+    batch_string += "1, slack-all, None, , 1.0, G12, G13, G14\n"  # removed all slack busses
+    batch_string += "1, line, None, , 1.0, A2\n"        # remove 1 line
+    batch_string += "1, gen, None, , 1.0, G24\n"        # remove 1 generator
+    batch_string += "1, bus, None, , 1.0, 104\n"        # remove 1 bus without generators
+    batch_string += "1, bus-gen, None, , 1.0, 101\n"    # remove 1 bus with generators attached
+    batch_string += "1, bus-slack, None, , 1.0, 113\n"  # remove slack bus and all slack generators
+    batch_string += "1, bus-island, None, , 1.0, 208\n"  # remove bus that causes island
+    batch_string += "1, high-load, None, , 1.10\n"      # load power high
+    batch_string += "1, over-max, None, , 1.15\n"       # load power above max gen power
+\end{verbatim}
+
+These were tested and simulated. The results of the simulation as well
+as the intermediate file were checked by hand to make sure the program
+was working correctly.
+
+The intermediate file is the combination of the sample and the base
+load-flow file that forms the input to the load-flow program. There were
+various things that could be checked the most important was checking
+that the correct components have ben removed and that the load and
+generator power totals are correct. The base load-flow file has 172
+busbars and 222 branches with result in a file with a total of 397
+lines, if no components have been removed this should remain the same.
+The removal of a generating unit should \emph{not} cause a change in the
+total power output as it should be counteracted by the mismatch fixing
+code described earlier, but there should be a reduction in the number of
+busses and branches to reflect that change.
+
+Once the intermediate file were checked the results of the simulation
+were checked as well. For example the removal of line B11 causes the
+system to be islanded which should result in a result of ``false''
+coming back from the simulator.
+
+The table {[}XXX{]} shows the summary of the results and forms a quick
+reference for future checking. Making sure this works and can be
+automated means that the program itself can be changed easily for
+reasons of speed or clarity; something discussed in the next section.
+
+\todo{simulator testing table}
+
+\subsubsection{Improving Simulator Performance}
+
+Once the program was working and the tests were largely automatic, it
+was possible to improve the program to make it run faster. The largest
+improvement was built in to the design of the program, namely to only
+simulate sample that were different from each other, this saved many
+orders of magnitude of time. Enabling testing to be done on one computer
+rather than hundreds.
+
+Manually improving the speed of code is notoriously difficult,
+optimisiations that seem logical can slow down execution due to cache
+sizing issues and compiler optimisiation. The key tool in reducing the
+run-time of a program is the use of a profiler. Python, the language
+this program is written in, comes with it's own profiler which is
+thankfully easy to set up.
+
+If the following code \texttt{-m cProfile -o profile.prof} is added to
+any python run it creates a file contaning profile information. This can
+be analysed in various ways but the easiest is to do the following:
+
+\begin{verbatim}
+elif args[0] == 'profile':
+    if len(args) != 2:
+        p = pstats.Stats('profile.prof')
+    else:
+        p = pstats.Stats(args[1])
+    p.strip_dirs().sort_stats('time').print_stats()
+\end{verbatim}
+
+This produces a text based output of the profile, which makes it easy to
+see which part of the program is the slowest so the focus of
+optimisiation can be directed to the most important part.
+
+As they are very different code paths the differnt options given to
+main.py produce completely differnt profile outputs. Because of this
+they were tested separatly. On one run of the program only 23 functions
+actually spend more than 0.01 seconds executing. It seems obvious that
+the focus of the optimisiation should focus one just those 23.
+
+\todo{table of longest calls}
+
+\todo{ call graph.} 
+\todo{ graph of long tail of function times.}
+
+\subsubsection{Required Number of Simulation Samples}
+
+Tests were performed, as detailed below, to ensure that enough samples
+were taken. If there were not enough samples any results that were found
+could be spurious. This is dicussed in section {[}7.5{]} as point 7.
+Although not so problematic it is possible to do too many simulations in
+that other factors may have to be reduced thus decreasing overall
+accuracy.
+
+The number of simulations we determined in the simplest fashon that
+works well. If the result is stable in repeated runs then the number of
+samples is not the limiting factor and you can be reasonably sure that
+the result will not get more accurate simply by running more
+simulations.
+
+First a set of 100 base-cases were generated to form the basis of the
+test. Next contingencies were generated using the Monte Carlo Sampler.
+This was done repeatedly starting with 10 unique samples going up an
+order of magnitude each time until 100,000 uniques samples. These
+results were analysed to find the probability of acceptability in each
+case.
+
+If the probability of acceptability for each base case are the same for
+any two sets of sample sizes then we know that the smaller of the two
+has enough samples. For example if 1,000 and 10,000 both had the same
+results to a certain number of significant figures then running more
+samples is not likely to change that number.
+
+The results for one such test are shown below. You can see that the
+change tapers off at the number of samples increases. The difference in
+the results with 10,000 and 100,000 samples is very small meaning it is
+not worth doing more than 10,000 samples.
+
+\todo{graph of results on 10, 100, 1000 etc.}
+\todo{graph of results on 10, 100, 1000 etc. for a few base-cases}
+
+\section{Using the program}
+
+Here is the shell script that does each stage of simulation in order to
+produce the final analysis. First it removes old file, then generates
+base cases and simulate them. Then it generates contingencies and
+simulates the combination of both. Finally analysis is done on the
+results of the simulation.
+
+\begin{verbatim}
+#!/bin/sh
+echo "start", $1, $2
+python2 main.py clean
+
+python2 main.py base-case $1 > base-case.csv
+python2 main.py simulate < base-case.csv > base-case-result.csv
+echo "base-cases done"
+
+python2 main.py contingency $2 < base-case-result.csv > combi.csv
+echo "generate contingencies done"
+
+python2 main.py simulate < combi.csv > result.csv
+echo "simulate contingencies done"
+
+python2 main.py analyse < result.csv > analysis.csv
+echo "anaylsis done"
+\end{verbatim}
+
+
+% ================================================================== %
+\chapter{Results}
+% ================================================================== %
+This chapter presents the implementation details and results of the Monte Carlo Sampling program.
+
+
 
 \section{Sampler Test}
 
