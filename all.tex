@@ -235,7 +235,7 @@ Some issues are addressed by the BWEA, The Carbon Trust, Department of Trade and
 
 \image{installedcapacity}{Installed Capacity}{installedcapacity.png}
 
-A key publication on this subject is the 'Renewables Network Impact Study' by the Carbon Trust \& DTI \cite{Trust2005}, it states that:
+A key publication on this subject is the 'Renewable Network Impact Study' by the Carbon Trust \& DTI \cite{Trust2005}, it states that:
 
 \begin{myquote}[\cite{Trust2005}]At the current target levels, intermittency is not a significant issue affecting the development of renewable generation. However, system balancing costs will increase as the penetration of intermittent renewables increases, and balancing costs could increase substantially with regard to meeting the 2020 aspirational target.\end{myquote}
 
@@ -585,7 +585,7 @@ Although stability is essentially a single problem it can help analysis to categ
 
 \section{Disturbances}
 
-Any change to a power systems operating condition is know as a disturbance. These are categorised as either small or large. \emph{Small disturbances} in the form of load changes occur continually and due to their size can often be analysed using lineariziation. Whereas, \emph{large disturbances}, such as the loss of a transmission line, cause a system-wide transient response. A line loss can be though of as a transient followed by a change in the system topology.
+Any change to a power systems operating condition is know as a disturbance. These are categorised as either small or large. \emph{Small disturbances} in the form of load changes occur continually and due to their size can often be analysed using linearisation. Whereas, \emph{large disturbances}, such as the loss of a transmission line, cause a system-wide transient response. A line loss can be though of as a transient followed by a change in the system topology.
 
 Machine rotor speeds will change due to the difference between created mechanical and electrical torque giving rise to different busbar voltages. This results in voltage regulators and governors responding to the changes. Any number of further actions may take place where the system either stabilises at a new operating point or causes a \emph{cascading outage} leading to total black-out.
 
@@ -715,7 +715,7 @@ There are other renewable generation options but they are unlikely to represent 
 
 Wave power has a huge potential due to the large forces at work but an efficient means of extracting that power is yet to be devised. The Pelamis wave energy converter \cite{Holzman2007}, in Scotland, is one of a few attempts to harness the power of the waves. It uses a segmented snake like structure that oscillates with the waves. If an efficient scheme for extracting power could be devised the UK would be an ideal place to use it.
 
-Geothermal power is driven by a steam turbine generating power by heat taken from the earths core. It provides a significant proportion of power in Iceland, though many place would not have the necessary conditions. The UK does have a capability for Geothermal power but it is not likely to become significant.
+Geothermal power is driven by a steam turbine generating power by heat taken from the earth's core. It provides a significant proportion of power in Iceland, though many place would not have the necessary conditions. The UK does have a capability for Geothermal power but it is not likely to become significant.
 
 \subsection{Nuclear}
 
@@ -1015,7 +1015,7 @@ Rather than try to execute parts of the matrices in parallel a simpler method is
 
 If the generators ODE calculations are being passed to another computation unit it would be worthwhile finding the best type of chip to use. Obviously the calculations will work on a general purpose CPU but the type of calculations involved mean that fast floating point arithmetic is advantageous. \emph{SIMD} is an extension to x86 instruction sets in most common computers. It is made specifically for pipelining floating point arithmetic for quick solutions.
 
-Even more specialised is the GPU, or graphics card, is is made for computer games. It excels at just the task required for power system simulation. Only recently have developers been able to use graphics cards for general purpose calculations (this is known as \emph{GPGPU} \cite{Che2008}). This would require a major rethink due to the idiosyncrasies of the device but the advantage should be large.
+Even more specialised is the GPU, or graphics card, is made for computer games. It excels at just the task required for power system simulation. Only recently have developers been able to use graphics cards for general purpose calculations (this is known as \emph{GPGPU} \cite{Che2008}). This would require a major rethink due to the idiosyncrasies of the device but the advantage should be large.
 
 As the majority of the ODE calculations are fixed throughout the life of the simulation a possibility if to use a \emph{FPGA} set for the specific system. This programmable computer is a halfway house between hardware and software and could be used to give huge speedups in execution at the expense of a large set-up time.
 
@@ -1347,7 +1347,7 @@ We can also see whether the operating conditions that were in disagreement were 
 
 By looking at the specific operating conditions that were in disagreement it may be possible to determine whether the SAS is lacking in some respects. It may, for instance, misrepresent only systems where the wind variability is high.
 
-We can also gather information by looking at the difference between each of the points in disagreement and the threshold. This givens an indication of how badly the SAS is when errors do occur. If a very insecure system, say with a security level of 10 is reported as a failure by a SAS then this is a larger problem than one with a security level of 49. A system with a security level of 10 is very likely to have some problem during its operation. This is by definition. If we allow such a system to run in that state then we are open to the financial cost of whatever stability or limits violation will occur. We can sum up the difference between each operating condition in disagreement and the threshold to come up with a value for the severity of error in the SAS. It should be noted that this number is not meant to represent anything in reality but is simply an indication of how well the SAS is for those operating conditions tested on that specific system. It can however be compared to another SAS run over the same operating conditions on the same system, to see which is best.
+We can also gather information by looking at the difference between each of the points in disagreement and the threshold. This gives an indication of how badly the SAS is when errors do occur. If a very insecure system, say with a security level of 10 is reported as a failure by a SAS then this is a larger problem than one with a security level of 49. A system with a security level of 10 is very likely to have some problem during its operation. This is by definition. If we allow such a system to run in that state then we are open to the financial cost of whatever stability or limits violation will occur. We can sum up the difference between each operating condition in disagreement and the threshold to come up with a value for the severity of error in the SAS. It should be noted that this number is not meant to represent anything in reality but is simply an indication of how well the SAS is for those operating conditions tested on that specific system. It can however be compared to another SAS run over the same operating conditions on the same system, to see which is best.
 
 \section{Monte Carlo Sampling}\label{lbl_sec_mcs}
 
@@ -1446,7 +1446,7 @@ Each scenario is tested with each SAS to find whether they pass or fail. A secur
 
 \subsection{Determining the Security Threshold}
 
-The security threshold is an important factor in the success of the proposed scheme. More work needs to be done tn determine the actual tolerable level of security as it is defined by the method above.
+The security threshold is an important factor in the success of the proposed scheme. More work needs to be done to determine the actual tolerable level of security as it is defined by the method above.
 
 To find the ideal level of the threshold a cost benefit analysis could be performed. There has been work done on finding the cost of security \cite{Bell1999, Kirschen2003} and this can be used to determine the optimum level. In other words, if the security level was set at X what would be the direct cost and what would be the cost of emergency action and disturbances.
 
@@ -1854,13 +1854,13 @@ Obviously the base-cases it produces are dependent on the input files which spec
 \subsubsection{Generate Monte Carlo Contingencies}
 
 \begin{verbatim}
-# generate 1000 unique contengencies
+# generate 1000 unique contingencies
 # using the base cases in base.csv and save to file.
 python main.py contingency 1000 < base.csv > contingency.csv
 \end{verbatim}
 
-This option first generates contengencies based upon the probabilistic
-change during the deliver period. It then combines the contengencies
+This option first generates contingencies based upon the probabilistic
+change during the deliver period. It then combines the contingencies
 with the base cases given on the standard input.
 
 For example if there we only two base cases given:
@@ -1884,10 +1884,10 @@ Then it may output something like the following:
 1, combined, None, , 1.05, G2, A2
 \end{verbatim}
 
-The output here is in sections, first is the raw base base with no
-changes, then the contengencies not combines with a base-case. Next is
+The output here is in sections, first is the raw base case with no
+changes, then the contingencies not combines with a base-case. Next is
 the first base case in the input followed by that base case combined
-with each contengency given before in turn. This is repeated for all
+with each contingency given before in turn. This is repeated for all
 base cases. This means there will be:
 
 x = (B+1)*(C+1)
@@ -1895,7 +1895,7 @@ x = (B+1)*(C+1)
 samples in the output file, and hence that many simulations to perform.
 
 Note that the same samples are used for each base case. This does not
-neccessarily represent reality but as long as there are enough samples
+necessarily represent reality but as long as there are enough samples
 it is not a limiting factor to the accuracy of the results.
 
 If the command line option \texttt{noInput} is given just the failures
@@ -1917,10 +1917,10 @@ system component. In the RTS this would cause 289 contingencies to be
 created, as there are 289 components.
 
 If the parameter is 2 using the RTS as the input file there will be
-41,616 contengencies.
+41,616 contingencies.
 
-Like the \texttt{contengency} option it combines the set of
-contengencies with each base case ready for simulation.
+Like the \texttt{contingency} option it combines the set of
+contingencies with each base case ready for simulation.
 
 \subsubsection{Simulate}
 
@@ -1930,7 +1930,7 @@ contengencies with each base case ready for simulation.
 python main.py simulate < in.csv > results.csv
 \end{verbatim}
 
-This takes base cases or contengencies and simluates them in turn using
+This takes base cases or contingencies and simulates them in turn using
 CPF. The results from each simulation are categorised as either
 acceptable or unacceptable. Unacceptable means there was: divergence,
 islanding, or a component out of static limits. This is to represent
@@ -1945,8 +1945,8 @@ program will result in a certain portion of the simulations correctly
 run. This was useful to quickly check results before simulating a large
 run.
 
-It is possible to specify all steps in one go, elimating intermediate
-files. Unfortunatly this gives no feedback as to progress, it also means
+It is possible to specify all steps in one go, eliminating intermediate
+files. Unfortunately this gives no feedback as to progress, it also means
 that all steps have to be run again if a change is needed.
 
 \subsubsection{Analyse}
@@ -1957,13 +1957,13 @@ python main.py analyse < results.csv > analysis.csv
 \end{verbatim}
 
 The final stage of the program takes the output from a simulation of
-contengencies combined with base cases and condenses them down. It
-doesn't matter whether the contengencies were generated using monte
-carlo or n-x.
+contingencies combined with base cases and condenses them down. It
+doesn't matter whether the contingencies were generated using Monte
+Carlo or n-x.
 
 For each base case it counts the total number of unacceptable samples,
 this gives the probability of acceptability, which is used in the final
-assesment.
+assessment.
 
 For example if the input file was:
 
@@ -2017,7 +2017,7 @@ that the working directory is clear to start again.
 \section{Testing}
 
 To ensure the proper operation of the program there were various test
-performed these ranged from: quick checks of individial functions;
+performed these ranged from: quick checks of individual functions;
 checking simulation output with hand worked examples; to an analysis of
 how many samples were actually needed to ensure that it was not the
 limiting factor.
@@ -2049,7 +2049,7 @@ class Tester_quantised(ModifiedTestCase):
         self.assertEqual(quantised_01(0.9999), 1.00)
 \end{verbatim}
 
-These functions althouth not individually useful in calcluating anything
+These functions although not individually useful in calculating anything
 to do with power systems form the building blocks the make a useful
 program and the unit tests are there to make sure that foundation is
 solid.
@@ -2058,13 +2058,13 @@ solid.
 
 Module tests are the next logical level up from unit tests and could
 probably be consider unit tests in and of themselves. They test the
-boundries of modules as seen externally. This makes sure that the
+boundaries of modules as seen externally. This makes sure that the
 interaction of the modules class and its helper functions all work
 together properly.
 
 For example the \texttt{buslevel} module has two main functions exported
 for other modules to use. If we ensure that these two functions work
-then no further testing of the internals should be neccessary. One of
+then no further testing of the internals should be necessary. One of
 the functions takes as an input the week of the year, day of the week
 and hour of the day to produce a single forecast load figure. These can
 easily be hand worked so for example the first hour of the year (01/Jan
@@ -2105,9 +2105,9 @@ changed the functionality of the load-flow program used for all
 simulations, hence it is worth documenting.
 
 Load-flow programs cannot be run with any mismatch. This is by design,
-if there is a masmatch it will be cancel out during calcluation by the
+if there is a mismatch it will be cancel out during calculation by the
 slack-bus. If there are significant mismatches, such as from removing
-certain generatios as is needed for this PhD it can lead to problems.
+certain generators it can lead to problems.
 The simulation may end up testing the ability of the slack-bus to cope
 with changing power level rather than the entire system. For this reason
 the expected mismatch is averaged across all suitable generators
@@ -2117,28 +2117,28 @@ The code ensures that generators power limits are observed so that if a
 generator was to hit a limit it is simple set at full power and the rest
 of the power distributed among the other generators.
 
-Certain generators are not suitable for varyation, these are the ones
-where power output is not controlable, for example wind turbines. In
-these cases is taken to to be of a fixed value and the rest of the
+Certain generators are not suitable for variation, these are the ones
+where power output is not controllable, for example wind turbines. In
+these cases is taken to be of a fixed value and the rest of the
 generators must make up the difference.
 
 Sometimes the power requirement is too high to be met by the available
-generation. This is a problem of adaquacy and as such the particular
+generation. This is a problem of adequacy and as such the particular
 case can be marked as unsuitable even before a simulation is run. This
 did occasionally happen during simulation but it was rare. It required
 either the power to be over 15\% higher than the forecast maximum or
 that the power was still very high and large generating units were out
 of service. As this could happen in a real power system it is not a
-problem with the simulation but accuratly represents a problem in the
+problem with the simulation but accurately represents a problem in the
 system.
 
-The code for this is givin in \cite{appedix XXX}.
+The code for this is given in \cite{appedix XXX}.
 
 Below is an example of one of the tests for the mismatch fixing code. It
 checks that two generators that both have current have a power of 1 p.u.
 and a mismatch of 1 p.u. result in the mismatch being split equally.
 Note that it would not always be split equally. If one generator had a
-limit of less than 1.5 or the initial powers of the generator dofferred
+limit of less than 1.5 or the initial powers of the generator differed
 from each other the resulting power on each generating unit would be
 different.
 
@@ -2154,7 +2154,7 @@ def test_2(self):
 
 \subsubsection{Integration Testing of Monte Carlo Simulation}
 
-The monte carlo simulation spanned a number of modules. It had code to
+The Monte Carlo simulation spanned a number of modules. It had code to
 read in the input files, generate random numbers in various
 distributions, and output the results. As such the testing involved is
 no longer know as unit tests and becomes integration testing:
@@ -2163,30 +2163,30 @@ no longer know as unit tests and becomes integration testing:
 Integration testing shows that the major subsystems that make up the project work and play well with each other. [XXX the pragmatic programmer]
 \end{quote}
 
-If the monte carlo simulation was working correctly it should have an
+If the Monte Carlo simulation was working correctly it should have an
 output that almost matches the theoretical results. For example the
 theoretical result of tossing a coin 1000 times would be 500 head and
-500 tails. If the monte carlo sampler was working it should give results
+500 tails. If the Monte Carlo sampler was working it should give results
 similar to this.
 
 The exact analytical solution to the problem we are simulating is
 complex involving failures that change the probability of other events
-occuring such as CROW failures {[}see XXX the monte carlo description in
-this chapter{]}. These effects should be dwarfed by the overall
+occurring such as CROW failures \cite{see XXX the Monte Carlo description in
+this chapter}. These effects should be dwarfed by the overall
 probabilities and as such were ignored.
 
 \paragraph{Theoretical Results}
 
 \todo{take from old thesis}
 
-\paragraph{Monte carlo Results and comparason}
+\paragraph{Monte Carlo Results and Comparison}
 
 \todo{take from old thesis}
 
 \subsubsection{Testing The Simulator}
 
 Although the simulator has been used before and has formed an important
-part of other PhD thesis {[}XXX - chan, dale?, berry?{]} it was
+part of other Ph.D. theses \cite{XXX - chan, dale?, berry?} it was
 important to ensure it worked in the content of what was done for this
 work. There was also addition code that took a sample and created the
 input file, properly modified, to represent it.
@@ -2233,14 +2233,14 @@ lines, if no components have been removed this should remain the same.
 The removal of a generating unit should \emph{not} cause a change in the
 total power output as it should be counteracted by the mismatch fixing
 code described earlier, but there should be a reduction in the number of
-busses and branches to reflect that change.
+busbars and branches to reflect that change.
 
 Once the intermediate file were checked the results of the simulation
 were checked as well. For example the removal of line B11 causes the
 system to be islanded which should result in a result of ``false''
 coming back from the simulator.
 
-The table {[}XXX{]} shows the summary of the results and forms a quick
+The table \ref{XXX} shows the summary of the results and forms a quick
 reference for future checking. Making sure this works and can be
 automated means that the program itself can be changed easily for
 reasons of speed or clarity; something discussed in the next section.
@@ -2257,14 +2257,14 @@ orders of magnitude of time. Enabling testing to be done on one computer
 rather than hundreds.
 
 Manually improving the speed of code is notoriously difficult,
-optimisiations that seem logical can slow down execution due to cache
-sizing issues and compiler optimisiation. The key tool in reducing the
+optimisations that seem logical can slow down execution due to cache
+sizing issues and compiler optimisation. The key tool in reducing the
 run-time of a program is the use of a profiler. Python, the language
 this program is written in, comes with it's own profiler which is
 thankfully easy to set up.
 
 If the following code \texttt{-m cProfile -o profile.prof} is added to
-any python run it creates a file contaning profile information. This can
+any python run it creates a file containing profile information. This can
 be analysed in various ways but the easiest is to do the following:
 
 \begin{verbatim}
@@ -2278,13 +2278,13 @@ elif args[0] == 'profile':
 
 This produces a text based output of the profile, which makes it easy to
 see which part of the program is the slowest so the focus of
-optimisiation can be directed to the most important part.
+optimisation can be directed to the most important part.
 
-As they are very different code paths the differnt options given to
-main.py produce completely differnt profile outputs. Because of this
-they were tested separatly. On one run of the program only 23 functions
+As they are very different code paths the different options given to
+main.py produce completely different profile outputs. Because of this
+they were tested separately. On one run of the program only 23 functions
 actually spend more than 0.01 seconds executing. It seems obvious that
-the focus of the optimisiation should focus one just those 23.
+the focus of the optimisation should focus one just those 23.
 
 \todo{table of longest calls}
 
@@ -2295,12 +2295,12 @@ the focus of the optimisiation should focus one just those 23.
 
 Tests were performed, as detailed below, to ensure that enough samples
 were taken. If there were not enough samples any results that were found
-could be spurious. This is dicussed in section {[}7.5{]} as point 7.
+could be spurious. This is discussed in section \ref{xxx 7.5} as point 7.
 Although not so problematic it is possible to do too many simulations in
 that other factors may have to be reduced thus decreasing overall
 accuracy.
 
-The number of simulations we determined in the simplest fashon that
+The number of simulations we determined in the simplest fashion that
 works well. If the result is stable in repeated runs then the number of
 samples is not the limiting factor and you can be reasonably sure that
 the result will not get more accurate simply by running more
@@ -2309,7 +2309,7 @@ simulations.
 First a set of 100 base-cases were generated to form the basis of the
 test. Next contingencies were generated using the Monte Carlo Sampler.
 This was done repeatedly starting with 10 unique samples going up an
-order of magnitude each time until 100,000 uniques samples. These
+order of magnitude each time until 100,000 unique samples. These
 results were analysed to find the probability of acceptability in each
 case.
 
