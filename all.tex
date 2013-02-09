@@ -812,10 +812,10 @@ This chapter aims to provide the reader with a good understanding of the compone
 
 
 % ================================================================== %
-\chapter{Power System Simulation}
+\chapter{Power System Simulation} \label{chap_simulation}
 % ================================================================== %
 
-This section introduces the different options for modelling power systems: details the parts of a dynamic simulator; discusses how to model wind power before highlighting the changes made to the load-flow program PSAT to make it suitable for later experiments.
+This section introduces the different options for modelling power systems: details the parts of a dynamic simulator; discusses how to model wind power before highlighting the changes made to the load-flow program CPF to make it suitable for later experiments.
 
 \section{Simulation Types}
 
@@ -858,7 +858,7 @@ Most generators (Coal, Oil, Gas, Nuclear, CHP, Biomass, Tidal, Hydroelectric) be
 
 The most suitable type of simulator for looking at faults across a system is the dynamic simulator. Unfortunately most dynamic simulator programs focus on detail rather than speed. As speed is a limiting factor in the types of studies being looked at work was undertaken to develop a simple dynamic simulator that operates very quickly. This section contains the result of the research into dynamic simulation.
 
-Before completion the project was dropped as it became apparent that it would not be possible to complete in the required time-frame. Research into load-flow simulation indicated that it would be possible to get initial results without the detail, and time, of a full dynamic simulation. Hence PSAT, a Matlab toolbox, was used instead.
+Before completion the project was dropped as it became apparent that it would not be possible to complete in the required time-frame. Research into load-flow simulation indicated that it would be possible to get initial results without the detail, and time, of a full dynamic simulation. Hence PSAT, a Matlab toolbox, and CPF, a program written at the University of Bath as part of their dynamic simulator were used instead.
 
 Much of the work on this chapter is from the work done on PSSENG. PSSENG is a dynamic simulation program developed at the University of Bath by Dale \cite{Dale1986}, Berry \cite{Berry1989} and Chan \cite{Chan1992}. It is been used my many postgraduate students at University of Bath, mainly for automated security assessment using artificial intelligence \cite{Edwards1995, Nicholson1998, Zhang2007, Bell1995}. While it was a very fast simulator it was inflexible. It had no capability to include wind turbines hence it was not suitable for this work.
 
@@ -1071,7 +1071,7 @@ A distributed slack busbar compensates for this shortcoming in the load-flow by 
 
 This requires an equation stating how to split power between the slack busbars. This basically is a simplified simulation of inertia, control electronics and droop characteristics. The simplest possible way to achieve this is to assign the mismatched power to be made up by the slack generators according to their current power output. Pseudo-code for this mismatch fixing is given in Appendix~\ref{lbl_sec_code}.
 
-Work was done to modify PSAT to allow a load-flow to more accurately deal with faulted systems by using this special form of distributed slack bus.
+Work was done to modify CPF to allow a load-flow to more accurately deal with faulted systems by using this special form of distributed slack bus.
 
 \subsection{Optimal Power Flow (OPF)}
 
@@ -1319,7 +1319,7 @@ This chapter sets out exactly what is required in a security assessment scheme. 
 
 This chapter covers how security assessment schemes are assessed and compared then proceeds to detail the creation of a new method for comparing security assessment schemes. Finally, results are presented showing the novel method in action.
 
-The work is based around a two stage Monte Carlo Sampler which uses a Matlab PSAT simulation of the IEEE-RTS Area 1. The first stage generates \emph{scenarios}, representing possible states the power system could be in. The second stage is used to create the probability that each of the scenarios from the first stage are acceptable. In this context acceptable means that no emergency operator action is required during the half-hour delivery period. This data is then tabulated to form an overall picture of how secure the system is in a number of cases. This can be useful in its own right but it can be further used to compare security assessment schemes as described below. The outline for this process is given in Fig \ref{figprograms}.
+The work is based around a two stage Monte Carlo Sampler which uses a load-flow simulation of the IEEE-RTS Area 1. The first stage generates \emph{scenarios}, representing possible states the power system could be in. The second stage is used to create the probability that each of the scenarios from the first stage are acceptable. In this context acceptable means that no emergency operator action is required during the half-hour delivery period. This data is then tabulated to form an overall picture of how secure the system is in a number of cases. This can be useful in its own right but it can be further used to compare security assessment schemes as described below. The outline for this process is given in Fig \ref{figprograms}.
 
 
   \begin{sidewaysfigure}[!p]
@@ -1599,19 +1599,25 @@ This chapter covers how security assessment schemes are themselves assessed. It 
 
 The aim of this chapter is to detail the development of a computer program made to test and compare SAS. It is then tested using rough analytical calculations.
 
-\section{Program Design}
+\section{Program Data Sources}
 
-\subsection{The IEEE Reliability Test System 96\label{lbl_RTS}}
+Here the sources of data used in the final program, as well as external tools are discussed. They are broken down into three areas:
 
-\todo{replace one area with three area}
+\begin{itemize}
+\item The Power System Network
+\item The Network Simulator
+\item The Probabilities for the Monte Carlo Sampler
+\end{itemize}
 
-The IEEE Reliability Test System 96 (IEEE-RTS) \cite{Grigg1999} is a sample power system with a thorough set of data for operation, emissions, and reliability. It was for this reason that it was chosen as the test system for this work. Only area A was used, which is composed of 32 generating units, 24 busbars, 38 lines, 17 loads and two voltage levels.
+\subsection{Network - The IEEE Reliability Test System 96\label{lbl_RTS}}
+
+The IEEE Reliability Test System 96 (IEEE-RTS) \cite{Grigg1999} is a sample power system with a thorough set of data for operation, emissions, and reliability. It was for this reason that it was chosen as the test system for this work. For the bulk of the simulation the three area version was used, which is composed of 99 generating units, 73 busbars, 120 lines, 51 loads and two voltage levels.
 
 It was not meant to be representative of any particular power system but aimed to represent all the different technologies and requirements that could be encountered. Because of this it has been updated to include new technologies as the sector advances. The first version of this system was developed in 1979 \cite{IEEERTSTaskForceofAPMSubcommittee1979} it was then updated in 1986 \cite{Allan1986} and once again in 1996 \cite{Grigg1999}.
 
-In addition to new data the system has increased in size to incorporate three almost identical areas.
+In addition to new data the system has increased in size to incorporate three almost identical areas. As they are almost identical only the details of the components in the first area are shown in the following tables, a full listing is given in Appendix \ref{paper_rts}.
 
-There have been many changes to power systems in the last 14 years and it would have been good if the system could be updated to incorporate these changes. The largest of the changes is the increase in penetration of renewable generation. As it stands the IEEE-RTS includes no renewable generators.
+There have been many changes to power systems in the last 14 years and it would have been good if the system could be updated to incorporate these changes. The largest of the changes is the increase in penetration of renewable generation. As it stands the IEEE-RTS includes no renewable generators. Although the literature is showing example of individuals who have added wind there is no consensus or standard forming on where and how much wind should be added.
 
 As this paper is used extensively in this work it is included for reference in Appendix \ref{paper_rts}.
 
@@ -1717,8 +1723,67 @@ G33 & 23 & 1150 & 100 \\
 
 
 % ================================================================== %
-\subsection{Monte Carlo Sampler Program}\label{sec_mc_results}
+\subsection{Load-flow Simulator - CPF}
 
+A detailed discussion of simulation techniques and tools in general is covered in \ref{chap_simulation}; this section discussed the specific requirements and decisions for this application.
+
+\subsubsection{Requirements}
+The requirements of the simulator were as follows:
+
+\begin{itemize}
+\item Able to simulate the chosen network as either as a load-flow or dynamic simulation.
+\item Able to be run from command line without user interaction.
+\item Fast simulation speed.
+\item Results easily analysed by another computer program.
+\item Ability to remove individual lines, busbars and generators.
+\item Ability to easily change the load level of busbars in the input file.
+\end{itemize}
+
+In an ideal world both stages of the program would have different simulation parameters. The first stage needs to represent a random snapshot in time of the power system as a system operator might see it. It would be a useful extension to the project to add an OPF to the first stage. 
+
+The second feature that was non-essential but would have improved the accuracy would be to be able to simulate in multiple stages. For example after the OPF of the first stage it would have been good to feed the results into a load flow simulator after applying the contingency changes. 
+
+\subsubsection{PSAT}
+
+The two optional features must have both been present in the same program for it to work as a whole. A number of different simulation tools were reviewed, the closest match was PSAT a Matlab toolbox. Although it appeared to fit all the criteria problems were found during testing and couldn't be resolved. Ultimately this was because PSAT is not meant to be used in such a way. The output file is meant to be read by humans not a computer and as such was very difficult to parse. 
+
+Another significant challenge was communicating between PSAT and the Monte Carlo Simulator which had already been written in another programming language. It was decided that communicating directly with PSAT inside Matlab would be too complex. Hence to run a simulation the data is saved to disk then Matlab is run as an external program and the results file are read back in from disk. This process, although complex and slow, worked correctly. It would make more sense to use a program that properly supported data streams to avoid the slow hard drive access and one that was meant to be run from a command line.
+
+Due to the very slow start-up and shutdown time of Matlab simulations were done in batches, for example 100 simulations were written to file to be processed in one go. By grouping simulations this way Matlab could process many simulations each time it was started. By programming in this way if multiple computer or multiple cores were available it would be trivial to parallelize the program.
+
+\image{samplerflow}{Flow Diagram for PSAT Stage 1 Sampling}{samplerflow.png}
+
+In the flow diagram (Image \ref{samplerflow}) the process for Stage 1 is detailed. Here it includes simulation but that is not strictly necessary. In addition to the batch file it was possible to gather statistics about the samples and simulations. These statistics are analysed later.
+
+The sampling program is based around four main data types, each associated with a file type. These are created and modified with a number of scripts.
+
+\begin{itemize}
+
+\item The \underline{PsatData} type is a Matlab file containing information for PSAT about a specific scenario to be simulated, this file is used by Matlab to produce a simulation report. The files end in \underline{.m}. More information on this can be obtained from the PSAT documentation.
+
+\item \underline{PsatReport} is the report produced my Matlab after a simulation is run. It contains power flows, losses and bus bar voltages. It is meant to be analysed by hand and hence it requires parsing to be interpreted by a computer. Report files end in \underline{\_XX.txt} where XX is a incrementing number.
+
+ \item \underline{NetworkProbability} is a data file containing the probability of failure of various components as well as joint failure of different components. It creates scenarios from a network probability data file. Probability files end in \underline{.net}.
+
+\item \underline{SimulationBatch} files hold a list of scenarios. Each scenario contains the changes that have occurred such as a line outage or a change in demand. Batch files can optionally contain simplified simulation results. Batch files end in \underline{.bch}.
+\end{itemize}
+
+Ultimately, PSAT was dropped as the power system simulator and a simpler and faster tool was used.
+
+\subsubsection{CPF}
+
+CPF is part of PSSENG, a Dynamic Power System Simulator developed at the University of Bath by 
+Dale \cite{Dale1986}, Berry \cite{Berry1989} and Chan \cite{Chan1992}. CPF was used to work out the initial load-flow conditions before a full dynamic simulation but, as it was written was part of a dynamic simulator, the core algorithm is very fast. It actually matched all requirements by design and was an easy fit for the simulation. 
+
+Unlike PSAT it also had a very fast start-up time meaning the complicated and complex batch processing, including constantly writing large files to disk, was not needed.
+
+There were some modifications needed. Firstly to remove components easily they had to be placed on their own line of the input file. These were joined to the original bus by a line of zero impedance so as to make no difference to the simulation results. This meant that removing a component was a simple as deleting a few lines. No calculations were needed. Changing the load level was relativity straight forward as well as each power was was a single number in the file. The modified output could be piped directly into CPF from the Python based Monte Carlo Simulator 
+
+Owing to these reasons CPF was selected as the simulator for this program.
+
+\subsection{System Probabilities - Monte Carlo Sampler Program}\label{sec_mc_results}
+
+The core of the computer program is the two-stage Monte Carlo Sampler; the general points to consider are covered in \ref{XXX}. The specifics of what was used for this application are detailed in this section.
 
 \todo{add wind talk? (maybe here maybe later)}
 \todo{a lot of this can be moved into the discussion but I'm not sure if it should.}
@@ -1742,30 +1807,6 @@ A more realistic measure should take better account of the correlation between t
   \label{eqn_failure}
   P_f = {1 - e^{- \lambda t}}
 \end{equation}
-
-\subsubsection{Data Types}
-
-The sampling program is based around four main data types, each associated with a file type. These are created and modified with a number of scripts.
-
-\begin{itemize}
-
-\item The \underline{PsatData} type is a Matlab file containing information for PSAT about a specific scenario to be simulated, this file is used by Matlab to produce a simulation report. The files end in \underline{.m}. More information on this can be obtained from the PSAT documentation.
-
-\item \underline{PsatReport} is the report produced my Matlab after a simulation is run. It contains power flows, losses and bus bar voltages. It is meant to be analysed by hand and hence it requires parsing to be interpreted by a computer. Report files end in \underline{\_XX.txt} where XX is a incrementing number.
-
- \item \underline{NetworkProbability} is a data file containing the probability of failure of various components as well as joint failure of different components. It creates scenarios from a network probability data file. Probability files end in \underline{.net}.
-
-\item \underline{SimulationBatch} files hold a list of scenarios. Each scenario contains the changes that have occurred such as a line outage or a change in demand. Batch files can optionally contain simplified simulation results. Batch files end in \underline{.bch}.
-\end{itemize}
-
-
-It was decided that communicating directly with PSAT inside Matlab would be too complex. Hence to run a simulation the data is saved to disk then Matlab is run as an external program and the results file are read back in from disk. This process, although complex and slow, worked correctly. It would make more sense to use a program that properly supported data streams to avoid the slow hard drive access and one that was meant to be run from a command line.
-
-Due to the slow start-up and shutdown time of Matlab simulations were done in batches. By grouping simulations this way Matlab could process many simulations each time it was started. By programming in this way if multiple computer or multiple cores were available it would be trivial to parallelize the program.
-
-\image{samplerflow}{Flow Diagram for Stage 1 Sampling}{samplerflow.png}
-
-In the flow diagram (Image \ref{samplerflow}) the process for Stage 1 is detailed. Here it includes simulation but that is not strictly necessary. In addition to the batch file it was possible to gather statistics about the samples and simulations. These statistics are analysed later.
 
 \subsubsection{Demand Forecast Analysis}
 
@@ -1798,13 +1839,41 @@ Looking at the number of components that have failed or are on outage in each sa
 Stage 2 outages, or components failures, tell a similar story on a much smaller scale. These represent problems that occur to the system during delivery. This means that in 4 samples out of a million, three unrelated failures all occurred within the same half hour period. This will cause extreme stress to the system but it is an unlikely event. Though independent samples should not be though of as a time series, one millions half-hour samples represents a time period of about 60 years. Taken in the context that Edison set up the first ever power system about 130 years ago this million samples is bound to include some very unlikely events.
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \section{Program Structure}
 
-The program itself was written mostly in Python and is available on-line at \url{http://github.com/kerspoon/kiribati} it uses a load-flow program as the core power system simulator. Owing to it's speed CPF  was selected as the simulator for this program.
+The program itself was written mostly in Python and is available on-line at \url{http://github.com/kerspoon/kiribati}.
 
-\todo{cite and describe cpf}
-
-It has a number of functions which all take input from the command line. This allows it to be combined together easily and intermediate parts written out to file.
+It has a number of functions which all take input from the command line. This allows it to be combined together easily and intermediate parts written out to file for debugging or analysis.
 
 \subsubsection{Generate Base Cases}
 
@@ -1815,7 +1884,7 @@ It has a number of functions which all take input from the command line. This al
 python main.py base-case 10 > base.csv
 \end{verbatim}
 
-This option outputs a list of base-cases to the command line. The base cases are generated using Monte Carlo Sampling as described in [chapter XXX], taking in to account MTTF, MTTR, CROW failures, and Load-level.
+This option outputs a list of base-cases to the command line. The base cases are generated using Monte Carlo Sampling as described in \ref{chapter XXX}, taking in to account MTTF, MTTR, CROW failures, and Load-level.
 
 The parameter is the number of unique base cases to output. For instance if two base cases had a bus bar level of 0.55 and only G23 on outage then it would output a single line.
 
@@ -2351,7 +2420,7 @@ python2 main.py simulate < combi.csv > result.csv
 echo "simulate contingencies done"
 
 python2 main.py analyse < result.csv > analysis.csv
-echo "anaylsis done"
+echo "analysis done"
 \end{verbatim}
 
 
