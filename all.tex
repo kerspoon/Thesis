@@ -1452,7 +1452,7 @@ To find the ideal level of the threshold a cost benefit analysis could be perfor
 
 \section{Limitations and Applications}
 
-\subsection{Limitations}
+\subsection{Limitations} \label{sec_limitations}
 
 As with any method this one suffers from limitations. These should not be seen as detracting from the central point of the thesis, namely that by using a Monte Carlo simulation we can learn a lot about the security of a power system and by using these results we can compare how different SAS will fare. Instead the limitations should be taken as further work or a set of considerations which must be checked if this method is to be taken forward.
 
@@ -1770,7 +1770,7 @@ The sampling program is based around four main data types, each associated with 
 \item \underline{SimulationBatch} files hold a list of scenarios. Each scenario contains the changes that have occurred such as a line outage or a change in demand. Batch files can optionally contain simplified simulation results. Batch files end in \underline{.bch}.
 \end{itemize}
 
-Ultimately, PSAT was dropped as the power system simulator and a simpler and faster tool was used. The software that was developed is still available (at \url{http:\\\\github.com\\kerspoon\\laos}) but it non-functioning.
+Ultimately, PSAT was dropped as the power system simulator and a simpler and faster tool was used. The software that was developed is still available (at \url{http:\\github.com\kerspoon\laos}) but it non-functioning.
 
 \subsubsection{CPF}
 
@@ -1786,9 +1786,6 @@ Owing to these reasons CPF was selected as the simulator for this program.
 \subsection{System Probabilities - Monte Carlo Sampler Program}\label{sec_mc_results}
 
 The core of the computer program is the two-stage Monte Carlo Sampler; the general points to consider are covered in Section \ref{lbl_sec_mcs}. The specifics as relating to this application are detailed in this section.
-
-\todo{add wind talk? (maybe here maybe later)}
-\todo{a lot of this can be moved into the discussion but I'm not sure if it should.}
 
 \subsubsection{Implementation}
 
@@ -1934,7 +1931,7 @@ python main.py contingency 1000 < base.csv > contingency.csv
 
 This option first generates contingencies based upon the probabilistic changes during the delivery period. It then combines the contingencies produced with the base cases given on the standard input.
 
-For example if there we only two base cases given:
+For example if there were only two base cases given:
 
 \begin{verbatim}
 1, outage, None, , 0.5, G1
@@ -2075,7 +2072,7 @@ To ensure the proper operation of the program there were various tests performed
 \subsubsection{Unit Tests}
 
 The simplest of these checks are the small unit tests. These are best
-described by David Thomas et al. in Pragmatic Unit Testing \cite{XXX}:
+described by David Thomas et al. in Pragmatic Unit Testing \cite{Hunt2007}:
 
 \begin{quote}
 A unit test is a piece of code written by a developer which exercises a very small, specific area of functionality in the code being tested.
@@ -2171,7 +2168,7 @@ The code ensures that generators power limits are observed so that if a
 generator was to hit a limit it is simply set at full power and the rest
 of the power distributed among the other generators.
 
-The code for this is given in Appendix \cite{lbl_sec_code}.
+The code for this is given in Appendix \ref{lbl_sec_code}.
 
 Certain generators are not suitable for variation, these are the ones
 where power output is not controllable, for example wind turbines. In
@@ -2214,7 +2211,7 @@ distributions, and output the results. As such the testing involved is
 no longer know as unit tests and becomes integration testing:
 
 \begin{quote}
-Integration testing shows that the major subsystems that make up the project work and play well with each other. [XXX the pragmatic programmer]
+Integration testing shows that the major subsystems that make up the project work and play well with each other. \cite{Hunt2000}
 \end{quote}
 
 If the Monte Carlo simulation was working correctly it should have an
@@ -2276,7 +2273,7 @@ Generator $P_f$ &  27779  &   27657   &  0.4    &    122   \\
 \subsubsection{Testing The Simulator}
 
 Although the simulator has been used before and has formed an important
-part of other Ph.D. theses \cite{XXX - chan, dale?, berry?} it was
+part of other Ph.D. theses \cite{Dale1986, Berry1989, Chan1992} it was
 important to ensure it worked in the content of what was done for this
 work. There was also additional code that must be checked.
 
@@ -2342,11 +2339,57 @@ were checked as well. For example the removal of line B11 causes the
 system to be islanded which should result in a result of ``false''
 coming back from the simulator.
 
-The table \ref{XXX} shows the summary of the results and forms a quick
+Table \ref{table_sim_test_a} and Table \ref{table_sim_test_b} shows the summary of the results and forms a quick
 reference for future checking. Creating such checks means that the program itself can be changed easily for
 reasons of speed or clarity without worrying that it may have broken some part of the program. Changes such as this are discussed in the next section.
 
-\todo{simulator testing table}
+\begin{table}[htbp]
+\caption{Simulation Test Checklist - Intermediate File}
+\label{table_sim_test_a}
+\centering
+\begin{tabular}{c||c||c||c}
+\bfseries Test Name & \bfseries \# Busbars & \bfseries \# Branches & \bfseries Lines in File \\
+\hline \hline
+base      & 172& 222     & 397 \\
+half      & 172& 222     & 397 \\
+tenth     & 172& 222     & 397 \\
+island    & 172& 221     & 396 \\
+slack     & 171& 221     & 395 \\
+slack-all & 169& 219     & 391 \\
+line      & 172& 221     & 396 \\
+gen       & 171& 221     & 395 \\
+bus       & 171& 220     & 394 \\
+bus-gen   & 167& 215     & 385 \\
+bus-slack & 168& 215     & 386 \\
+bus-island& 171& 219     & 393 \\
+high-load & 172& 222     & 397 \\
+\hline
+\end{tabular}\\
+\end{table}
+
+\begin{table}[htbp]
+\caption{Simulation Test Checklist - Results File}
+\label{table_sim_test_b}
+\centering
+\begin{tabular}{c||c||c||c}
+\bfseries Test Name & \bfseries Result & \bfseries $\Delta$ Load Power & \bfseries $\Delta$ Generator Power \\
+\hline \hline
+base      & True  &             & \\
+half      &       & -4275       & -4275 \\
+tenth     &       & -7695       & -7695 \\
+island    & Island&             & \\
+slack     & True  &             & (95.1-95.1) \\
+slack-all & Slack &             & (172-172) \\
+line      &       &             & \\
+gen       &       &             & (400-400) \\
+bus       &       & 74          & -74 \\
+bus-gen   &       & -108        & -108+(172-172) \\
+bus-slack & Slack & -265        & -265+(285.3-285.3) \\
+bus-island& Island& -171        & -171 \\
+high-load & True  & 855         & 855 \\
+\hline
+\end{tabular}\\
+\end{table}
 
 \subsubsection{Improving Simulator Performance}
 
@@ -2396,7 +2439,7 @@ the focus of the optimisation should focus on just those 23.
 
 Tests were performed, as detailed below, to ensure that enough samples
 were taken. If there were not enough samples any results that were found
-could be spurious. This is discussed in section \ref{xxx 7.5} as point 7.
+could be spurious. This is discussed in Section \ref{sec_limitations} as point 7.
 Performing too many samples simply wastes time; time which could be spent improving the accuracy of the simulation in other ways.
 
 The number of required simulations were determined in the simplest fashion that
@@ -2426,7 +2469,7 @@ not worth doing more than 10,000 samples.
 \todo{graph of results on 10, 100, 1000 etc.}
 \todo{graph of results on 10, 100, 1000 etc. for a few base-cases}
 
-\section{Using the program}
+\section{Using the Program}
 
 Here is the shell script that does each stage of simulation in order to
 produce the final analysis. First it removes old files, then generates
@@ -2456,12 +2499,11 @@ echo "analysis done"
 
 \section{Chapter Summary}
 
-\todo{program chapter summary}
+This chapter details the software used to form the results of this thesis. It details decisions made during it's construction, such as why a particular network was chosen. It also discusses and analyses some of the tests created as part of the program to ensure its correct operation.
 
 % ================================================================== %
 \chapter{Results}
 % ================================================================== %
-This chapter presents the implementation details and results of the Monte Carlo Sampling program.
 
 \section{Simple Case}
 
