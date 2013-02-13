@@ -2450,7 +2450,7 @@ simulations.
 
 First, a set of 100 base-cases were generated to form the basis of the
 test. Next, contingencies were generated using the Monte Carlo Sampler.
-This was done repeatedly starting with 10 unique samples going up an
+This was done repeatedly starting with 1 unique sample going up an
 order of magnitude each time until 100,000 unique samples. These
 results were analysed to find the probability of acceptability in each
 case.
@@ -2461,10 +2461,35 @@ has enough samples. For example if 1,000 and 10,000 both had the same
 results to a certain number of significant figures then running more
 samples is not likely to change that number.
 
-The results for one such test are shown below. You can see that the
+The results for one such test on a particular base-case are shown in Table \ref{table_sample_size} and Image \ref{imgsamplesize}. You can see that the
 change tapers off at the number of samples increases. The difference in
 the results with 10,000 and 100,000 samples is very small meaning it is
 not worth doing more than 10,000 samples.
+
+
+\begin{table}[htbp]
+\caption{Finding the Required Number of Samples}
+\label{table_sample_size}
+\centering
+\begin{tabular}{c||c||c||c}
+\bfseries \# Unique & \bfseries \# Unacceptable & \bfseries \# Actual & \bfseries P(Acceptable) \\
+\hline \hline
+1      &  0        &  1          &  0.0000  \\
+5      &  0        &  14         &  0.0000  \\
+10     &  0        &  34         &  0.0000  \\
+50     &  2        &  580        &  0.3448  \\
+100    &  8        &  1347       &  0.5939  \\
+500    &  98       &  14213      &  0.6895  \\
+1000   &  522      &  67813      &  0.7698  \\
+5000   &  7539     &  1078238    &  0.6992  \\
+10000  &  21832    &  3150946    &  0.6929  \\
+50000  &  448340   &  64421520   &  0.6959  \\
+100000 &  1794430  &  257651817  &  0.6965  \\
+\hline
+\end{tabular}\\
+\end{table}
+
+\image{imgsamplesize}{Finding the Required Number of Samples}{samplesize.png}
 
 \todo{graph of results on 10, 100, 1000 etc.}
 \todo{graph of results on 10, 100, 1000 etc. for a few base-cases}
