@@ -1990,10 +1990,10 @@ contingencies with each base case ready for simulation.
 \begin{verbatim}
 # generate all single component failures
 # using the base cases in base.csv and save to file.
-python main.py simulate < in.csv > results.csv
+python main.py simulate < base.csv > results.csv
 \end{verbatim}
 
-This takes base cases or contingencies and simulates them in turn using
+This takes base cases or contingencies and simulates each one in turn using
 CPF. The results from each simulation are categorised as either
 acceptable or unacceptable. Unacceptable means there was: divergence,
 islanding, or a component out of static limits. This is to represent
@@ -2003,10 +2003,7 @@ the system running acceptably.
 The output file is of the same format as the input, the only change is
 to the third and fourth column to set the results.
 
-As the file is read in and simulated one line at a time stopping the
-program will result in a certain portion of the simulations correctly
-run. This was useful to quickly check results before simulating a large
-run.
+As the file is read in and simulated one line at a time stopping the program will result in a certain portion of the simulations correctly run. This was useful to quickly check a partial set of results before simulating a large run.
 
 It is possible to specify all steps in one go, eliminating intermediate
 files. Unfortunately this gives no feedback as to progress, it also means
@@ -2063,15 +2060,9 @@ the example.
 In addition to the main use of the program it also has two utility
 functions.
 
-Test prints out the results of simulating a number of interesting
-base-cases that stress the program in different ways. It also prints the
-file that is used as an input for CPF. A file that if normally never
-seen. This is to ensure that it is being produced properly for a number
-of edge cases. The cases selected also make sure that the simulator is
-tested on a number of edge cases as well.
+\texttt{test} prints out the results of simulating a number of interesting base-cases that stress the program in different ways. It also prints the file that is used as an input for CPF. This is a file that if normally never seen but is useful in checking the behaviour of the program. This is to ensure that it is being produced properly for a number of edge cases. The cases selected also make sure that the simulator is tested on those edge cases as well.
 
-Finally there is a command to delete all files from previous runs so
-that the working directory is clear to start again.
+Finally the command \texttt{clear} deletes all files from previous runs so that the working directory is clear to start again.
 
 \subsubsection{Flow Diagram}
 
@@ -2079,24 +2070,20 @@ that the working directory is clear to start again.
 
 \section{Testing}
 
-To ensure the proper operation of the program there were various test
-performed these ranged from: quick checks of individual functions;
-checking simulation output with hand worked examples; to an analysis of
-how many samples were actually needed to ensure that it was not the
-limiting factor.
+To ensure the proper operation of the program there were various tests performed. These ranged from: quick checks of individual functions; checking simulation output with hand worked examples; to an analysis of how many samples were actually needed to ensure that it was not the limiting factor.
 
 \subsubsection{Unit Tests}
 
 The simplest of these checks are the small unit tests. These are best
-described by David Thomas et al. in Pragmatic Unit Testing:
+described by David Thomas et al. in Pragmatic Unit Testing \cite{XXX}:
 
 \begin{quote}
 A unit test is a piece of code written by a developer which exercises a very small, specific area of functionality in the code being tested.
 \end{quote}
 
-While the program was being developed unit-test were programmed to run every time the code was, that was if any change I had made broke anything I would find out straight away.
+While the program was being developed unit-test were programmed to run every time the code was. If any change had cause the unit-tests to fail the feedback would be immediate.
 
-The extract of code below makes sure that the individual function \texttt{quantised\_01} does what I expect it to on a few hand worked examples.
+The extract of code below makes sure that the individual function \texttt{quantised\_01} does what is expected on a few hand worked examples.
 
 \begin{verbatim}
 class Tester_quantised(ModifiedTestCase):
@@ -2126,7 +2113,7 @@ for other modules to use. If we ensure that these two functions work
 then no further testing of the internals should be necessary. One of
 the functions takes as an input the week of the year, day of the week
 and hour of the day to produce a single forecast load figure. These can
-easily be hand worked so for example the first hour of the year (01/Jan
+easily be hand worked, for example the first hour of the year (01/Jan
 at 00:00) should give a load forecast of 0.537 times the base level.
 This is what is checked in the first assertion in the code below:
 
@@ -2151,10 +2138,18 @@ def util_readwrite_match(self, inp):
     self.assertEqual(stream.getvalue(), inp)
 
 def test_1(self):
-    self.util_readwrite_match("""1, outage, False, bad, 0.55, G49, G32, G22, G12\n""")
-    self.util_readwrite_match("""999, failure, True, ok, 1.0\n""")
-    self.util_readwrite_match("""999, combined, None, ok, 0.01, A1\n""")
-    self.util_readwrite_match("""1, combined, False, component out of limits, 0.525, G31, G66\n""")
+    self.util_readwrite_match("""
+    1, outage, False, bad, 0.55, G49, G32, G22, G12
+""")
+    self.util_readwrite_match("""
+    999, failure, True, ok, 1.0
+""")
+    self.util_readwrite_match("""
+    999, combined, None, ok, 0.01, A1
+""")
+    self.util_readwrite_match("""
+    1, combined, False, message here, 0.525, G31, G66
+""")
 \end{verbatim}
 
 \subsubsection{Fix Power Mismatch}
@@ -2164,21 +2159,23 @@ changed the functionality of the load-flow program used for all
 simulations, hence it is worth documenting.
 
 Load-flow programs cannot be run with any mismatch. This is by design,
-if there is a mismatch it will be cancel out during calculation by the
+if there is a mismatch it will be cancelled out during calculation by the
 slack-bus. If there are significant mismatches, such as from removing
 certain generators it can lead to problems.
 The simulation may end up testing the ability of the slack-bus to cope
-with changing power level rather than the entire system. For this reason
+with changing power levels rather than the entire system. For this reason
 the expected mismatch is averaged across all suitable generators
 according to their current power levels.
 
 The code ensures that generators power limits are observed so that if a
-generator was to hit a limit it is simple set at full power and the rest
+generator was to hit a limit it is simply set at full power and the rest
 of the power distributed among the other generators.
+
+The code for this is given in Appendix \cite{lbl_sec_code}.
 
 Certain generators are not suitable for variation, these are the ones
 where power output is not controllable, for example wind turbines. In
-these cases is taken to be of a fixed value and the rest of the
+these cases are taken to be of a fixed value and the rest of the
 generators must make up the difference.
 
 Sometimes the power requirement is too high to be met by the available
@@ -2190,8 +2187,6 @@ that the power was still very high and large generating units were out
 of service. As this could happen in a real power system it is not a
 problem with the simulation but accurately represents a problem in the
 system.
-
-The code for this is given in \cite{appedix XXX}.
 
 Below is an example of one of the tests for the mismatch fixing code. It
 checks that two generators that both have current have a power of 1 p.u.
@@ -2225,12 +2220,12 @@ Integration testing shows that the major subsystems that make up the project wor
 If the Monte Carlo simulation was working correctly it should have an
 output that almost matches the theoretical results. For example the
 theoretical result of tossing a coin 1000 times would be 500 head and
-500 tails. If the Monte Carlo sampler was working it should give results
+500 tails. A working Monte Carlo sampler will give results
 similar to this.
 
 The exact analytical solution to the problem we are simulating is
 complex involving failures that change the probability of other events
-occurring such as CROW failures \cite{see XXX the Monte Carlo description in this chapter}. These effects should be dwarfed by the overall
+occurring such as CROW failures (see Section \ref{sec_mc_results}). These effects should be dwarfed by the overall
 probabilities and as such were ignored.
 
 \paragraph{Theoretical Results}
@@ -2283,8 +2278,7 @@ Generator $P_f$ &  27779  &   27657   &  0.4    &    122   \\
 Although the simulator has been used before and has formed an important
 part of other Ph.D. theses \cite{XXX - chan, dale?, berry?} it was
 important to ensure it worked in the content of what was done for this
-work. There was also addition code that took a sample and created the
-input file, properly modified, to represent it.
+work. There was also additional code that must be checked.
 
 14 test cases were generated that tested a variety of code paths and
 covered a range of edge cases. These are given in the code below.
@@ -2296,22 +2290,35 @@ def main_test(out_stream):
        by hand if the intermediate file generator and the
        simulator are doing the correct thing.
     """
-
     batch_string = ""
-    batch_string += "1, base, None, , 1.0\n"            # base - as normal
-    batch_string += "1, half, None, , 0.5\n"            # half load power
-    batch_string += "1, tenth, None, , 0.1\n"           # tenth load power
-    batch_string += "1, island, None, , 1.0, B11\n"     # island
-    batch_string += "1, slack, None, , 1.0, G12\n"      # removed 1 slack bus
-    batch_string += "1, slack-all, None, , 1.0, G12, G13, G14\n"  # removed all slack busses
-    batch_string += "1, line, None, , 1.0, A2\n"        # remove 1 line
-    batch_string += "1, gen, None, , 1.0, G24\n"        # remove 1 generator
-    batch_string += "1, bus, None, , 1.0, 104\n"        # remove 1 bus without generators
-    batch_string += "1, bus-gen, None, , 1.0, 101\n"    # remove 1 bus with generators attached
-    batch_string += "1, bus-slack, None, , 1.0, 113\n"  # remove slack bus and all slack generators
-    batch_string += "1, bus-island, None, , 1.0, 208\n"  # remove bus that causes island
-    batch_string += "1, high-load, None, , 1.10\n"      # load power high
-    batch_string += "1, over-max, None, , 1.15\n"       # load power above max gen power
+    # base - as normal
+    batch_string += "1, base, None, , 1.0\n"            
+    # half load power
+    batch_string += "1, half, None, , 0.5\n"            
+    # tenth load power
+    batch_string += "1, tenth, None, , 0.1\n"           
+    # island
+    batch_string += "1, island, None, , 1.0, B11\n"     
+    # removed 1 slack bus
+    batch_string += "1, slack, None, , 1.0, G12\n"      
+    # removed all slack busses
+    batch_string += "1, slack-all, None, , 1.0, G12, G13, G14\n"  
+    # remove 1 line
+    batch_string += "1, line, None, , 1.0, A2\n"        
+    # remove 1 generator
+    batch_string += "1, gen, None, , 1.0, G24\n"        
+    # remove 1 bus without generators
+    batch_string += "1, bus, None, , 1.0, 104\n"        
+    # remove 1 bus with generators attached
+    batch_string += "1, bus-gen, None, , 1.0, 101\n"    
+    # remove slack bus and all slack generators
+    batch_string += "1, bus-slack, None, , 1.0, 113\n"  
+    # remove bus that causes island
+    batch_string += "1, bus-island, None, , 1.0, 208\n" 
+    # load power high 
+    batch_string += "1, high-load, None, , 1.10\n"      
+    # load power above max gen power
+    batch_string += "1, over-max, None, , 1.15\n"       
 \end{verbatim}
 
 These were tested and simulated. The results of the simulation as well
@@ -2320,8 +2327,8 @@ was working correctly.
 
 The intermediate file is the combination of the sample and the base
 load-flow file that forms the input to the load-flow program. There were
-various things that could be checked the most important was checking
-that the correct components have ben removed and that the load and
+various things that could be checked. The most important was checking
+that the correct components had been removed and that the load and
 generator power totals are correct. The base load-flow file has 172
 busbars and 222 branches with result in a file with a total of 397
 lines, if no components have been removed this should remain the same.
@@ -2330,15 +2337,14 @@ total power output as it should be counteracted by the mismatch fixing
 code described earlier, but there should be a reduction in the number of
 busbars and branches to reflect that change.
 
-Once the intermediate file were checked the results of the simulation
+Once the intermediate files were checked the results of the simulation
 were checked as well. For example the removal of line B11 causes the
 system to be islanded which should result in a result of ``false''
 coming back from the simulator.
 
 The table \ref{XXX} shows the summary of the results and forms a quick
-reference for future checking. Making sure this works and can be
-automated means that the program itself can be changed easily for
-reasons of speed or clarity; something discussed in the next section.
+reference for future checking. Creating such checks means that the program itself can be changed easily for
+reasons of speed or clarity without worrying that it may have broken some part of the program. Changes such as this are discussed in the next section.
 
 \todo{simulator testing table}
 
@@ -2347,7 +2353,7 @@ reasons of speed or clarity; something discussed in the next section.
 Once the program was working and the tests were largely automatic, it
 was possible to improve the program to make it run faster. The largest
 improvement was built in to the design of the program, namely to only
-simulate sample that were different from each other, this saved many
+simulate samples that were different from each other, this saved many
 orders of magnitude of time. Enabling testing to be done on one computer
 rather than hundreds.
 
@@ -2372,14 +2378,14 @@ elif args[0] == 'profile':
 \end{verbatim}
 
 This produces a text based output of the profile, which makes it easy to
-see which part of the program is the slowest so the focus of
-optimisation can be directed to the most important part.
+see which parts of the program are the slowest. The focus of
+optimisation can then be directed to the most important part.
 
-As they are very different code paths the different options given to
-main.py produce completely different profile outputs. Because of this
+As they are very different code paths for the different options given to
+main.py the output of profiling is completely different for different uses. Because of this
 they were tested separately. On one run of the program only 23 functions
 actually spend more than 0.01 seconds executing. It seems obvious that
-the focus of the optimisation should focus one just those 23.
+the focus of the optimisation should focus on just those 23.
 
 \todo{table of longest calls}
 
@@ -2391,18 +2397,16 @@ the focus of the optimisation should focus one just those 23.
 Tests were performed, as detailed below, to ensure that enough samples
 were taken. If there were not enough samples any results that were found
 could be spurious. This is discussed in section \ref{xxx 7.5} as point 7.
-Although not so problematic it is possible to do too many simulations in
-that other factors may have to be reduced thus decreasing overall
-accuracy.
+Performing too many samples simply wastes time; time which could be spent improving the accuracy of the simulation in other ways.
 
-The number of simulations we determined in the simplest fashion that
+The number of required simulations were determined in the simplest fashion that
 works well. If the result is stable in repeated runs then the number of
-samples is not the limiting factor and you can be reasonably sure that
-the result will not get more accurate simply by running more
+samples is not the limiting factor hence it is unlikely
+the result will change simply by running more
 simulations.
 
-First a set of 100 base-cases were generated to form the basis of the
-test. Next contingencies were generated using the Monte Carlo Sampler.
+First, a set of 100 base-cases were generated to form the basis of the
+test. Next, contingencies were generated using the Monte Carlo Sampler.
 This was done repeatedly starting with 10 unique samples going up an
 order of magnitude each time until 100,000 unique samples. These
 results were analysed to find the probability of acceptability in each
@@ -2425,8 +2429,8 @@ not worth doing more than 10,000 samples.
 \section{Using the program}
 
 Here is the shell script that does each stage of simulation in order to
-produce the final analysis. First it removes old file, then generates
-base cases and simulate them. Then it generates contingencies and
+produce the final analysis. First it removes old files, then generates
+base cases and simulates them. Then it generates contingencies and
 simulates the combination of both. Finally analysis is done on the
 results of the simulation.
 
