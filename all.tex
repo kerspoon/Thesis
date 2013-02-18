@@ -2640,10 +2640,9 @@ After that the program is modified to begin incorporating unscheduleable generat
 
 \section{Simple Case}
 
-The shell script given in [XXX 8.4] was run with 1000 base cases and 10,000 unique contingencies.
+The shell script given in Section \ref{sec_prog_use} was run with 1000 base cases and 10,000 unique contingencies.
 
 \subsection{Base Cases}
-
 
 \begin{sidewaystable}[!p]
 \caption{Summary of Results Using Basic Monte Carlo}
@@ -2676,6 +2675,75 @@ The shell script given in [XXX 8.4] was run with 1000 base cases and 10,000 uniq
 \end{tabular}\\
 \end{sidewaystable}
 
+\begin{sidewaystable}[!p]
+\caption{Base-Cases With Fewest Acceptable Contingencies}
+\label{table_results_worst}
+\centering
+\begin{tabular}{c||c||c||c||l}
+\bfseries \# Unacceptable & \bfseries \# Samples & \bfseries P(Acceptable) & \bfseries Load Level & \bfseries Outaged Components \\
+\hline \hline
+23972 & 3125913 & 0.0076687995 & 0.75 & G24, G12, G89, G77, G87, G73, G47, G14, G78  \\  
+24212 & 3125913 & 0.0077455771 & 0.85 & G90, G93, G78, B25-1, G89  \\  
+25191 & 3125913 & 0.0080587656 & 0.75 & A7, G97, G57, G46, G90, G49, G79, G99  \\  
+25962 & 3125913 & 0.0083054135 & 0.9 & G71, G57, G23, G21  \\  
+29263 & 3125913 & 0.009361425 & 0.75 & G51, B28, G90  \\  
+29295 & 3125913 & 0.009371662 & 0.45 & G39, B15, G79, G36, G87  \\  
+32364 & 3125913 & 0.0103534551 & 0.75 & G17, C16, G47  \\  
+38629 & 3125913 & 0.0123576696 & 0.8 & G24, G23, G97, G68, G69, G57, G89  \\  
+39178 & 3125913 & 0.0125332983 & 0.85 & G39, G77, G79, G89  \\  
+55172 & 3125913 & 0.0176498834 & 0.45 & G75, B17, G80, G45, G36  \\  
+183875 & 3125913 & 0.0588228143 & 0.7 & G34, G1, G77, G58, G67, G99  \\  
+214245 & 3125913 & 0.0685383758 & 0.95 & G57, G45, G99  \\  
+216475 & 3125913 & 0.0692517674 & 0.35 & G71, C16, G9  \\  
+216574 & 3125913 & 0.0692834382 & 0.85 & G24, G32, G23, G33, G45, G90  \\  
+386576 & 3125913 & 0.1236681891 & 0.8 & G6, G24, G35, G1, G5, G71, G13, G12  \\  
+412692 & 3125913 & 0.1320228682 & 0.9 & G39, G38, G47, G78, G90  \\  
+699206 & 3125913 & 0.2236805695 & 0.6 & G74, G67  \\  
+788947 & 3125913 & 0.2523893019 & 0.7 & G6, G5, G35, G34, G38, G66  \\  
+1159364 & 3125913 & 0.3708881213 & 0.95 & G39, G72, G71, G90, G47, G66  \\  
+1473545 & 3125913 & 0.4713966767 & 0.7 & G6, G24, G80, G5  \\  
+1916405 & 3125913 & 0.6130704853 & 0.75 & G38, G71, G72, G44, G59, G79  \\  
+\hline
+\end{tabular}\\
+\end{sidewaystable}
+
+\begin{sidewaystable}[!p]
+\caption{Base-Cases With Fewest Unacceptable Contingencies}
+\label{table_results_best}
+\centering
+\begin{tabular}{c||c||c||c||l}
+\bfseries \# Unacceptable & \bfseries \# Samples & \bfseries P(Acceptable) & \bfseries Load Level & \bfseries Outaged Components \\
+\hline \hline
+911 & 3125913 & 0.000291 & 0.85 & G31, G35, G1  \\  
+914 & 3125913 & 0.000292 & 0.85 &   \\  
+925 & 3125913 & 0.000296 & 0.85 & G57, G29  \\  
+928 & 3125913 & 0.000297 & 0.85 & G46  \\  
+933 & 3125913 & 0.000298 & 0.85 & G62, G51, G13  \\  
+936 & 3125913 & 0.000299 & 0.85 & G24, G54, G2, G34  \\  
+946 & 3125913 & 0.000303 & 0.85 & G42, G67  \\  
+947 & 3125913 & 0.000303 & 0.85 & G10  \\  
+952 & 3125913 & 0.000305 & 0.85 & G44, G45, G29  \\  
+953 & 3125913 & 0.000305 & 0.35 & G2, G57, G45, G47, G49, G79  \\  
+953 & 3125913 & 0.000305 & 0.85 & G42, G57  \\  
+955 & 3125913 & 0.000306 & 0.80 & G35  \\  
+957 & 3125913 & 0.000306 & 0.80 & G85, G24, G22, G56, G54  \\  
+958 & 3125913 & 0.000306 & 0.80 & G35, G20  \\  
+958 & 3125913 & 0.000306 & 0.85 & G30, G14, G88  \\  
+962 & 3125913 & 0.000308 & 0.85 & G24, G57, G1  \\  
+966 & 3125913 & 0.000309 & 0.85 & G4  \\  
+967 & 3125913 & 0.000309 & 0.80 & G35, G46  \\  
+969 & 3125913 & 0.000310 & 0.80 & G53, G68, G57, G10  \\  
+969 & 3125913 & 0.000310 & 0.80 & G40, G68, G45  \\  
+\hline
+\end{tabular}\\
+\end{sidewaystable}
+
+
+Table \ref{table_results_summary} shows the summary of a 20 random base cases.
+
+The column that is of most interest is the third one. This is the number of unacceptable contingencies divided by the total number. It is this number we use to represent the overall security of that base case. Taking the first row as an example in around 3 million contingencies about 1000 were unacceptable and would need emergency operator action. If the number of unacceptable cases were high it would mean it was more likely that the system operator would need to perform emergency action.
+
+An intuitive feel for the normal state of system operation can also be gained from this table. In most of the cases there were a number of components out of service; these were almost all generators. This is what was expected from the probabilities these are based upon but by viewing it this way it becomes easier to visualise. Additionally the load level mostly hovers at around half the maximum output.
 
 \subsubsection{Load Level Forecast}
 \subsubsection{Number of Components on Outage in Base Cases}
