@@ -2625,13 +2625,58 @@ echo "analysis done"
 
 This chapter details the software used to form the results of this thesis. It details decisions made during it's construction, such as why a particular network was chosen. It also discusses and analyses some of the tests created as part of the program to ensure its correct operation.
 
+
+
+
+
+
 % ================================================================== %
 \chapter{Results}
 % ================================================================== %
 
+This chapter contains the results gained from the computer program detailed in the previous chapter. It is broken down into a number of sections. First the results are gathered after creating the contingencies from Monte Carlo Sampling. The next two sections have results created from single then double component failures. This allows a comparison of how well N-1 and N-2 are predictors of the Monte Carlo sampling, which represents reality a lot more closely.
+
+After that the program is modified to begin incorporating unscheduleable generation and then on to a unpredictable power output. By doing this the effect of large scale wind power can be determined.
+
 \section{Simple Case}
 
+The shell script given in [XXX 8.4] was run with 1000 base cases and 10,000 unique contingencies.
+
 \subsection{Base Cases}
+
+
+\begin{sidewaystable}[!p]
+\caption{Summary of Results Using Basic Monte Carlo}
+\label{table_results_summary}
+\centering
+\begin{tabular}{c||c||c||c||l}
+\bfseries \# Unacceptable & \bfseries \# Samples & \bfseries P(Acceptable) & \bfseries Load Level & \bfseries Outaged Components \\
+\hline \hline
+981   & 3125913 & 0.000313 & 0.85 & G80, G45, G46, G10  \\  
+1151  & 3125913 & 0.000368 & 0.35 &   \\  
+1303  & 3125913 & 0.000416 & 0.65 & G13, G67  \\  
+1126  & 3125913 & 0.000360 & 0.35 & G52, G44  \\  
+8277  & 3125913 & 0.002647 & 0.7  & G39, G87, G2, G1, G72  \\  
+1301  & 3125913 & 0.000416 & 0.55 & G26, A25-1  \\  
+1651  & 3125913 & 0.000528 & 0.85 & G7, G30  \\  
+13308 & 3125913 & 0.004257 & 0.8  & G38, G65, G71, G78, G6  \\  
+1402  & 3125913 & 0.000448 & 0.5  & G52, G44, G56  \\  
+1242  & 3125913 & 0.000397 & 0.45 & G6, G33, G23, G1, G68, G57, G56, G72, G17  \\  
+1303  & 3125913 & 0.000416 & 0.55 & G31, G24, G68  \\  
+1296  & 3125913 & 0.000414 & 0.45 & G34, G40, G85, G87, G56, G99  \\  
+1323  & 3125913 & 0.000423 & 0.5  & G13, G86, G22, G66, G38  \\  
+1430  & 3125913 & 0.000457 & 0.5  & G2, G76, G89, G1, G87  \\  
+10363 & 3125913 & 0.003315 & 0.75 & G39, G71  \\  
+3086  & 3125913 & 0.000987 & 0.8  & G79, G40, G77, G19, G17, G66  \\  
+1261  & 3125913 & 0.000403 & 0.45 & G31, G5, G37, G90  \\  
+1362  & 3125913 & 0.000435 & 0.55 & G74, G42  \\  
+1119  & 3125913 & 0.000357 & 0.45 & G1, G21, G8, G80, G70, G72, G14, G78, G56  \\  
+1304  & 3125913 & 0.000417 & 0.75 & G16, G1, G11  \\  
+\hline
+\end{tabular}\\
+\end{sidewaystable}
+
+
 \subsubsection{Load Level Forecast}
 \subsubsection{Number of Components on Outage in Base Cases}
 \subsubsection{Excluded Base Cases}
