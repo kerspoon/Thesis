@@ -2693,17 +2693,40 @@ Interestingly if the forecast was high in the base-case, a contingency may cause
 
 The number of components that are out for repair or maintenance in each base case ranges from 0 to 13. This means that in one base-case 13 separate components were unavailable. This does not take into account the fact that the loss of a single busbar may remove a number of generating units. The modal value was 4 with 5 coming in a close second. The median was also between 4 and 5 meaning, for this system, at any given time one would expect 4 components to be non-functioning.
 
-\todo{what percentage were generator failures, or line, or bus}
+97.5\% of all failures were of Generating units making up 4123 of the total 4229 components that were on outage. There were 100 line outages in the base cases corresponding to a total of 2.4\% and the final 0.1\% of outages was caused by a fault on a busbar, there were only 4 of these in the 1000 base-cases.
 
 \subsubsection{Excluded Base Cases}
 
-There were 13 bases cases that were excluded from further analysis. These were ones that were unacceptable for the same reasons a contingency. For example, there is no reason to run all the contingency tests on a base case that is already islanded. Unless random failures manage to remove all but the main island it will never have any acceptable cases and will simply skew the results without adding to them.
+There were 13 bases cases that were excluded from further analysis (see Table \ref{table_unacceptable_base_cases}). These were ones that were unacceptable for the same reasons a contingency. For example, there is no reason to run all the contingency tests on a base case that is already islanded. Unless random failures manage to remove all but the main island it will never have any acceptable cases and will simply skew the results without adding to them.
 
 It would have been possible to manually re-balance the failed system as this is what would happen in reality. This opens more questions than it solves. If the system were to have been balanced for the failed cases; why not balance all of them to the same degree. Which method of stability/security constrained optimal power flow should be used? For this reason it was decided that all base-cases that fail an initial simulation would not be included in the rest of the analysis.
 
 Given more time it would be interesting to study the failed base-cases. They are likely to be of interest to a system operator and excluding them is not ideal.
 
-\todo{list failed cases in table, along with reason for failure (convergance, limits, island, etc)}
+\begin{table}[htbp]
+\caption{Unacceptable Base Cases}
+\label{table_unacceptable_base_cases}
+\centering
+\begin{tabular}{c||c||c}
+\bfseries Failure Reason & \bfseries Load Level & \bfseries Outages Components \\
+\hline \hline
+component out of limits &  0.8  &  G71, G6, G35, G72  \\ 
+component out of limits &  0.8  &  G24, A10, G34, G89, G70, A12-1, G67, G56, A32-1 \\ 
+component out of limits &  0.75 &  G22, B24, G71, G45, G72, G63 \\ 
+divergence              &  0.6  &  G74, G90, G13, C5, G47 \\ 
+islanded                &  0.85 &  C11, G35, G23, G72 \\ 
+component out of limits &  0.9  &  G24, G39, G74, G45, B10, G98 \\ 
+component out of limits &  0.85 &  G31, G23, G97, G96, G57, G55, G47, G13, G64 \\ 
+component out of limits &  0.4  &  G33, B15, G89, G19, G90 \\ 
+component out of limits &  0.7  &  G71, G24, G3, G72 \\ 
+islanded                &  0.65 &  G41, C11, G83, G72 \\ 
+component out of limits &  0.55 &  G31, G5, C10, G12 \\ 
+component out of limits &  0.7  &  G76, B10, G1 \\ 
+divergence              &  0.8  &  G57, G66, G56, G90 \\ 
+component out of limits &  0.65 &  G6, G5, G67, G99 \\ 
+\hline
+\end{tabular}\\
+\end{table}
 
 \section{Contingencies from Monte Carlo Sampler}
 
