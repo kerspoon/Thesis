@@ -2638,11 +2638,9 @@ This chapter contains the results gained from the computer program detailed in t
 
 After that the program is modified to begin incorporating unscheduleable generation and then on to a unpredictable power output. By doing this the effect of large scale wind power can be determined.
 
-\section{Simple Case}
+\section{Base Cases}
 
-The shell script given in Section \ref{sec_prog_use} was run with 1000 base cases and 10,000 unique contingencies.
-
-\subsection{Base Cases}
+The shell script given in Section \ref{sec_prog_use} was run with 1000 base cases and 10,000 unique contingencies generated from Monte Carlo Sampling. This section looks at the base-cases generated specifically the forecast of load level, the number of components that are normally on outage and then details a few unsuitable bases cases which were excluded from further analysis.
 
 \begin{sidewaystable}[!p]
 \caption{First 20 Base-Cases Tested Using Basic Monte Carlo}
@@ -2675,15 +2673,15 @@ The shell script given in Section \ref{sec_prog_use} was run with 1000 base case
 \end{tabular}\\
 \end{sidewaystable}
 
-Table \ref{table_results_summary} shows the summary of a 20 random base cases.
+It is not necessary or helpful to give all 1000 base cases in the text. Table \ref{table_results_summary} shows the summary of 20 base cases selected at random to give an idea of the sort of output the computer program gave.
 
-The column that is of most interest is the third one. This is the number of unacceptable contingencies divided by the total number. It is this number we use to represent the overall security of that base case. Taking the first row as an example in around 3 million contingencies about 1000 were unacceptable and would need emergency operator action. If the number of unacceptable cases were higher it would mean it was more likely that the system operator would need to perform emergency action.
+The column that is of most interest is the third one. This is the number of unacceptable contingencies divided by the total number. It is this number we use to represent the overall security of that base case. Taking the first row as an example in around 3 million contingencies about 1000 were unacceptable and would need emergency operator action. If the number of unacceptable cases were higher it would mean it was more likely that the system operator would need to perform emergency action. This is discussed further in the next section. This section focuses on the fourth and fifth column which describe the make up of a base-case.
 
-An intuitive feel for the normal state of system operation can also be gained from this table. In most of the cases there were a number of components out of service; these were almost all generators. This is what was expected from the probabilities these are based upon but by viewing it this way it becomes easier to visualise. Additionally 
+An intuitive feel for the normal state of system operation can be gained from this table. In most of the cases there were a number of components out of service; these were almost all generators. This is what was expected from the probabilities these are based upon but by viewing it this way it becomes easier to visualise. 
 
 \subsubsection{Load Level Forecast}
 
-The load level mostly hovers at around half the maximum output, indeed it is the modal value which between 14 and 16\% of base-cases having a power level of 0.5 times the maximum. The range of powers spanned the entirety of the possible values from 0.35 at the lowest to 1 at the highest. It is interesting to note that the median value was around 0.6 meaning that on average 40\% of installed capacity was unused. This is shown in Table \ref{table_load_levels}. An early Chapter in Figure \ref{aggregateforecast} shows this graphically for many more samples than was used in this Chapter.
+The load level mostly hovers at around half the maximum output, indeed it is the modal value with between 14 and 16\% of base-cases having a power level of 0.5 times the maximum. The range of powers spanned the entirety of the possible values from 0.35 at the lowest to 1 at the highest. It is interesting to note that the median value was around 0.6 meaning that on average 40\% of installed capacity was unused. This is shown in Table \ref{table_load_levels}. An earlier Chapter in Figure \ref{aggregateforecast} shows this graphically for many more samples than was used in this Chapter.
 
 \begin{table}[htbp]
 \caption{Frequency of Load Levels in Base-Cases}
@@ -2710,13 +2708,13 @@ The load level mostly hovers at around half the maximum output, indeed it is the
 \end{tabular}\\
 \end{table}
 
-Interestingly if the forecast was high in the base-case, a contingency may cause the power required to be higher than the power available. A clear example of an adequacy issue. Not very surprising as the system in question is used in a lot of adequacy studies.
+Interestingly if the forecast was high in the base-case, a contingency may cause the power required to be higher than the power available. This is a clear example of an adequacy issue. Not very surprising as the system in question is used in a lot of adequacy studies.
 
 \subsubsection{Number of Components on Outage in Base Cases}
 
-The number of components that are out for repair or maintenance in each base case ranges from 0 to 13, the exact frequencies are shown in Figure \ref{outagefrequencies1000} and Table \ref{XXX}. This means that in one base-case 13 separate components were unavailable. This does not take into account the fact that the loss of a single busbar may remove a number of generating units. The modal value was 4 with 5 coming in a close second. The median was also between 4 and 5 meaning, for this system, at any given time one would expect 4 components to be non-functioning.
+The number of components that are out for repair or maintenance in each base case ranges from 0 to 13, the exact frequencies are shown in Figure \ref{outagefrequencies1000} and Table \ref{table_outage_frequency}. One surprising result is that in one base-case 13 separate components were unavailable. This does not take into account the fact that the loss of a single busbar may remove a number of generating units, although there were not many busbar outages. The modal value of component outages was 4 with 5 coming in a close second. The median was also between 4 and 5 meaning, for this system, at any given time one would expect 4 components to be non-functioning.
 
-97.5\% of all failures were of Generating units making up 4123 of the total 4229 components that were on outage. There were 100 line outages in the base cases corresponding to a total of 2.4\% and the final 0.1\% of outages was caused by a fault on a busbar, there were only 4 of these in the 1000 base-cases.
+97.5\% of all failures were of generating units making up 4123 of the total 4229 components that were on outage in all the 1000 bases-cases. There were 100 line outages in the base cases corresponding to a total of 2.4\%. The final 0.1\% of outages were caused by a fault on a busbar, there were only 4 of these in all the base-cases.
 
 \image{outagefrequencies1000}{Component Outage Frequencies in Base Cases}{outagefrequencies1000.png}
 
@@ -2761,25 +2759,27 @@ Given more time it would be interesting to study the failed base-cases. They are
 \begin{tabular}{c||c||c}
 \bfseries Failure Reason & \bfseries Load Level & \bfseries Outages Components \\
 \hline \hline
-component out of limits &  0.8  &  G71, G6, G35, G72  \\ 
-component out of limits &  0.8  &  G24, A10, G34, G89, G70, A12-1, G67, G56, A32-1 \\ 
-component out of limits &  0.75 &  G22, B24, G71, G45, G72, G63 \\ 
+limits &  0.8  &  G71, G6, G35, G72  \\ 
+limits &  0.8  &  G24, A10, G34, G89, G70, A12-1, G67, G56, A32-1 \\ 
+limits &  0.75 &  G22, B24, G71, G45, G72, G63 \\ 
 divergence              &  0.6  &  G74, G90, G13, C5, G47 \\ 
 islanded                &  0.85 &  C11, G35, G23, G72 \\ 
-component out of limits &  0.9  &  G24, G39, G74, G45, B10, G98 \\ 
-component out of limits &  0.85 &  G31, G23, G97, G96, G57, G55, G47, G13, G64 \\ 
-component out of limits &  0.4  &  G33, B15, G89, G19, G90 \\ 
-component out of limits &  0.7  &  G71, G24, G3, G72 \\ 
+limits &  0.9  &  G24, G39, G74, G45, B10, G98 \\ 
+limits &  0.85 &  G31, G23, G97, G96, G57, G55, G47, G13, G64 \\ 
+limits &  0.4  &  G33, B15, G89, G19, G90 \\ 
+limits &  0.7  &  G71, G24, G3, G72 \\ 
 islanded                &  0.65 &  G41, C11, G83, G72 \\ 
-component out of limits &  0.55 &  G31, G5, C10, G12 \\ 
-component out of limits &  0.7  &  G76, B10, G1 \\ 
+limits &  0.55 &  G31, G5, C10, G12 \\ 
+limits &  0.7  &  G76, B10, G1 \\ 
 divergence              &  0.8  &  G57, G66, G56, G90 \\ 
-component out of limits &  0.65 &  G6, G5, G67, G99 \\ 
+limits &  0.65 &  G6, G5, G67, G99 \\ 
 \hline
 \end{tabular}\\
 \end{table}
 
 \section{Contingencies from Monte Carlo Sampler}
+
+This section looks at the contingencies generated by Monte Carlo Sampling. There were a total of 10,000 unique sample which resulted in an actual total of 3,125,913 samples. A selection of these is given in Table \ref{XXX}. The same set of contingencies were used against each base-case to find the number of acceptable cases, hence only one set of Monte Carlo Sampled contingencies were generated.
 
 \todo{
 table with selection of 20 MC samples.
@@ -2789,10 +2789,23 @@ table with selection of 20 MC samples.
 \subsection{Load Forecast Error}
 
 \todo{
-introduce in the same way as the base case figures. min/max/mode/median for forecast error, outages, 
+say again how it was calculated and what that represents. 
+min/max/mode/median for forecast error, 
+}
+
+\todo{
+table of forecast error frequencies.
+image of forecast error frequencies
 }
 
 \subsection{Component Failures}
+
+\todo{
+table, image of freq
+how many gen, line, bus.
+how does that translate to the real world. how often does an n-x occur.
+
+}
 
 \subsection{Probability of System Becoming Unacceptable}
 
@@ -2873,7 +2886,6 @@ analyse the types of failures how many were islanding, how many for limit violat
 
 \todo{
 
-exerpt from both sample file and analysis.
 average, min, max components on failure (bar chart num components, times seen) take just as failure not combined.
 higest lowest and average power as a percentage of the system capability.  (probability density function)
 
@@ -2901,7 +2913,7 @@ n-1 as a predictor of p(acc)
 
 \todo{
 
-exerpt from both sample file and analysis.
+excerpt from both sample file and analysis.
 total number of fail cases.
 how many were bus fails, \#line \#gen
 see how it compares to a probability list of contingencies n long.
