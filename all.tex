@@ -2683,17 +2683,70 @@ An intuitive feel for the normal state of system operation can also be gained fr
 
 \subsubsection{Load Level Forecast}
 
-The load level mostly hovers at around half the maximum output, indeed it is the modal value which between 14 and 16\% of base-cases having a power level of 0.5 times the maximum. The range of powers spanned the entirety of the possible values from 0.35 at the lowest to 1 at the highest. It is interesting to note that the median value was around 0.6 meaning that on average 40\% of installed capacity was unused.
+The load level mostly hovers at around half the maximum output, indeed it is the modal value which between 14 and 16\% of base-cases having a power level of 0.5 times the maximum. The range of powers spanned the entirety of the possible values from 0.35 at the lowest to 1 at the highest. It is interesting to note that the median value was around 0.6 meaning that on average 40\% of installed capacity was unused. This is shown in Table \ref{table_load_levels}. An early Chapter in Figure \ref{aggregateforecast} shows this graphically for many more samples than was used in this Chapter.
 
-\todo{table}
+\begin{table}[htbp]
+\caption{Frequency of Load Levels in Base-Cases}
+\label{table_load_levels}
+\centering
+\begin{tabular}{c||c}
+\bfseries Power Level & \bfseries Frequency (\%) \\
+\hline \hline
+0.35 & 1.8 \\ 
+0.4 & 5.9 \\ 
+0.45 & 11.0 \\ 
+0.5 & 15.4 \\ 
+0.55 & 11.4 \\ 
+0.6 & 11.2 \\ 
+0.65 & 8.6 \\ 
+0.7 & 7.5 \\ 
+0.75 & 8.8 \\ 
+0.8 & 8.5 \\ 
+0.85 & 6.9 \\ 
+0.9 & 2.3 \\ 
+0.95 & 0.4 \\ 
+1 & 0.1 \\ 
+\hline
+\end{tabular}\\
+\end{table}
 
 Interestingly if the forecast was high in the base-case, a contingency may cause the power required to be higher than the power available. A clear example of an adequacy issue. Not very surprising as the system in question is used in a lot of adequacy studies.
 
 \subsubsection{Number of Components on Outage in Base Cases}
 
-The number of components that are out for repair or maintenance in each base case ranges from 0 to 13. This means that in one base-case 13 separate components were unavailable. This does not take into account the fact that the loss of a single busbar may remove a number of generating units. The modal value was 4 with 5 coming in a close second. The median was also between 4 and 5 meaning, for this system, at any given time one would expect 4 components to be non-functioning.
+The number of components that are out for repair or maintenance in each base case ranges from 0 to 13, the exact frequencies are shown in Figure \ref{outagefrequencies1000} and Table \ref{XXX}. This means that in one base-case 13 separate components were unavailable. This does not take into account the fact that the loss of a single busbar may remove a number of generating units. The modal value was 4 with 5 coming in a close second. The median was also between 4 and 5 meaning, for this system, at any given time one would expect 4 components to be non-functioning.
 
 97.5\% of all failures were of Generating units making up 4123 of the total 4229 components that were on outage. There were 100 line outages in the base cases corresponding to a total of 2.4\% and the final 0.1\% of outages was caused by a fault on a busbar, there were only 4 of these in the 1000 base-cases.
+
+\image{outagefrequencies1000}{Component Outage Frequencies in Base Cases}{outagefrequencies1000.png}
+
+\todo{table of outage freq}
+
+\begin{table}[htbp]
+\caption{Frequency of Outages in Base-Cases}
+\label{table_outage_frequency}
+\centering
+\begin{tabular}{c||c||c}
+\bfseries Outaged Components & \bfseries Number of Base Cases & \bfseries Percentage of Total  \\ 
+\hline \hline
+0 & 9 & 0.9  \\ 
+1 & 60 & 6.1  \\ 
+2 & 137 & 13.9  \\ 
+3 & 164 & 16.6  \\ 
+4 & 189 & 19.1  \\ 
+5 & 184 & 18.6  \\ 
+6 & 133 & 13.5  \\ 
+7 & 62 & 6.3  \\ 
+8 & 30 & 3.0  \\ 
+9 & 11 & 1.1  \\ 
+10 & 5 & 0.5  \\ 
+11 & 2 & 0.2  \\ 
+12 & 0 & 0.0  \\ 
+13 & 1 & 0.1  \\ 
+\hline
+\end{tabular}\\
+\end{table}
+
 
 \subsubsection{Excluded Base Cases}
 
