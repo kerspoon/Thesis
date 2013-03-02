@@ -1,4 +1,12 @@
 
+------------------------------------------
+
+\todo{see: http://stackoverflow.com/questions/1966425/source-code-highlighting-in-latex}
+
+niceties -- find a better word.
+
+------------------------------------------
+
 its it's
 busbar, bus-bar, busbars, bus
 therefor, therefore
@@ -10,6 +18,7 @@ load-flow, power-flow, load flow, power flow
 modelled modeled modaled modal model
 severe sever
 asses assess
+parallelise parallelize
 
 form / from
 affect, effect
@@ -43,7 +52,7 @@ Need to look at where my work fits in the larger picture:
 
  1. economics - market model - wind market
  2. a practicable usable system, say how SO can use it including how they make decisions when they have a system that fails (X,Y,Z)
- 3. think more about how do decide the threshold.  
+ 3. think more about how do decide the threshold.
 
 -------------------------------------------------------------------------------
 
@@ -54,7 +63,7 @@ Long Term
     * could use dynamic simulation for now
     * research droop to fake the governor/inertia
     * speak to maths person about how many simulations I actually need
-    * look into adding a *generic* set of dynamic data to the IEEE-RTS. 
+    * look into adding a *generic* set of dynamic data to the IEEE-RTS.
     * see how long CPF/PSSENG would take to convert/find data and simulate.
     * anyone I can talk to who makes power system simulators (old students)
     * anyone who can help me get a dynamic simulation of the IEEE-RTS

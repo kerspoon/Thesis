@@ -1617,7 +1617,7 @@ It was not meant to be representative of any particular power system but aimed t
 
 In addition to new data the system has increased in size to incorporate three almost identical areas. As they are almost identical only the details of the components in the first area are shown in the following tables, a full listing is given in Appendix \ref{paper_rts}.
 
-There have been many changes to power systems in the last 14 years and it would have been good if the system could be updated to incorporate these changes. The largest of the changes is the increase in penetration of renewable generation. As it stands the IEEE-RTS includes no renewable generators. Although the literature is showing example of individuals who have added wind there is no consensus or standard forming on where and how much wind should be added.
+There have been many changes to power systems in the last 14 years and it would be good if the IEEE-RTS could be updated to incorporate these changes. The largest of the changes is the increase in penetration of renewable generation. As it stands the IEEE-RTS includes no renewable generators. Although the literature is showing examples of individuals who have added wind turbines there is no consensus or standard forming on where and how much renewable power should be added.
 
 As this paper is used extensively in this work it is included for reference in Appendix \ref{paper_rts}.
 
@@ -1731,7 +1731,7 @@ A detailed discussion of simulation techniques and tools in general is covered i
 The requirements of the simulator were as follows. It must have:
 
 \begin{itemize}
-\item The ability to simulate the chosen network as either as a load-flow or dynamic simulation.
+\item The ability to simulate the chosen network using either a load-flow or dynamic simulation.
 \item The ability to be run from command line without user interaction.
 \item A fast simulation speed.
 \item Results that are easily analysed by another computer program.
@@ -1743,27 +1743,27 @@ The requirements of the simulator were as follows. It must have:
 
 In an ideal world both stages of the program would have different simulation parameters. The first stage needs to represent a random snapshot in time of the power system as a system operator might see it. It would be a useful extension to the project to add an OPF to the first stage. 
 
-The second feature that was non-essential but would have improved the accuracy would be to be able to simulate in multiple stages. For example after the OPF of the first stage it would have been good to feed the results into a load flow simulator after applying the contingency changes. 
+The second feature that was non-essential but would have improved accuracy would be an ability to simulate in multiple stages. After the OPF of the first stage it would have been good to feed the results into a load flow simulator after applying contingency changes. 
 
 \subsubsection{PSAT}
 
-The two niceties must both been present in the same program for it to work as a whole. A number of different simulation tools were reviewed, the closest match was PSAT a Matlab toolbox. Although it appeared to fit all the criteria problems were found during testing and couldn't be resolved. Ultimately this was because PSAT is not meant to be used in such a way. The output file is meant to be read by humans not a computer and as such was very difficult to parse. 
+The two niceties must both be present in the same program for it to work as a whole. A number of different simulation tools were reviewed, the closest match was PSAT, a Matlab toolbox. Although it appeared to fit all the criteria, problems were found during testing and couldn't be resolved. Ultimately this was because PSAT is not meant to be used in such a way. The output file is meant to be read by humans not a computer and as such was very difficult to parse (get the computer to read an interpret the results). 
 
-Another significant challenge was communicating between PSAT and the Monte Carlo Simulator which had already been written in another programming language. It was decided that communicating directly with PSAT inside Matlab would be too complex. Hence to run a simulation the data is saved to disk then Matlab is run as an external program and the results file is read back in from disk. This process, although complex and slow, worked correctly. It would make more sense to use a program that properly supported data streams to avoid the slow hard drive access and one that was meant to be run from a command line.
+Another significant challenge was communicating between PSAT and the Monte Carlo Simulator which had already been written in another programming language. Communicating directly with PSAT inside Matlab proved too complex. Hence to run a simulation, the output of the Monte Carlo Sampler is saved to disk. Matlab is run as an external program using those stored results as it's input. This process, although complex and slow worked. It would make more sense to use a program that properly supported data streams to avoid the slow hard drive access and one that was meant to be run from a command line.
 
-Due to the very slow start-up and shutdown time of Matlab, simulations were done in batches. For example, 100 simulations were written to file to be processed in one go. By grouping simulations this way Matlab could process many simulations each time it was started. This enabled the program to be trivial to parallelize if multiple computer or multiple cores were available.
+Due to the very slow start-up and shutdown time of Matlab, simulations were done in batches. For example, 100 simulations were written to file to be processed in one go. By grouping simulations this way Matlab could process many simulations each time it was started. This enabled the program to be trivial to parallelise if multiple computer or multiple cores were available.
 
 \image{samplerflow}{Flow Diagram for PSAT Stage 1 Sampling}{samplerflow.png}
 
-In the flow diagram (Image \ref{samplerflow}) the process for Stage 1 is detailed. Here it includes simulation but that is not strictly necessary. In addition to the batch file it was possible to gather statistics about the samples and simulations. These statistics are analysed later.
+In the flow diagram (Image \ref{samplerflow}) the process for Stage 1 is detailed. Here it includes simulation but that is not necessary. In addition to the batch file it was possible to gather statistics about the samples and simulations. These statistics are analysed later.
 
 The sampling program is based around four main data types, each associated with a file type. These are created and modified with a number of scripts.
 
 \begin{itemize}
 
-\item The \underline{PsatData} type is a Matlab file containing information for PSAT about a specific scenario to be simulated, this file is used by Matlab to produce a simulation report. The files end in \underline{.m}. More information on this can be obtained from the PSAT documentation.
+\item The \underline{PsatData} type is a Matlab file containing information for PSAT about a specific scenario to be simulated. This file is used by Matlab to produce a simulation report. The files end in \underline{.m}. More information on this can be obtained from the PSAT documentation.
 
-\item \underline{PsatReport} is the report produced my Matlab after a simulation is run. It contains power flows, losses and bus bar voltages. It is meant to be analysed by hand and hence it requires parsing to be interpreted by a computer. Report files end in \underline{\_XX.txt} where XX is a incrementing number.
+\item \underline{PsatReport} is the report produced my Matlab after a simulation is run. It contains power flows, losses and bus bar voltages. It is meant to be analysed by hand and hence it requires parsing to be interpreted by a computer. Report files end in \underline{\_XX.txt} where XX is an incrementing number.
 
  \item \underline{NetworkProbability} is a data file containing the probability of failure of various components as well as joint failure of different components. It creates scenarios from a network probability data file. Probability files end in \underline{.net}.
 
@@ -1775,21 +1775,21 @@ Ultimately, PSAT was dropped as the power system simulator and a simpler and fas
 \subsubsection{CPF}
 
 CPF is part of PSSENG, a Dynamic Power System Simulator developed at the University of Bath by 
-Dale \cite{Dale1986}, Berry \cite{Berry1989} and Chan \cite{Chan1992}. CPF was originally used to work out the initial load-flow conditions before a full dynamic simulation. As it was written was part of a dynamic simulator, the core algorithm is very fast. It actually matched all requirements by design and was an easy fit for the simulation. 
+Dale \cite{Dale1986}, Berry \cite{Berry1989} and Chan \cite{Chan1992}. CPF was originally used to work out the initial load-flow conditions before a full dynamic simulation. As it was written as part of a dynamic simulator, the core algorithm is very fast. It actually matched all requirements by design and was an easy fit for the simulation. 
 
 Unlike PSAT it also had a very fast start-up time meaning the complicated and complex batch processing, including constantly writing large files to disk, was not needed.
 
-There were some modifications needed. Firstly to remove components easily they had to be placed on their own line of the input file. These were joined to the original bus by a line of zero impedance so as to make no difference to the simulation results. This meant that removing a component was as simple as deleting a few lines. No calculations were needed. Changing the load level was relativity straight forward as well as each power was was a single number in the file. The modified output could be piped directly into CPF from the Python based Monte Carlo Simulator 
+There were some modifications needed. Firstly, to remove components easily they had to be placed on their own line of the input file. These were joined to the original bus by a line of zero impedance so as to make no difference to the simulation results. This meant that removing a component was as simple as deleting a few lines. No calculations were needed. Changing the load level was relativity straight forward as each power was a single number in the file. The modified output could be piped directly into CPF from the Python-based Monte Carlo Simulator 
 
-Owing to these reasons CPF was selected as the simulator for this program.
+For these reasons CPF was selected as the simulator for this program.
 
 \subsection{System Probabilities - Monte Carlo Sampler Program}\label{sec_mc_results}
 
-The core of the computer program is the two-stage Monte Carlo Sampler; the general points to consider are covered in Section \ref{lbl_sec_mcs}. The specifics as relating to this application are detailed in this section.
+The core of the computer program is the two-stage Monte Carlo Sampler; the general points to consider are covered in Section \ref{lbl_sec_mcs}. The specifics relating to this application are detailed in this section.
 
 \subsubsection{Implementation}
 
-Stage one consists of sampling to generate a range of realistic operating conditions. Outages of lines, busbars and generators are calculated from their mean time to fail (MTTF) and mean time to repair (MTTR) as per Eqn \ref{eqn_outage}. For components that have a failure rate specified, instead of a MTTF, a simple conversion was performed. Busbar failure rate is not included in the original paper so a value of 0.025 was chosen to be consistent with values in the literature \cite{Allan1991,Billinton1993,Brown2004,Evans1997}. Failure rate is given in failures per year and MTTF and MTTR is given in hours. Included in the paper is the probability that the tripping of certain lines will cause tripping of others. This effect was also taking into account in this work.
+Stage one consists of sampling to generate a range of realistic operating conditions. Outages of lines, busbars and generators are calculated from their mean time to fail (MTTF) and mean time to repair (MTTR) as per Eqn \ref{eqn_outage}. For components that have a failure rate specified, instead of a MTTF, a simple conversion was performed. Busbar failure rate is not included in the original paper so a value of 0.025 was chosen to be consistent with values in the literature \cite{Allan1991,Billinton1993,Brown2004,Evans1997}. Failure rate is given in failures per year and MTTF and MTTR is given in hours. Included in the paper is the probability that the tripping of certain lines will cause tripping of others. This effect was also taken into account in this work.
 
 \begin{equation}
   \label{eqn_outage}
@@ -1799,8 +1799,7 @@ Stage one consists of sampling to generate a range of realistic operating condit
 
 The second stage takes each scenario through another round of Monte Carlo sampling; this time it samples for unplanned changes. Load forecast error is considered but only in the most basic form, a normally distributed random number with mean 1 and s.d. 0.05 is multiplied by the forecast given in stage one.
 
-A more realistic measure should take better account of the correlation between time and load forecast error as well as weather impacts. Component faults are taken by converting line, generator and busbar value, from the original paper, into the probability that they will fault during the half-hour delivery period, this uses Eqn \ref{eqn_failure}. As the IEEE-RTS does not have renewable generators a weather forecast is unnecessary in this part of the work.
-
+A more realistic measure should take better account of the correlation between time and load forecast error as well as weather impacts. Component faults are taken by converting line, generator and busbar value, from the original paper, into the probability that they will fail during the half-hour delivery period. This calculation uses Eqn \ref{eqn_failure}. A weather forecast is unnecessary in this part of the work as the IEEE-RTS does not have renewable generators.
 
 \begin{equation}
   \label{eqn_failure}
@@ -1809,23 +1808,23 @@ A more realistic measure should take better account of the correlation between t
 
 \subsubsection{Demand Forecast Analysis}
 
-The IEEE-RTS supplied data for demand level that is based upon the season, hour and week. This section looks at how the load level fluctuates then uses the MCS to form aggregate data.
+The IEEE-RTS supplied data for demand level is based upon the season, hour and week. This section looks at how the load level fluctuates then uses the MCS to form aggregate data.
 
 \image{forecastperhour}{Demand Level per Hour of Day}{forecastperhour.png}
 
 \image{forecastperweek}{Demand Level per Week of Year}{forecastperweek.png}
 
-With the changes over a day note how, as expected, the power use is much lower during the night, it ramps up rapidly from 5am reaching its first peak around 9am, then depending on the specific week observed it either tails off or hold steady until the evening peak between 6pm and 8pm. Week 1, being the start of January is notably higher than the other weeks due to extra energy usage for space heating and, in the evening, lights.
+As can be seen in Figure \ref{forecastperhour} the power use is much lower during the night, it ramps up rapidly from 5am reaching its first peak around 9am, then depending on the specific week observed it either tails off or holds steady until the evening peak between 6pm and 8pm. Week 1, being the start of January, is notably higher than other weeks due to extra energy usage for space heating and, in the evening, lights.
 
-The yearly changes appear much more stochastic. The most notable trends are a much lower energy usage at weekends as well as the seasonal variation causing higher energy use in winter periods.
+The yearly changes appear much more stochastic (Figure \ref{aggregateforecast}). The most notable trends are a much lower energy usage at weekends as well as the seasonal variation of higher energy use in winter.
 
 \image{aggregateforecast}{Aggregated Load Forecast}{aggregateforecast.png}
 
-When sampled this data-set gives the probability density as shown in Image \ref{aggregateforecast}. In this graph the demand forecast has been quantised to the nearest 0.05. Note that only a very small percentage of samples are at the full demand level (only 603 out of one million samples in the run shown in the graph). Also note that there is a reasonable high probability that the system will be running at 35\% of its maximum. It is not unreasonable to expect wind power alone to meet this demand level which could cause significant problems if not enough spinning reserve was available. As this graph shows the fraction of samples of a given power level it also serves as a good approximation to the probability of a sample having the given load forecast at the end of Stage 1.
+When sampled this data-set gives the probability density as shown in Image \ref{aggregateforecast}. In this graph the demand forecast has been quantised to the nearest 0.05. Note that only a very small percentage of samples are at the full demand level (only 603 out of one million samples in the run shown in the graph). Also note that there is a reasonable high probability that the system will be running at 35\% of its maximum. It is not unreasonable to expect wind power alone to meet this demand level which could cause significant problems if not enough spinning reserve was available. As this graph shows the fraction of samples of a given power level it also serves as a good approximation to the probability of a base-case having the given load forecast.
 
 \image{aggregateforecasterror}{Aggregated Load Forecast Error}{aggregateforecasterror.png}
 
-Stage 2 took the load forecast and create a forecast error. This was simple taken as a normal distribution. The results of quantisation give the graph in \ref{aggregateforecasterror}. It has a relatively small effect when compared to the forecast itself but a 10\% increase in power demand is significant both in it's frequency and effect.
+The second stage of Monte Carlo Sampling took the load forecast and created a forecast error. This was simply taken as a normal distribution. The results of quantisation are shown in Figure \ref{aggregateforecasterror}. It has a relatively small effect when compared to the forecast itself but a 10\% increase in power demand is significant both in its frequency and effect.
 
 \subsubsection{Outage Frequencies}
 
@@ -1833,9 +1832,9 @@ Stage 2 took the load forecast and create a forecast error. This was simple take
 
 \image{failurefrequencies}{Component Failure (Stage 2) Frequencies}{failurefrequencies.png}
 
-Looking at the number of components that have failed or are on outage in each sample give the graphs in \ref{outagefrequencies} and \ref{failurefrequencies}. Rather unexpectedly it says that up to 8 simultaneous component outages can occur in one million samples. This would seriously weaken the network. There is a 77\% change of at least one component outage, hence it is much more likely that the system is not at it's full generating capacity. Generator failures accounted for most of these outages with only 3\% of samples having at least one line failure and only 0.1\% of samples having any busbar failures.
+The number of components that have failed or are on outage in each sample are illustrated in Figure \ref{outagefrequencies} and Figure \ref{failurefrequencies}. Rather unexpectedly it shows that up to eight simultaneous component outages can occur in one million samples. This would seriously weaken the network. There is a 77\% change of at least one component outage, hence it is much more likely that the system is not at it's full generating capacity. Generator failures accounted for most of these outages with only 3\% of samples having at least one line failure and only 0.1\% of samples having any busbar failures.
 
-Stage 2 outages, or components failures, tell a similar story on a much smaller scale. These represent problems that occur to the system during delivery. This means that in 4 samples out of a million, three unrelated failures all occurred within the same half hour period. This will cause extreme stress to the system but it is an unlikely event. Though independent samples should not be though of as a time series, one millions half-hour samples represents a time period of about 60 years. Taken in the context that Edison set up the first ever power system about 130 years ago this million samples is bound to include some very unlikely events.
+Components failures (Figure \image{failurefrequencies}), tell a similar story on a much smaller scale. These represent problems that occur to the system during delivery. This means that in four samples out of a million, three unrelated failures all occurred within the same half hour period. This will cause extreme stress to the system but it is an unlikely event. Though independent samples should not be thought of as a time series, one million half-hour samples represents a time period of about 60 years. Taken in the context that Edison set up the first ever power system about 130 years ago this million samples is bound to include some very unlikely events.
 
 
 
@@ -1878,16 +1877,14 @@ Each heading below denotes a separate use of the computer program developed.
 
 \subsubsection{Generate Base Cases}
 
-\todo{see: http://stackoverflow.com/questions/1966425/source-code-highlighting-in-latex}
-
 \begin{verbatim}
 # generate 10 unique base cases and save to file.
 python main.py base-case 10 > base.csv
 \end{verbatim}
 
-This option outputs a list of base-cases to the command line. The base cases are generated using Monte Carlo Sampling as described in Section \ref{lbl_sec_mcs}, taking in to account MTTF, MTTR, CROW failures, and Load-level.
+This option outputs a list of base-cases to the command line. The base cases are generated using Monte Carlo Sampling as described in Section \ref{lbl_sec_mcs}, taking in to account MTTF, MTTR, CROW failures, and load-level.
 
-The parameter is the number of unique base cases to output. For instance if this was set to 1000 there would be 1000 lines in the files, each representing a different base-case. There would probably be some samples that have already been included in the output and hence are not shown. For instance if two base cases had a bus bar level of 0.55 and only G23 on outage then it would output a single line.
+The parameter is the number of unique base cases to output. For instance, if this was set to 1000 there would be 1000 lines in the files, each representing a different base-case. There would probably be some samples that have already been included in the output and hence are not shown. If two base cases, for example, had a bus bar level of 0.55 and only G23 on outage then it would output a single line.
 
 The advantage of this is that it will cause only one simulation to be run. This has a very dramatic effect on the speed of computation with no loss of accuracy. In one run of 256 billion samples there were only 100,000 simulations required.
 
@@ -1914,11 +1911,11 @@ The second column is the type of the sample. For base-cases it is always "outage
 
 The third and fourth detail the results of simulation which are not defined until a simulation is run on the file.
 
-The fifth column is the load level. This number is the percentage of the peak that all loads will be scaled to. For instance if the load for a particular bus was 6.2 before the sample was applied and the load-level was 0.5 the resulting bus level would be 3.1, this is applied equally across the busbars.
+The fifth column is the load level. This number is the percentage of the peak that all loads will be scaled to. For instance, if the load for a particular bus was 6.2 before the sample was applied and the load-level was 0.5 the resulting bus level would be 3.1, this is applied equally across the busbars.
 
 The rest of the columns list the names of components that are not to be included in the simulation. In base-cases this represents maintenance or previously failed components that are not available during the delivery period. In contingencies it represents components that will fail during the current delivery period.
 
-Obviously the base-cases it produces are dependent on the input files which specify the components and probabilities. As the only power system considered in this thesis is the RTS the file names are hard coded into the program.
+Obviously the base-cases it produces are dependent on the input files which specify the components and probabilities. As the only power system considered in this thesis is IEEE-RTS the file names are hard-coded into the program.
 
 
 \subsubsection{Generate Monte Carlo Contingencies}
@@ -1931,7 +1928,7 @@ python main.py contingency 1000 < base.csv > contingency.csv
 
 This option first generates contingencies based upon the probabilistic changes during the delivery period. It then combines the contingencies produced with the base cases given on the standard input.
 
-For example if there were only two base cases given:
+For example, if there were only two base cases given:
 
 \begin{verbatim}
 1, outage, None, , 0.5, G1
@@ -1952,14 +1949,11 @@ Then it may output something like the following:
 1, combined, None, , 1.05, G2, A2
 \end{verbatim}
 
-The output here is in sections, first is the raw base case with no changes, then the contingencies not combined with a base-case. Next is the first base case in the input followed by that base case combined with each contingency given before in turn. This is repeated for all base cases. This means there will be: $ x = (B+1)*(C+1) $ samples in the output file, and hence that many simulations to perform.
+The output here is in sections. First is the raw base case with no changes, then the contingencies not combined with a base-case. Next is the first base case in the input followed by that base case combined with each contingency given before in turn. This is repeated for all base cases. This means there will be: $ x = (B+1)*(C+1) $ samples in the output file, and hence that many simulations to perform.
 
-Note that the same samples are used for each base case. This does not
-necessarily represent reality but as long as there are enough samples
-it is not a limiting factor to the accuracy of the results.
+Note that the same samples are used for each base case. This does not necessarily represent reality but as long as there are enough samples it is not a limiting factor to the accuracy of the results.
 
-If the command line option \texttt{noInput} is given just the failures
-are put into the output and any base-cases are ignored.
+Just the failures are put into the output and any base-cases are ignored if the command line option \texttt{noInput} is given.
 
 \subsubsection{Generate N-x Contingencies}
 
@@ -1969,18 +1963,11 @@ are put into the output and any base-cases are ignored.
 python main.py n-x 1 < base.csv > n-1.csv
 \end{verbatim}
 
-This option generates contingencies but this time they are not from
-Monte Carlo. The parameter specifies the number of simultaneous outages
-to consider. For example, if the parameter is one then only single
-component outages are considered. This would cause one contingency per
-system component. In the RTS this would cause 289 contingencies to be
-created, as there are 289 components.
+This option generates contingencies but this time they are not from Monte Carlo. The parameter specifies the number of simultaneous outages to consider. If the parameter is one, for example, then only single component outages are considered. This would cause one contingency per system component. In the IEEE-RTS this would cause 289 contingencies to be created, as there are 289 components.
 
-If the parameter is 2 using the RTS as the input file there will be
-41,616 contingencies.
+If the parameter is two using the IEEE-RTS as the input file there will be 41,616 contingencies.
 
-Like the \texttt{contingency} option it combines the set of
-contingencies with each base case ready for simulation.
+Like the \texttt{contingency} option it combines the set of contingencies with each base case ready for simulation.
 
 \subsubsection{Simulate}
 
@@ -1993,17 +1980,17 @@ python main.py simulate < base.csv > results.csv
 This takes base cases or contingencies and simulates each one in turn using
 CPF. The results from each simulation are categorised as either
 acceptable or unacceptable. Unacceptable means there was: divergence,
-islanding, or a component out of static limits. This is to represent
+islanding, or a component out of static limits. This represents
 whether a system operator would have to perform emergency action to keep
 the system running acceptably.
 
 The output file is of the same format as the input, the only change is
 to the third and fourth column to set the results.
 
-As the file is read in and simulated one line at a time stopping the program will result in a certain portion of the simulations correctly run. This was useful to quickly check a partial set of results before simulating a large run.
+The file is processed one line at a time, rather than waiting until the entire program is complete before producing any output. This meant that if there was a problem with the simulator it could be checked while it was still running. It was also possible to stop the simulation part way through without losing all the results.
 
 It is possible to specify all steps in one go, eliminating intermediate
-files. Unfortunately this gives no feedback as to progress, it also means
+files. Unfortunately, this gives no feedback as to progress. It also means
 that all steps have to be run again if a change is needed.
 
 \subsubsection{Analyse}
@@ -2018,9 +2005,7 @@ contingencies combined with base cases and condenses them down. It
 doesn't matter whether the contingencies were generated using Monte
 Carlo or n-x.
 
-For each base case it counts the total number of unacceptable samples,
-this gives the probability of acceptability, which is used in the final
-assessment.
+For each base case it counts the total number of unacceptable samples. This gives the probability of acceptability, which is used in the final assessment.
 
 For example if the input file was:
 
@@ -2049,7 +2034,7 @@ Then the analysis would produce:
 
 It alternates between printing out the base-case and printing the number
 of acceptable cases. Note that it does not simply count the number of
-lines as certain line represent more than one sample, as can be seen in
+lines as certain lines represent more than one sample, as can be seen in
 the example.
 
 \subsubsection{Utilities}
@@ -2057,7 +2042,7 @@ the example.
 In addition to the main use of the program it also has two utility
 functions.
 
-\texttt{test} prints out the results of simulating a number of interesting base-cases that stress the program in different ways. It also prints the file that is used as an input for CPF. This is a file that if normally never seen but is useful in checking the behaviour of the program. This is to ensure that it is being produced properly for a number of edge cases. The cases selected also make sure that the simulator is tested on those edge cases as well.
+The command \texttt{test} prints out the results of simulating a number of interesting base-cases that stress the program in different ways. It also prints the file that is used as an input for CPF. This is a file that if normally never seen but is useful in checking the behaviour of the program. This is to ensure that it is being produced properly for a number of edge cases. The cases selected also make sure that the simulator is tested on those edge cases as well.
 
 Finally the command \texttt{clear} deletes all files from previous runs so that the working directory is clear to start again.
 
@@ -2065,7 +2050,7 @@ Finally the command \texttt{clear} deletes all files from previous runs so that 
 
 \image{imgflow}{Flow Diagram}{flow.png}
 
-The connection between each different use of the program is shown in Figure \ref{imgflow}. For instance you can see that the results of the base case generation feeds directly into the simulation function. The diagram should a complete run from the creation of bases cases down to the analysis of both N-x and Monte Carlo contingencies. The same process is shown programatically in Section \ref{sec_prog_use}. 
+The connection between each different use of the program is shown in Figure \ref{imgflow}. For instance you can see that the results of the base case generation feeds directly into the simulation function. The diagram shows a complete run from the creation of bases cases down to the analysis of both N-x and Monte Carlo contingencies. The same process is shown programatically in Section \ref{sec_prog_use}. 
 
 \section{Testing}
 
@@ -2076,13 +2061,9 @@ To ensure the proper operation of the program there were various tests performed
 The simplest of these checks are the small unit tests. These are best
 described by David Thomas et al. in Pragmatic Unit Testing \cite{Hunt2007}:
 
-\begin{myquote}[\cite{Hunt2007}]
-A unit test is a piece of code written by a developer which exercises a very small, specific area of functionality in the code being tested.
-\end{myquote}
+\begin{myquote}[\cite{Hunt2007}]A unit test is a piece of code written by a developer which exercises a very small, specific area of functionality in the code being tested.\end{myquote}
 
-While the program was being developed unit-test were programmed to run every time the code was. If any change had cause the unit-tests to fail the feedback would be immediate.
-
-The extract of code below makes sure that the individual function \texttt{quantised\_01} does what is expected on a few hand worked examples.
+While the program was being developed unit-tests were programmed to run every time the code was run. If any change caused the unit-tests to fail the feedback would be immediate. The extract of code below shows one of these tests. It makes sure that the individual function \texttt{quantised\_01} does what is expected on a few hand worked examples.
 
 \begin{verbatim}
 class Tester_quantised(ModifiedTestCase):
@@ -2094,26 +2075,26 @@ class Tester_quantised(ModifiedTestCase):
         self.assertEqual(quantised_01(0.9999), 1.00)
 \end{verbatim}
 
-These functions although not individually useful in calculating anything
-to do with power systems form the building blocks the make a useful
-program and the unit tests are there to make sure that foundation is
+These functions, although not individually useful in calculating anything
+to do with power systems, form the building blocks that make a useful
+program and the unit tests are there to make sure the foundation is
 solid.
 
 \subsubsection{Module Tests}
 
 Module tests are the next logical level up from unit tests and could
-probably be consider unit tests in and of themselves. They test the
+probably be considered unit tests in, and of, themselves. They test the
 boundaries of modules as seen externally. This makes sure that the
 interaction of the modules class and its helper functions all work
 together properly.
 
-For example the \texttt{buslevel} module has two main functions exported
+The \texttt{buslevel} module has two main functions exported
 for other modules to use. If we ensure that these two functions work
 then no further testing of the internals should be necessary. One of
 the functions takes as an input the week of the year, day of the week
 and hour of the day to produce a single forecast load figure. These can
-easily be hand worked, for example the first hour of the year (01/Jan
-at 00:00) should give a load forecast of 0.537 times the base level.
+easily be hand worked. The first hour of the year (01/Jan
+at 00:00), for example, should give a load forecast of 0.537 times the base level.
 This is what is checked in the first assertion in the code below:
 
 \begin{verbatim}
@@ -2157,10 +2138,10 @@ This is another example of a module test but is a special case as it
 changed the functionality of the load-flow program used for all
 simulations, hence it is worth documenting.
 
-Load-flow programs cannot be run with any mismatch. This is by design,
-if there is a mismatch it will be cancelled out during calculation by the
-slack-bus. If there are significant mismatches, such as from removing
-certain generators it can lead to problems.
+Load-flow programs cannot be run with any mismatch. This is by design.
+If there is a mismatch it will be cancelled out during calculation by the
+slack-bus. If there are significant mismatches, such as from the removal of
+certain generators, it can lead to problems.
 The simulation may end up testing the ability of the slack-bus to cope
 with changing power levels rather than the entire system. For this reason
 the expected mismatch is averaged across all suitable generators
@@ -2172,9 +2153,9 @@ of the power distributed among the other generators.
 
 The code for this is given in Appendix \ref{lbl_sec_code}.
 
-Certain generators are not suitable for variation, these are the ones
-where power output is not controllable, for example wind turbines. In
-these cases are taken to be of a fixed value and the rest of the
+Certain generators are not suitable for variation. These are the ones
+where power output is not controllable, for example, wind turbines. In
+these cases they are taken to be of a fixed value and the rest of the
 generators must make up the difference.
 
 Sometimes the power requirement is too high to be met by the available
@@ -2187,11 +2168,11 @@ of service. As this could happen in a real power system it is not a
 problem with the simulation but accurately represents a problem in the
 system.
 
-Below is an example of one of the tests for the mismatch fixing code. It
-checks that two generators that both have current have a power of 1 p.u.
-and a mismatch of 1 p.u. result in the mismatch being split equally.
+The following piece of code is an example of one of the tests for the mismatch fixing code. It
+checks that a mismatch is evenly split when applied to two generators whose power equal.
+
 Note that it would not always be split equally. If one generator had a
-limit of less than 1.5 or the initial powers of the generator differed
+limit of less than 1.5 p.u. or the initial powers of the generator differed
 from each other the resulting power on each generating unit would be
 different.
 
@@ -2210,14 +2191,12 @@ def test_2(self):
 The Monte Carlo simulation spanned a number of modules. It had code to
 read in the input files, generate random numbers in various
 distributions, and output the results. As such the testing involved is
-no longer know as unit tests and becomes integration testing:
+no longer known as unit tests and becomes integration testing:
 
-\begin{myquote}[\cite{Hunt2000}]
-Integration testing shows that the major subsystems that make up the project work and play well with each other.
-\end{myquote}
+\begin{myquote}[\cite{Hunt2000}]Integration testing shows that the major subsystems that make up the project work and play well with each other.\end{myquote}
 
 If the Monte Carlo simulation was working correctly it should have an
-output that almost matches the theoretical results. For example the
+output that almost matches the theoretical results. For example, the
 theoretical result of tossing a coin 1000 times would be 500 head and
 500 tails. A working Monte Carlo sampler will give results
 similar to this.
@@ -2225,7 +2204,7 @@ similar to this.
 The exact analytical solution to the problem we are simulating is
 complex involving failures that change the probability of other events
 occurring such as CROW failures (see Section \ref{sec_mc_results}). These effects should be dwarfed by the overall
-probabilities and as such were ignored.
+probabilities and as such are ignored.
 
 \paragraph{Theoretical Results}
 
@@ -2251,7 +2230,7 @@ Generator $P_f$ & $32$ & $3.40 \times 10^{-004}$ & $2.22 \times 10^{-003}$ & $8.
 
 \paragraph{Monte Carlo Results and Comparison}
 
-One million samples were run and it can be seen from Table \ref{table_cmp} that the theoretical and Monte Carlo results match to within a few per cent. It should be noted that lines can also fail because of correlated common right of way failures. For this reason, the line outages are expected to differ more than the other components. It is likely due to the low probability of this tripping type that it is not noticed in the final results. The error is likely to be even smaller if individual probabilities were used instead of averages.
+One million samples were run and it can be seen from Table \ref{table_cmp} that the theoretical and Monte Carlo results match to within a few per cent. It should be noted that lines can also fail because of correlated common right of way failures. For this reason, the line outages are expected to differ more than the other components. It is likely due to the low probability of this tripping type that it is not noticed in the final results. The error is likely to be even smaller if individual probabilities are used instead of averages.
 
 \begin{table}[!t]
 \renewcommand{\arraystretch}{1.3}
@@ -2276,8 +2255,8 @@ Generator $P_f$ &  27779  &   27657   &  0.4    &    122   \\
 
 Although the simulator has been used before and has formed an important
 part of other Ph.D. theses \cite{Dale1986, Berry1989, Chan1992} it was
-important to ensure it worked in the content of what was done for this
-work. There was also additional code that must be checked.
+important to ensure it worked in the context of what was done for this
+work. There was also additional code that needed to be checked.
 
 14 test cases were generated that tested a variety of code paths and
 covered a range of edge cases. These are given in the code below.
@@ -2285,7 +2264,7 @@ covered a range of edge cases. These are given in the code below.
 \begin{verbatim}
 def main_test(out_stream):
     """print the results and the intermediate file for
-       a number of interesting scenarios. So we can check
+       a number of interesting scenarios, so we can check
        by hand if the intermediate file generator and the
        simulator are doing the correct thing.
     """
@@ -2328,16 +2307,16 @@ The intermediate file is the combination of the sample and the base
 load-flow file that forms the input to the load-flow program. There were
 various things that could be checked. The most important was checking
 that the correct components had been removed and that the load and
-generator power totals are correct. The base load-flow file has 172
+generator power totals were correct. The base load-flow file has 172
 busbars and 222 branches with result in a file with a total of 397
-lines, if no components have been removed this should remain the same.
+lines. If no components have been removed this should remain the same.
 The removal of a generating unit should \emph{not} cause a change in the
 total power output as it should be counteracted by the mismatch fixing
 code described earlier, but there should be a reduction in the number of
 busbars and branches to reflect that change.
 
 Once the intermediate files were checked the results of the simulation
-were checked as well. For example the removal of line B11 causes the
+were checked as well. The removal of line B11, for example, causes the
 system to be islanded which should result in a result of ``false''
 coming back from the simulator.
 
@@ -2395,19 +2374,13 @@ high-load & True  & 855         & 855 \\
 
 \subsubsection{Improving Simulator Performance}
 
-Once the program was working and the tests were largely automatic, it
-was possible to improve the program to make it run faster. The largest
+It was possible to improve the program to make it run faster, once the program was working and the tests were largely automatic. The largest
 improvement was built in to the design of the program, namely to only
-simulate samples that were different from each other, this saved many
-orders of magnitude of time. Enabling testing to be done on one computer
+simulate samples that were different from each other. This saved many
+orders of magnitude of time enabling testing to be done on one computer
 rather than hundreds.
 
-Manually improving the speed of code is notoriously difficult,
-optimisations that seem logical can slow down execution due to cache
-sizing issues and compiler optimisation. The key tool in reducing the
-run-time of a program is the use of a profiler. Python, the language
-this program is written in, comes with it's own profiler which is
-thankfully easy to set up.
+Manually improving the speed of code is notoriously difficult. Optimisations that seem logical can slow down execution due to cache sizing issues and compiler optimisation. The key tool in reducing the run-time of a program is the use of a profiler. Python, the language this program is written in, comes with it's own profiler which is thankfully easy to set up.
 
 If the following code \texttt{-m cProfile -o profile.prof} is added to
 any python run it creates a file containing profile information. This can
@@ -2422,15 +2395,17 @@ elif args[0] == 'profile':
     p.strip_dirs().sort_stats('time').print_stats()
 \end{verbatim}
 
-This produces a text based output of the profile, which makes it easy to
+This produces a text-based output of the profile, which makes it easy to
 see which parts of the program are the slowest. The focus of
 optimisation can then be directed to the most important part.
 
-As they are very different code paths for the different options given to main.py the output of profiling is completely different for different uses. Because of this they were tested separately. On one run of the program there were 355 functions included in the output in total. Of these only 39 functions actually spend more than 0.01 seconds executing. It seems obvious that the focus of the optimisation should focus on just those 39. Of those 39, 12 functions spent more than 15 seconds executing and three actually took longer than a minute. Table \ref{table_profile_mc} shows the results of this run but the exponential decay is more easily seen in Figure \ref{imgprofilemc}. Note the most of the functions are internal functions which I cannot optimise but I may be able to reduce the number of times they are called.
+The program used for this work is actually made of a number of almost completely separate code paths and hence the results of profiling are completely different depending on the options given to it. This meant that the profiler had to be run on each stage of the programs operation and the results of it analysed separately. 
 
-Table \ref{table_profile_sim} and its corresponding graph in Figure \ref{imgprofilesim} show that although there is the same drop-off rate in function execution time the different task causes vary different functions to be the main cause of slowdown. 
+On one run of the program there were 355 functions included in the output in total. Of these only 39 functions actually spend more than 0.01 seconds executing. It seems obvious that the focus of the optimisation should focus on just those 39. Of those 39, 12 functions spent more than 15 seconds executing and three actually took longer than a minute. Table \ref{table_profile_mc} shows the results of this run but the exponential decay is more easily seen in Figure \ref{imgprofilemc}. Note that most of the functions are internal functions which I cannot optimise but I may be able to reduce the number of times they are called.
 
-In Table \ref{table_profile_sim} the function called \texttt{Ensure} take a fair amount of the execution time but its only purpose is to check the program is working properly, it performs no useful calculation. As long as the program has been well tested this function could be removed saving over 6 mins from the execution time without changing the output at all.
+Table \ref{table_profile_sim} and its corresponding graph in Figure \ref{imgprofilesim} show that although there is the same drop-off rate in function execution time the different task causes various different functions to be the main cause of slowdown. 
+
+In Table \ref{table_profile_sim} the function called \texttt{Ensure} takes a fair amount of the execution time but its only purpose is to check the program is working properly, it performs no useful calculation. As long as the program has been well tested this function could be removed saving over 6 mins from the execution time without changing the output at all.
 
 \image{imgprofilemc}{Execution Time of Slowest Monte Carlo Functions}{profile.png}
 
@@ -2539,12 +2514,9 @@ In Table \ref{table_profile_sim} the function called \texttt{Ensure} take a fair
 
 \subsubsection{Required Number of Simulation Samples}
 
-Tests were performed, as detailed below, to ensure that enough samples
-were taken. If there were not enough samples any results that were found
-could be spurious. This is discussed in Section \ref{sec_limitations} as point 7.
-Performing too many samples simply wastes time; time which could be spent improving the accuracy of the simulation in other ways.
+Tests were performed, as detailed below, to ensure that enough samples were taken. If there were not enough samples results could be spurious. This is discussed in Section \ref{sec_limitations} as point 7. Performing too many samples wastes time; time which could be spent improving the accuracy of the simulation in other ways.
 
-The number of required simulations were determined in the simplest fashion that
+The number of required simulations was determined in the simplest fashion that
 works well. If the result is stable in repeated runs then the number of
 samples is not the limiting factor hence it is unlikely
 the result will change simply by running more
@@ -2553,18 +2525,17 @@ simulations.
 First, a set of 100 base-cases were generated to form the basis of the
 test. Next, contingencies were generated using the Monte Carlo Sampler.
 This was done repeatedly starting with 1 unique sample going up an
-order of magnitude each time until 100,000 unique samples. These
+order of magnitude each time until 100,000 unique samples had been tested. These
 results were analysed to find the probability of acceptability in each
 case.
 
-If the probability of acceptability for each base case are the same for
+If the probability of acceptability for each base case is the same for
 any two sets of sample sizes then we know that the smaller of the two
 has enough samples. For example if 1,000 and 10,000 both had the same
 results to a certain number of significant figures then running more
 samples is not likely to change that number.
 
-The results for one such test on a particular base-case are shown in Table \ref{table_sample_size} and Image \ref{imgsamplesize}. You can see that the
-change tapers off at the number of samples increases. The difference in
+The results for one such test on a particular base-case are shown in Table \ref{table_sample_size} and Figure \ref{imgsamplesize}. The change tapers off as the number of samples increases. The difference in
 the results with 10,000 and 100,000 samples is very small meaning it is
 not worth doing more than 10,000 samples.
 
@@ -2595,8 +2566,8 @@ not worth doing more than 10,000 samples.
 
 \section{Using the Program} \label{sec_prog_use}
 
-Here is the shell script that does each stage of simulation in order to
-produce the final analysis. First it removes old files, then generates
+The following piece of code is the shell script that does each stage of simulation in order to
+produce the final analysis. First, it removes old files, then generates
 base cases and simulates them. Then it generates contingencies and
 simulates the combination of both. Finally analysis is done on the
 results of the simulation.
@@ -2623,7 +2594,7 @@ echo "analysis done"
 
 \section{Chapter Summary}
 
-This chapter details the software used to form the results of this thesis. It details decisions made during it's construction, such as why a particular network was chosen. It also discusses and analyses some of the tests created as part of the program to ensure its correct operation.
+This chapter details the software used to form the results of this thesis. It details decisions made during its construction, such as why a particular network was chosen. It also discusses and analyses some of the tests created as part of the program to ensure its correct operation.
 
 
 
