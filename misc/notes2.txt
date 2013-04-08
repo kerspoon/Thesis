@@ -1,6 +1,16 @@
 
 ------------------------------------------
 
+Very similar work -- not yet read.
+
+http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=5374085&url=http%3A%2F%2Fieeexplore.ieee.org%2Fxpls%2Fabs_all.jsp%3Farnumber%3D5374085
+
+http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=5374085&url=http%3A%2F%2Fieeexplore.ieee.org%2Fxpls%2Fabs_all.jsp%3Farnumber%3D5374085
+
+http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=5528326&url=http%3A%2F%2Fieeexplore.ieee.org%2Fxpls%2Fabs_all.jsp%3Farnumber%3D5528326
+
+------------------------------------------
+
 \todo{see: http://stackoverflow.com/questions/1966425/source-code-highlighting-in-latex}
 
 niceties -- find a better word.

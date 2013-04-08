@@ -3039,14 +3039,60 @@ These results bring in to question the value of performing a full N-2 simulation
 \image{mc-n1-n2}{Percentage of Failed Contingencies using N-1, N-2 and Monte Carlo}{mc-n1-n2.png}
 
 
-\section{Unscheduleable Generators}
+\section{Unscheduleable Generators and Wind Power}
+
+Next renewable energy is added in to the equation, specifically wind power. There are two things notably different about wind power that matters to this application. Firstly the power output of wind cannot be set like it can with a conventional generator. Secondly the wind forecast is often wrong by some extent so even the predicted value will be wrong. The extent to which it is wrong has been looked at in detail by XXX \cite{XXX}. Figure \ref{XXX} is taken from that paper and shows how likely it is that wind power will deviate from it's current value. (read the actual fucking paper) 
+
+\todo{image XXX}
+
+One would expect that when the added uncertainty of wind power gets added to a network the security would decrease. However, as this is a complex system with many interacting parts, what is expected can be quite different from what is experienced. 
+
+\subsection{Wind Modelling Requirements}
+
+Wind power is not easy to model in the general case. For the purposes of this work a greatly simplified model can be used as long as it exhibits the two factors discussed above. There are still problems to be overcome, specifically: 
+
+\begin{itemize}
+\item where on the network should wind power be added, 
+\item what installed capacity should each wind farm be given, 
+\item how is the power level for each wind farm determined in the base-cases,
+\item how does the wind forecast error get determined in the contingencies,
+\item what should the be total penetration of wind generation
+\end{itemize}
+
+\subsection{Adding Wind To The IEEE-RTS-96}
+
+The first two points will be addressed at the same time as they are related. If new generation was added to the network it would change the adequacy of the system, this would greatly reduce the validity of the comparison between a system with no wind and one with. It would mean that the total installed capacity was greatly increased but that lines were more likely to be overloaded as the installed capacity at busbars with new generating units would have increased. 
+
+Another option is to replace certain generating units with the same installed capacity of wind generation. But wind power cannot replace conventional generation on a megawatt by megawatt basis \cite{XXX}. It therefore makes more sense to put in wind where at the average load factor it produces the same amount of generation as the unit it is replacing. Unfortunately this changes the adequacy of the lines. By having the same power after wind's load factor is taking into account the new wind generator has an installed capacity much higher than the conventional generator it replaced; if the wind generator even happens to produce near its installed capacity the line will surely be overloaded. 
+
+It is not that purpose of this comparison to see how the power profiles of very similar electrical networks cause differences in security. The aim is to find out how the same network is affected by having another uncertainty. 
+
+The easiest way to do this is to not change the network or base-cases at all. Simply take the assumption that some generating units behave like wind generation, in-that their output cannot change to smooth out errors in the load-forecast or take up slack following faults on other components. 
+
+The changes that are required only modify the Monte Carlo Generation of contingencies and they are as follows: 
+
+1. Change the power output of each generating unit that is designated as renewable by an amount that correlated with the probabilities in \cite{XXX}. This represents the error in wind forecasting. Although to some extent the errors for each site will cancel out in terms of the total power generated the difference will have to be made up by the conventional generators.
+
+2. Exclude each generating unit that is designated renewable from the \texttt{fix-mismatch} function. This means that they will not be able to change power in response to changes in the network. 
+
+This allow easy comparison between the results in previous sections with those that include wind generation. 
+
+\subsection{Location of Wind Generation}
+
+Although wind power is not currently included in the IEEE-RTS a number of published papers have done so \cite{XXX XXX}. Most of these papers have added wind in addition to the current generating units which is not ideal for the current application. Because of this wind has to be added based on other criteria. As the IEEE-RTS does not represent a real system the location cannot be chosen on factors such as wind availability as it would in reality. All that is required is to adequately mimic what one might see. It is neither possible or desirable to place all wind generation at one busbar, the wind penetration is too high to allow that. It also does not makes sense to evenly distribute the wind to all busbars, a real system is likely to have a number of busbars that contain just conventional generation.
+
+\subsection{Choosing Wind Penetration}
+
+As discussed in the introductory chapters many studies have looked at a penetration of wind such that on average 20 \% of the power come from renewable generators. This seems like a suitable figure for this work.
+
+\todo{maybe other penetrations 10\%, 40\%?}
 
 \todo{
 
-what does unscheduleable mean in this instance
 which generating units have I picked to be unscheduleable
 Run same at 9.1 again with unsched.
 Note any differences in any section.
+
 }
 
 \section{Wind Variability}
