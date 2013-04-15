@@ -3041,7 +3041,7 @@ These results bring in to question the value of performing a full N-2 simulation
 
 \section{Unscheduleable Generators and Wind Power}
 
-Next renewable energy is added in to the equation, specifically wind power. There are two things notably different about wind power that matters to this application. Firstly the power output of wind cannot be set like it can with a conventional generator. Secondly the wind forecast is often wrong by some extent so even the predicted value will be wrong. The extent to which it is wrong has been looked at in detail by XXX \cite{XXX}. Figure \ref{XXX} is taken from that paper and shows how likely it is that wind power will deviate from it's current value. (read the actual fucking paper) 
+Next renewable energy is added in to the equation, specifically wind power. There are two things notably different about wind power that matters to this application. Firstly the power output of wind cannot be set like it can with a conventional generator. Secondly the wind forecast is often wrong by some extent so even the predicted value will be wrong. The extent to which it is wrong has been looked at in detail by Bathurst et. al. \cite{Bathurst2002}. Figure \ref{XXX} is taken from that paper and shows how likely it is that wind power will deviate from it's current value. 
 
 \todo{image XXX}
 
@@ -3063,7 +3063,7 @@ Wind power is not easy to model in the general case. For the purposes of this wo
 
 The first two points will be addressed at the same time as they are related. If new generation was added to the network it would change the adequacy of the system, this would greatly reduce the validity of the comparison between a system with no wind and one with. It would mean that the total installed capacity was greatly increased but that lines were more likely to be overloaded as the installed capacity at busbars with new generating units would have increased. 
 
-Another option is to replace certain generating units with the same installed capacity of wind generation. But wind power cannot replace conventional generation on a megawatt by megawatt basis \cite{XXX}. It therefore makes more sense to put in wind where at the average load factor it produces the same amount of generation as the unit it is replacing. Unfortunately this changes the adequacy of the lines. By having the same power after wind's load factor is taking into account the new wind generator has an installed capacity much higher than the conventional generator it replaced; if the wind generator even happens to produce near its installed capacity the line will surely be overloaded. 
+Another option is to replace certain generating units with the same installed capacity of wind generation. But wind power cannot replace conventional generation on a megawatt by megawatt basis \cite{Strbac2007}. It therefore makes more sense to put in wind where at the average load factor it produces the same amount of generation as the unit it is replacing. Unfortunately this changes the adequacy of the lines. By having the same power after wind's load factor is taking into account the new wind generator has an installed capacity much higher than the conventional generator it replaced; if the wind generator even happens to produce near its installed capacity the line will surely be overloaded. 
 
 It is not that purpose of this comparison to see how the power profiles of very similar electrical networks cause differences in security. The aim is to find out how the same network is affected by having another uncertainty. 
 
@@ -3071,7 +3071,7 @@ The easiest way to do this is to not change the network or base-cases at all. Si
 
 The changes that are required only modify the Monte Carlo Generation of contingencies and they are as follows: 
 
-1. Change the power output of each generating unit that is designated as renewable by an amount that correlated with the probabilities in \cite{XXX}. This represents the error in wind forecasting. Although to some extent the errors for each site will cancel out in terms of the total power generated the difference will have to be made up by the conventional generators.
+1. Change the power output of each generating unit that is designated as renewable by an amount that correlated with the probabilities in \cite{Bathurst2002}. This represents the error in wind forecasting. Although to some extent the errors for each site will cancel out in terms of the total power generated the difference will have to be made up by the conventional generators.
 
 2. Exclude each generating unit that is designated renewable from the \texttt{fix-mismatch} function. This means that they will not be able to change power in response to changes in the network. 
 
