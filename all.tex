@@ -9,6 +9,7 @@
 \usepackage[final]{pdfpages}
 \usepackage{setspace}
 \usepackage{rotating}
+\usepackage{multirow}
 
 \newcommand{\mynotebox}[2] {\noindent\vspace{5pt}
 \fbox{
@@ -3035,9 +3036,30 @@ These results bring in to question the value of performing a full N-2 simulation
 
 \section{Unscheduleable Generators and Wind Power}
 
-In the following two sections renewable energy is added in to the equation, specifically wind power. There are two things notably different about wind power that matters to this application. Firstly the power output of wind cannot be set like it can with a conventional generator. Secondly the wind forecast is often wrong by some extent meaning the predicted value will be partly wrong. The extent to which it is wrong has been looked at in detail by Bathurst et. al. \cite{Bathurst2002}. Figure \ref{XXX} is taken from that paper and shows how likely it is that wind power will deviate from it's current value. 
+In the following two sections renewable energy is added in to the equation, specifically wind power. There are two things notably different about wind power that matters to this application. Firstly the power output of wind cannot be set like it can with a conventional generator. Secondly the wind forecast is often wrong by some extent meaning the predicted value will be partly wrong. The extent to which it is wrong has been looked at in detail by Bathurst et. al. \cite{Bathurst2002}. Table \ref{table_forecast_error} is taken from that paper and shows how likely it is that wind power will deviate from it's current value. 
 
-\todo{image XXX}
+\begin{table}[htbp]
+\caption{Probability of Various Expected Energy Generation with Increasing Forecast Delay \cite{Bathurst2002}}
+\label{table_forecast_error}
+\centering
+\begin{tabular}{c||c|c|c|c|c|c|c|c}
+\bfseries  & \multicolumn{8}{c}{ \bfseries Forecast Delay (hours)} \\
+\bfseries Expected Energy & \bfseries 0.5h & \bfseries 1h & \bfseries 1.5h & \bfseries 2h & \bfseries 2.5h & \bfseries 3h & \bfseries 3.5h & \bfseries 4h \\
+\hline \hline
+0.00-0.05 &  - &  - &  - &  1 &  2 &  2 &  2 &  3 \\
+0.05-0.15 &  - &  1 &  2 &  3 &  4 &  5 &  5 &  6 \\
+0.15-0.25 &  2 &  4 &  5 &  6 &  6 &  6 & 10 & 10 \\
+0.25-0.35 &  7 & 10 & 12 & 13 & 13 & 14 & 14 & 13 \\
+0.35-0.45 & 24 & 22 & 20 & 19 & 18 & 16 & 14 & 14 \\
+0.45-0.55 & 40 & 29 & 25 & 20 & 19 & 19 & 18 & 17 \\
+0.55-0.65 & 21 & 19 & 17 & 16 & 15 & 14 & 12 & 12 \\
+0.65-0.75 & 21 & 19 & 17 & 16 & 15 & 14 & 12 & 12 \\
+0.75-0.85 &  5 & 10 & 10 & 11 & 11 &  9 & 11 & 10 \\
+0.85-0.95 &  1 &  4 &  5 &  5 &  6 &  6 &  7 &  7 \\
+0.95-1.05 &  - &  - &  - &  1 &  1 &  1 &  2 &  2 \\
+\hline
+\end{tabular}
+\end{table}
 
 One would expect that when the added uncertainty of wind power gets added to a network the security would decrease. However, as this is a complex system with many interacting parts, what is expected can be quite different from what is experienced. 
 
