@@ -2605,13 +2605,13 @@ This chapter details the software used to form the results of this thesis. It de
 \chapter{Results}
 % ================================================================== %
 
-This chapter contains the results gained from the computer program detailed in the previous chapter. It is broken down into a number of sections. First the results are gathered after creating the contingencies from Monte Carlo Sampling. The next two sections have results created from single then double component failures. This allows a comparison of how well N-1 and N-2 are predictors of the Monte Carlo sampling, which represents reality a lot more closely.
+This chapter contains the results gained from the computer program detailed in the previous chapter. It is broken down into a number of sections. First the results are gathered after creating the contingencies from Monte Carlo Sampling. The next two sections have results created from single (N-1) then double (N-2) component failures. This allows a comparison of how well N-1 and N-2 are predictors of the Monte Carlo sampling.
 
-After that the program is modified to begin incorporating unscheduleable generation and then on to a unpredictable power output. By doing this the effect of large scale wind power can be determined.
+After that the program is modified to begin incorporating unscheduleable generation and then modified again to look at unpredictable power output. The aim is to determine how the level of security changes with unpredictable generation such as wind.
 
 \section{Base Cases}
 
-The shell script given in Section \ref{sec_prog_use} was run with 1000 base cases and 10,000 unique contingencies generated from Monte Carlo Sampling. This section looks at the base-cases generated specifically the forecast of load level, the number of components that are normally on outage, and then details a few unsuitable bases cases which were excluded from further analysis.
+The script given in Section \ref{sec_prog_use} was run producing 1000 base cases and 10,000 unique contingencies all generated from Monte Carlo Sampling. This section looks at the base-cases generated.
 
 \begin{sidewaystable}[!p]
 \caption{First 20 Base-Cases Tested Using Basic Monte Carlo}
@@ -2644,15 +2644,15 @@ The shell script given in Section \ref{sec_prog_use} was run with 1000 base case
 \end{tabular}\\
 \end{sidewaystable}
 
-It is not necessary or helpful to give all 1000 base cases in the text. Table \ref{table_results_summary} shows the summary of 20 base cases selected at random to give an idea of the sort of output the computer program gave.
+It is not necessary or helpful to give all 1000 base cases in the text. Table \ref{table_results_summary} shows the summary of 20 base cases selected at random to give an idea of the sort of output the computer program produced.
 
-The column that is of most interest is the third one. This is the number of unacceptable contingencies divided by the total number. It is this number we use to represent the overall security of that base case. Taking the first row as an example in around 3 million contingencies about 1000 were unacceptable and would need emergency operator action. If the number of unacceptable cases were higher it would mean it was more likely that the system operator would need to perform emergency action. This is discussed further in the next section. This section focuses on the fourth and fifth column which describe the make up of a base-case.
+The column that is of most interest is the third one. This is the number of unacceptable contingencies divided by the total number. It is this number that aims to represent the overall security of that base case. Taking the first row as an example, in around 3 million contingencies about 1000 were unacceptable and would need emergency operator action. If the number of unacceptable cases were higher it would mean it was more likely that the system operator would need to perform emergency action. This is discussed further in the next section. This section focuses on the fourth and fifth column which describe the make up of a base-case.
 
-An intuitive feel for the normal state of system operation can be gained from this table. In most of the cases there were a number of components out of service; these were almost all generators. This is what was expected from the probabilities these are based upon but by viewing it this way it becomes easier to visualise. 
+An intuitive feel for the normal state of system operation can be gained from Table  \ref{table_results_summary}. In most of the cases there were a number of components out of service; these were almost all generators. This is what was expected from the probabilities these are based upon but by viewing it this way it becomes easier to visualise. 
 
 \subsubsection{Load Level Forecast}
 
-The load level mostly hovers at around half the maximum output, indeed it is the modal value with between 14 and 16\% of base-cases having a power level of 0.5 times the maximum. The range of powers spanned the entirety of the possible values from 0.35 at the lowest to 1 at the highest. It is interesting to note that the median value was around 0.6 meaning that on average 40\% of installed capacity was unused. This is shown in Table \ref{table_load_levels}. An earlier Chapter in Figure \ref{aggregateforecast} shows this graphically for many more samples than was used in this Chapter.
+The load level mostly hovers at around half the maximum output, indeed it is the modal value with between 14 and 16\% of base-cases having a power level of 0.5 times the maximum. The range of powers spanned from 0.35 at the lowest to 1 at the highest. It is interesting to note that the median value was around 0.6 meaning that on average 40\% of installed capacity was unused. This is shown in Table \ref{table_load_levels}. It is shown graphically in Figure \ref{aggregateforecast} in an earlier chapter.
 
 \begin{table}[htbp]
 \caption{Frequency of Load Levels in Base-Cases}
@@ -2683,7 +2683,7 @@ Interestingly if the forecast was high in the base-case, a contingency may cause
 
 \subsubsection{Number of Components on Outage in Base Cases}
 
-The number of components that are out for repair or maintenance in each base case ranges from 0 to 13, the exact frequencies are shown in Figure \ref{outagefrequencies1000} and Table \ref{table_outage_frequency}. One surprising result is that in one base-case 13 separate components were unavailable. This does not take into account the fact that the loss of a single busbar may remove a number of generating units, although there were not many busbar outages. The modal value of component outages was 4 with 5 coming in a close second. The median was also between 4 and 5 meaning, for this system, at any given time one would expect 4 components to be non-functioning.
+The number of components that are out for repair or maintenance in each base case ranges from 0 to 13, the exact frequencies are shown in Figure \ref{outagefrequencies1000} and Table \ref{table_outage_frequency}. One surprising result is that in one base-case 13 separate components were unavailable. This does not take into account the fact that the loss of a single busbar may remove a number of generating units, which could make that result higher. The modal value of component outages was 4 with 5 coming in a close second. The median was also between 4 and 5 meaning, for this system, at any given time one would expect 4 components to be non-functioning.
 
 97.5\% of all failures were of generating units making up 4123 of the total 4229 components that were on outage in all the 1000 bases-cases. There were 100 line outages in the base cases corresponding to a total of 2.4\%. The final 0.1\% of outages were caused by a fault on a busbar, there were only 4 of these in all the base-cases.
 
@@ -2717,9 +2717,9 @@ The number of components that are out for repair or maintenance in each base cas
 
 \subsubsection{Excluded Base Cases}
 
-There were 13 bases cases that were excluded from further analysis (see Table \ref{table_unacceptable_base_cases}). These were ones that were unacceptable for the same reasons a contingency. For example, there is no reason to run all the contingency tests on a base case that is already islanded. Unless random failures manage to remove all but the main island it will never have any acceptable cases and will simply skew the results without adding to them.
+There were 13 bases cases that were excluded from further analysis (see Table \ref{table_unacceptable_base_cases}). These were ones that were not stable or they had limit violations even before contingencies were applied. For example, there is no reason to run all the contingency tests on a base case that is already islanded. Unless random failures manage to remove all but the main island it will never have any acceptable cases and will simply skew the results without adding to them.
 
-It would have been possible to manually re-balance the failed system as this is what would happen in reality. This opens more questions than it solves. If the system were to have been balanced for the failed cases; why not balance all of them to the same degree. Which method of stability/security constrained optimal power flow should be used? For this reason it was decided that all base-cases that fail an initial simulation would not be included in the rest of the analysis.
+It would have been possible to manually re-balance the failed system, this is what would happen in reality; unfortunately it opens more questions than it solves. If the system were to have been balanced for the failed cases; why not balance all of them to the same degree. If that is done then analysis would depend heavily on the type of stability/security constrained optimal power flow that was used. For this reason it was decided that all base-cases that fail an initial simulation would not be included in the rest of the analysis.
 
 Given more time it would be interesting to study the failed base-cases. They are likely to be of interest to a system operator and excluding them is not ideal.
 
@@ -2753,7 +2753,7 @@ limits &  0.65 &  G6, G5, G67, G99 \\
 This section looks at the contingencies generated by Monte Carlo Sampling. There were a total of 10,000 unique sample which resulted in an actual total of 3,125,913 samples. A selection of these is given in Table \ref{table_contingencies}. The same set of contingencies were used against each base-case to find the number of acceptable cases, hence only one set of Monte Carlo Sampled contingencies were generated.
 
 \begin{table}[htbp]
-\caption{Excerpt of Contingencies}
+\caption{First 20 Contingencies Generated using Monte Carlo Sampling}
 \label{table_contingencies}
 \centering
 \begin{tabular}{c||c||c||c}
@@ -2784,6 +2784,8 @@ This section looks at the contingencies generated by Monte Carlo Sampling. There
 \end{table}
 
 Table \ref{table_common_contingencies} shows that certain contingencies occurred very often. Over a million samples had no change to the base case as can be seen in the first line. It is also interesting to note how quickly the number of repeated contingencies drops off, with an order of magnitude decrease from the 5th to the 6th most frequent contingency.
+
+The result in the 7th row (where the Simulation Result is "mismatch") means the simulation failed as there was a mismatch between the supply and demand, i.e. there was not enough generator capacity.
 
 \begin{table}[htbp]
 \caption{Excerpt of Most Frequent Contingencies}
@@ -2818,7 +2820,7 @@ Table \ref{table_common_contingencies} shows that certain contingencies occurred
 
 \subsection{Load Forecast Error}
 
-The load forecast error (shown in Table \ref{table_contingency_load_level}) is rather simple as it is just a Monte Carlo sampled normal distribution with a mean value of 1. At the upper power levels demand actually starts to become greater than the system can supply as can bee seen on the 7th row of Table \ref{table_common_contingencies}.
+The load forecast error (shown in Table \ref{table_contingency_load_level} and Figure \ref{loadforecaseerror}) is rather simple as it is just a Monte Carlo sampled normal distribution with a mean value of 1. At the upper power levels demand actually starts to become greater than the system can supply as can bee seen on the 7th row of Table \ref{table_common_contingencies}.
 
 \image{loadforecaseerror}{Frequency of Given Load Level}{loadforecaseerror.png}
 
@@ -2844,6 +2846,7 @@ The load forecast error (shown in Table \ref{table_contingency_load_level}) is r
 \end{tabular}\\
 \end{table}
 
+
 \subsection{Component Failures}
 
 \begin{table}[htbp]
@@ -2862,25 +2865,25 @@ The load forecast error (shown in Table \ref{table_contingency_load_level}) is r
 \end{tabular}\\
 \end{table}
 
-\image{contingencyfailfreq}{Frequency of Component Failures}{contingencyfailfreq.png}
-
 Table \ref{table_contingency_component_failure} and Figure \ref{contingencyfailfreq} shows the number of contingencies that had exactly X component failures. Obviously these fall at an exponential rate showing how unlikely it is to have multiple components fail within an hour of each other without an external factor causing all the effects. 
 
 Interestingly there were 11 cases where 4 components failed at the same time. This is a hugely unlikely event but it did happen so it is worth looking at. To give a vague idea of this likelihood we can assume that all the one hour samples follow one another. There were over 3 million samples each representing 1 hour and 11 of them have 4 simultaneous failures, this corresponds to 4 simultaneous failures every 32 years. This is however, stretching what is realistic with the statistics, and is used just to form a mental model of how unlikely the event is. To give another comparison, some form of component failure occurred in one in every 12 samples, meaning about twice a day one would expect some sort of malfunction somewhere on the system.
 
 The total number of failed components in all simulations is 279,879 of these 264,025 were of generating units (94.3\%); 15,190 were lines (5.4\%); the other 664 were busbar failures (0.3\%). 
 
+\image{contingencyfailfreq}{Frequency of Component Failures}{contingencyfailfreq.png}
+
 \subsection{Probability of System Becoming Unacceptable}
 
-From the graph in Figure \ref{probacceptable} it is much easier to see that the number of failed contingencies is highly non-linear. These are outliers in the sense of being outside the main grouping of results but not such that should be removed. These are interesting cases where a system operator should know that the system is in a precarious state and should be re-balanced to a new and more stable operating point.
+From the graph in Figure \ref{probacceptable} it is easy to see that the number of failed contingencies is highly non-linear and that there are a few outliers with a very high probability of failure. These are outliers in the sense of being outside the main grouping of results but not such that should be removed. These are interesting cases where a system operator should know that the system is in a precarious state and should be re-balanced to a new and more stable operating point.
 
 \image{probacceptable}{Percentage of Contingencies the Failed in Each Base Case}{probacceptable.png}
 
 Table \ref{table_results_worst} shows 20 of these cases. Even in that selection the number of unacceptable cases goes up two orders of magnitude. The least secure base case on this run actually had more chance of being unacceptable than not. Clearly not a system that an operator would consider running.
 
-By looking at these cases a few things should be obvious. There is not an unusual number of components on outage. The load-power is higher than average but this cannot be the sole determinant as one case in the first table of results has a large number of components on outage and a high load forecast level but only 3086 unacceptable contingencies. A relatively small number. There are some patterns to which generator are included in this set, for example 90 and G71 seem to turn up a lot but this could be due to a statistical anomaly rather than a pertinent feature.
+By looking at these cases a few things should be obvious. There is not an unusual number of components on outage. The load-power is higher than average but this cannot be the sole determinant as there are many non-problematic cases with a large number of components on outage and a high load forecast level for example the 5th row from the bottom of Table \ref{table_results_summary}. There are some patterns to which generator are included in this set, for example 90 and G71 seem to turn up a lot but this could be due to a statistical anomaly rather than a pertinent feature.
 
-Figure \ref{probacceptable} shows the percentage of unacceptable contingencies, this is compared against a total number of around 3,000,000 base cases. The average percentage of unacceptable contingencies for all base-cases is 0.3\% which works out to be 10,419 This is clearly skewed by a few base-cases; the graph shows that most cases fall between 1,000 and 10,000 unacceptable contingencies. The base-cases with the fewest unacceptable cases is shown in Table \ref{table_results_best}, the lowest having a percentage of 0.03\%. The largest percentage of unacceptable base-cases was 60\% and is shown in \ref{table_results_worst}.
+Figure \ref{probacceptable} shows the percentage of unacceptable contingencies. The average percentage of unacceptable contingencies for all base-cases is 0.3\% which works out to be 10,419. This is clearly skewed by a few base-cases. Most cases fall between 1,000 and 10,000 unacceptable contingencies. The base-cases with the fewest unacceptable cases is shown in Table \ref{table_results_best}, the lowest having a percentage of 0.03\%. The largest percentage of unacceptable base-cases was 60\% and is shown in Table \ref{table_results_worst}.
 
 There were a variety of reason why a simulation might fail to find an acceptable solution, these are shown below: 
 
@@ -2975,25 +2978,22 @@ mismatch & 20316 \\
 \end{tabular}\\
 \end{sidewaystable}
 
-\todo{
-(run twice to see if p acceptable is fairly constant).
-outliers, show on image of network. show component types, is power output above average?
-find the probability of a fail if a specific component is out.
-load level as a predictor of p(acc)
-number of outages as a predictor of p(acc)
-}
 
-\section{Contingencies from N-1}
+\section{Contingencies from N-1 \& N-2}
 
-Each base case was again tested against a set of contingencies. Unlike the previous section the contingencies were not generated randomly. These were generated by assuming one component fails at a time. As there are 289 components (lines, generating units, busbars) in the system there are the same number of contingencies to test. Monte Carlo Sampling required 10,000 contingencies to be generated. Hence if N-1 provides a suitable approximation of the full Monte Carlo sampling then we can greatly reduce the computational load required to analyse the security of the system. This will be a great advantage to system operators who want to optimise the system for stability requiring many simulations to be run. 
+\subsection{N-1}
 
-Monte Carlo Sampling should give results which match reality closer, i.e. more accurate than N-1. This is because the probabilities of certain events are explicitly taken into account. N-1 is a sort of approximation of the full Monte Carlo Sampling which considers only a certain subset of comparatively likely events. It does fall down in some aspects though, for example, the simultaneous loss of generating units G71 and G72 is twice as likely to happen as the loss of line A7. These sort of differences are not taken in to account in N-1. 
+Each base case was again tested against a set of contingencies. Unlike the previous section the contingencies were not generated randomly. These were generated by assuming one component fails at a time. As there are 289 components (lines, generating units, busbars) in the system there are the same number of contingencies to test. 
+
+Monte Carlo Sampling required 10,000 contingencies to be generated, hence if N-1 provides a suitable approximation of the full Monte Carlo sampling then we can greatly reduce the computational load required to analyse the security of the system. This will be a great advantage to system operators who want to optimise the system for stability.
+
+Monte Carlo Sampling should give results which match reality closer, i.e. more accurately than N-1. This is because the probabilities of certain events are explicitly taken into account. N-1 is a sort of approximation of the full Monte Carlo Sampling which considers only a certain subset of comparatively likely events. It does fall down in some aspects, for example, the simultaneous loss of generating units G71 and G72 is twice as likely to happen as the loss of line A7. These sort of differences are not taken in to account in N-1. 
 
 Between 11 and 151 out of 289 contingencies failed on the different base-cases. The median value was 18 again showing a high skew, there were a small number of base-cases where a large number of contingencies failed. The results can be seen in Figure \ref{nxlogunacceptable}. 
 
 \image{nxlogunacceptable}{Percentage of Failed N-1 Contingencies (Logarithmic)}{nxlogunacceptable.png}
 
-Table \ref{table_failure_reasons_n1} shows the reasons for failures occurring in all N-1 contingencies.
+Table \ref{table_failure_reasons_n1} shows the reasons for failures occurring in all N-1 contingencies across all base cases.
 
 \begin{table}[htbp]
 \caption{Reasons for Unacceptable System States in N-1}
@@ -3018,19 +3018,13 @@ The contingencies from this section were generated by selecting each combination
 
 \image{nx2logunacceptable}{Percentage of Failed N-2 Contingencies (Logarithmic)}{nx2logunacceptable.png}
 
-\todo{
-draw up the most probable 1000 contingencies from Monte Carlo, see how this compares to N-1.
-see how it compares to a probability list of contingencies n long.
-}
-
-
 \section{Comparing N-1, N-2 and Monte Carlo Sampling}
 
-It would be very useful to see if N-1 or N-2 is a good predictor of the results gained from Monte Carlo Sampling. It is also interesting to see how N-1 and N-2 differ. Figure \ref{scatter-n1-n2} shows a scatter plot of the percentage of failed contingencies in both N-1 and N-2. It is easy to see a high correlation between these two sets of results, this is to be expected, N-1 and N-2 are very similar sorts of tests. This is in contrast to Figure \ref{scatter-mc-n2} which does not have such a high correlation. This figure compares the results gained from N-2 to those from Monte Carlo Sampling. It shows that the number of failed base cases N-2 (and by their high degree of correlation N-1) is not a good predictor of the results gained through Monte Carlo Sampling. As those results are meant to represent the overall system security it means that the number of contingencies that fail N-1 is not a good predictor of system security. 
+It would be very useful to see if N-1 or N-2 is a good predictor of the results gained from Monte Carlo Sampling. It is also interesting to see how N-1 and N-2 differ. Figure \ref{scatter-n1-n2} shows a scatter plot of the percentage of failed contingencies in both N-1 and N-2. It is easy to see a high correlation between these two sets of results, this is to be expected, N-1 and N-2 are very similar sorts of tests. This is in contrast to Figure \ref{scatter-mc-n2} which does not have such a high correlation. This figure compares the results gained from N-2 to those from Monte Carlo Sampling. It shows that the number of failed base cases in N-2 (and by their high degree of correlation in N-1) is not a good predictor of the results gained through Monte Carlo Sampling. As those results are meant to represent the overall system security it means that the number of contingencies that fail N-1 is not a good predictor of system security. 
 
-Another way of looking at the data if to plot the percentage of failed contingencies for each base case. This is done in Figure \ref{mc-n1-n2}, in this figure the base cases are sorted by the percentage of Monte Carlo sampled contingencies that failed. If N-1 was a good predictor of the Monte Carlo results it would in some way match the curve of the Monte Carlo results. This doesn't happen enough for N-1 to become a useful predictor. There is some change in the N-1 data point in the right of the figure, they appear to have a higher variance.
+Another way of looking at the data is to plot the percentage of failed contingencies for each base case. This is done in Figure \ref{mc-n1-n2}, in this figure the base cases are sorted by the percentage of Monte Carlo sampled contingencies that failed. If N-1 was a good predictor of the Monte Carlo results it would in some way match the curve of the Monte Carlo results. This doesn't happen enough for N-1 to become a useful predictor. There is some change in the N-1 data point in the right of the figure, although it seems just to be a higher variance.
 
-These results bring in to question the value of performing a full N-2 simulation. It can highlight problematic areas of a system but it will not take into account the probabilities enough potentially leading to securing the wrong parts of the system. Risk is likelihood times consequence and N-2 doesn't consider the likelihood accurately enough. A probabilistic model such as the one used here can give more accurate results in less simulation time. In can even be used to find problematic areas of the system. The current results say for a given system what the likelihood is that it will become problematic, this can be inverted by counting the number of times a component is in an unacceptable system verses an acceptable one. This should give a measure of which components are problematic.
+These results bring in to question the value of performing a full N-2 simulation. It can highlight problematic areas of a system but it will not take into account the probabilities enough potentially leading to securing the wrong parts of the system. Risk is likelihood times consequence and N-2 doesn't consider the likelihood accurately enough. A probabilistic model such as the one used here can give more accurate results in less simulation time. In can even be used to find problematic areas of the system. The current results tell you that for a given system what the likelihood is that it will become problematic. This can be inverted by counting the number of times a component is in an unacceptable system verses an acceptable one. This will give a measure of which components are problematic.
 
 
 
@@ -3041,7 +3035,7 @@ These results bring in to question the value of performing a full N-2 simulation
 
 \section{Unscheduleable Generators and Wind Power}
 
-Next renewable energy is added in to the equation, specifically wind power. There are two things notably different about wind power that matters to this application. Firstly the power output of wind cannot be set like it can with a conventional generator. Secondly the wind forecast is often wrong by some extent so even the predicted value will be wrong. The extent to which it is wrong has been looked at in detail by Bathurst et. al. \cite{Bathurst2002}. Figure \ref{XXX} is taken from that paper and shows how likely it is that wind power will deviate from it's current value. 
+In the following two sections renewable energy is added in to the equation, specifically wind power. There are two things notably different about wind power that matters to this application. Firstly the power output of wind cannot be set like it can with a conventional generator. Secondly the wind forecast is often wrong by some extent meaning the predicted value will be partly wrong. The extent to which it is wrong has been looked at in detail by Bathurst et. al. \cite{Bathurst2002}. Figure \ref{XXX} is taken from that paper and shows how likely it is that wind power will deviate from it's current value. 
 
 \todo{image XXX}
 
@@ -3054,42 +3048,71 @@ Wind power is not easy to model in the general case. For the purposes of this wo
 \begin{itemize}
 \item where on the network should wind power be added, 
 \item what installed capacity should each wind farm be given, 
-\item how is the power level for each wind farm determined in the base-cases,
+\item how is the power level for each wind farm is determined in the base-cases,
 \item how does the wind forecast error get determined in the contingencies,
-\item what should the be total penetration of wind generation
+\item what should the be total penetration of wind generation.
 \end{itemize}
 
 \subsection{Adding Wind To The IEEE-RTS-96}
 
-The first two points will be addressed at the same time as they are related. If new generation was added to the network it would change the adequacy of the system, this would greatly reduce the validity of the comparison between a system with no wind and one with. It would mean that the total installed capacity was greatly increased but that lines were more likely to be overloaded as the installed capacity at busbars with new generating units would have increased. 
+The first two points will be addressed at the same time as they are related. If new generation was added to the network it would change the adequacy of the system, this would greatly reduce the validity of the comparison between a system with no wind and one with. It would mean that the total installed capacity was greatly increased but that lines were more likely to be overloaded as the installed capacity at the busbars with new generating units would be higher. 
 
-Another option is to replace certain generating units with the same installed capacity of wind generation. But wind power cannot replace conventional generation on a megawatt by megawatt basis \cite{Strbac2007}. It therefore makes more sense to put in wind where at the average load factor it produces the same amount of generation as the unit it is replacing. Unfortunately this changes the adequacy of the lines. By having the same power after wind's load factor is taking into account the new wind generator has an installed capacity much higher than the conventional generator it replaced; if the wind generator even happens to produce near its installed capacity the line will surely be overloaded. 
+Another option is to replace certain generating units with the same installed capacity of wind generation. But wind power cannot replace conventional generation on a megawatt by megawatt basis \cite{Strbac2007}. It therefore makes more sense to put in wind turbines such that when it is at the average load factor it produces the same amount of generation as the unit it is replacing. Unfortunately this changes the adequacy of the lines. By having the same power after the load factor is taking into account the new wind generator must have an installed capacity much higher than the conventional generator it replaced; if the wind generator ever happens to produce near its installed capacity the line will surely be overloaded. 
 
-It is not that purpose of this comparison to see how the power profiles of very similar electrical networks cause differences in security. The aim is to find out how the same network is affected by having another uncertainty. 
+It is not the purpose of this comparison to see how the power profiles of very similar electrical networks cause differences in security. The aim is to find out how the same network is affected by having the added uncertainty of wind turbines. 
 
 The easiest way to do this is to not change the network or base-cases at all. Simply take the assumption that some generating units behave like wind generation, in-that their output cannot change to smooth out errors in the load-forecast or take up slack following faults on other components. 
 
 The changes that are required only modify the Monte Carlo Generation of contingencies and they are as follows: 
 
-1. Change the power output of each generating unit that is designated as renewable by an amount that correlated with the probabilities in \cite{Bathurst2002}. This represents the error in wind forecasting. Although to some extent the errors for each site will cancel out in terms of the total power generated the difference will have to be made up by the conventional generators.
+\begin{enumerate}
 
-2. Exclude each generating unit that is designated renewable from the \texttt{fix-mismatch} function. This means that they will not be able to change power in response to changes in the network. 
+\item Change the power output of each generating unit that is designated as renewable by an amount that correlated with the probabilities in \cite{Bathurst2002}. This represents the error in wind forecasting. Although to some extent the errors for each site will cancel out in terms of the total power generated the difference will have to be made up by the conventional generators.
+
+\item Exclude each generating unit that is designated renewable from the \texttt{fix-mismatch} function. This means that those generators will not be able to change power in response to changes in the network. 
+
+\end{enumerate}
 
 This allow easy comparison between the results in previous sections with those that include wind generation. 
 
 \subsection{Location of Wind Generation}
 
-Although wind power is not currently included in the IEEE-RTS a number of published papers have done so \cite{XXX XXX}. Most of these papers have added wind in addition to the current generating units which is not ideal for the current application. Because of this wind has to be added based on other criteria. As the IEEE-RTS does not represent a real system the location cannot be chosen on factors such as wind availability as it would in reality. All that is required is to adequately mimic what one might see. It is neither possible or desirable to place all wind generation at one busbar, the wind penetration is too high to allow that. It also does not makes sense to evenly distribute the wind to all busbars, a real system is likely to have a number of busbars that contain just conventional generation.
+Although wind power is not currently included in the IEEE-RTS a number of published papers have done so \cite{XXX XXX}. Most of these papers have added wind in addition to the current generating units which is not ideal for the current application. Because of this, wind has to be added based on other criteria. As the IEEE-RTS does not represent a real system the location cannot be chosen on factors such as wind availability as it would in reality. All that is required is to adequately mimic what one might see. It is neither possible or desirable to place all wind generation at one busbar, the desired wind penetration is too high to allow that. It also does not makes sense to evenly distribute the wind to all busbars, a real system is likely to have a number of busbars that contain just conventional generation.
 
 \subsection{Choosing Wind Penetration}
 
-As discussed in the introductory chapters many studies have looked at a penetration of wind such that on average 20 \% of the power come from renewable generators. This seems like a suitable figure for this work.
+As discussed in the introductory chapters many studies have looked at a penetration of wind such that on average 20 \% of the power come from renewable generators. Because of this 2 different penetration levels were chosen one just below at 15 \% and one above at 30 \%. Having the one penetration level to be exactly double the other allows a better comparison. There are certain generating units that are identical on some busbars. The location of the win generators was chosen such that the location of the wind did not change at all by selecting only busbars where there were matched units. 
 
-\todo{maybe other penetrations 10\%, 40\%?}
+By further restricting the selection of wind location to be around the desired penetration level and that there should be one of the three areas with no wind generation at all there were only a few options available. The one that matched the desired penetration levels the closest was chosen. There were 12 generating units that made up the 15 \% penetration level selection. These are shown in Table \ref{table_unsch_generators}.
+
+\begin{table}[htbp]
+\caption{Unschedulable Generators at 15 \% penetration}
+\label{table_unsch_generators}
+\centering
+\begin{tabular}{c||c||c}
+\bfseries Gen & \bfseries Bus & \bfseries Unit Type \\
+\hline \hline
+G3  & 101& U76 \\
+G7  & 102 & U76 \\
+G9  & 107 & U100 \\
+G16 & 115 & U12 \\
+G25 & 122 & U50 \\
+G31 & 123 & U155 \\
+\hline
+G67 & 201& U76 \\
+G73 & 202 & U76 \\
+G75 & 207 & U100 \\
+G82 & 215 & U12 \\
+G91 & 222 & U50 \\
+G97 & 223 & U155 \\
+\hline
+\end{tabular}
+\end{table}
+
+
 
 \todo{
 
-which generating units have I picked to be unscheduleable
 Run same at 9.1 again with unsched.
 Note any differences in any section.
 

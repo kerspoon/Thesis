@@ -1,4 +1,21 @@
 
+
+\todo{
+(run twice to see if p acceptable is fairly constant).
+outliers, show on image of network. show component types, is power output above average?
+find the probability of a fail if a specific component is out.
+load level as a predictor of p(acc)
+number of outages as a predictor of p(acc)
+}
+
+
+\todo{
+draw up the most probable 1000 contingencies from Monte Carlo, see how this compares to N-1.
+see how it compares to a probability list of contingencies n long.
+}
+
+\todo{maybe other penetrations 10\%, 40\%?}
+
 ------------------------------------------
 
 Very similar work -- not yet read.
