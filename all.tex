@@ -3131,23 +3131,23 @@ G97 & 223 & U155 \\
 \end{tabular}
 \end{table}
 
+\subsection{Simulation Results}
 
+As the same base cases are used there is only one interesting column in the output summary. This is the number of unacceptable contingencies. Once again 10,000 contingencies were generated from Monte Carlo sampling. These are different to the continences in the case without unscheduleable generation but, as was shown in an earlier section there are enough samples to make the output reliable across runs. It would have been possible to use the same contingencies in this case but in the latter cases when a wind forecast error is present in the contingencies they need to be different.
 
-\todo{
+There were a number of additional base-cases that failed in both cases with generating unit that were made unscheduleable. These were excluded from further analysis as in the previous section. This meant that some experiments had more base cases than others, to keep the results consistent only the bases cases that weren't problematic in any experiment were included in the final analysis. For example, if a base case had passed when there was 30 \% unscheduleable generation then it would be excluded from the analysis of all other experiments including 15 \% unscheduleable where it might have actually passed the simulation. This reduction left a total of 813 base cases that could be analysed in all experiments.
 
-Run same at 9.1 again with unsched.
-Note any differences in any section.
-
-}
 
 \section{Wind Variability}
 
-\todo{
+The final stage is to take into account the stochastic nature of wind. Again the bases cases were not changed, only the contingencies were modified. The power output of the selected generators was randomly perturbed based on the figures in the one hour forecast delay of Table \ref{table_forecast_error}. 
 
-Similar to section Unscheduleable Generators but set wind to random normal with s.d. taken from paper.
-Try again with double and half penetration of wind, see how the range of p(acc) changes. Try 'box plot' ( the thing with mean, min, max, \& percentiles)
+This additional variability changed the number of samples that were duplicates, in the case of 30 \% stochastic generators 10011 samples resulted in only 11 that were duplicated. This does mean that results are not quite as accurate but ... 
 
-}
+\todo{ hopefully the results looks right, if so say it here and move on}
+
+There is two ways to look at how the introduction of unscheduleable or stochastic generating units has changed the stability. The first is to look at the number of contingencies failing in each base-case. The summary for these is given in Table \ref{XXX}. The second is to compare two different experiments to see for instance in how many base cases the network with less unscheduleable generation is more secure, this is shown in Table \ref{XXX}. Note that for two runs of the same data one would expect there to be 50 \%  of the cases to be more secure and 50 \% to be less secure.
+
 
 \section{Chapter Summary}
 
