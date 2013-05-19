@@ -2878,7 +2878,7 @@ The total number of failed components in all simulations is 279,879 of these 264
 
 From the graph in Figure \ref{probacceptable} it is easy to see that the number of failed contingencies is highly non-linear and that there are a few outliers with a very high probability of failure. These are outliers in the sense of being outside the main grouping of results but not such that should be removed. These are interesting cases where a system operator should know that the system is in a precarious state and should be re-balanced to a new and more stable operating point.
 
-\image{probacceptable}{Percentage of Contingencies the Failed in Each Base Case}{probacceptable.png}
+\image{probacceptable}{Percentage of Contingencies that Failed in Each Base Case}{probacceptable.png}
 
 Table \ref{table_results_worst} shows 20 of these cases. Even in that selection the number of unacceptable cases goes up two orders of magnitude. The least secure base case on this run actually had more chance of being unacceptable than not. Clearly not a system that an operator would consider running.
 
@@ -3138,6 +3138,16 @@ As the same base cases are used there is only one interesting column in the outp
 There were a number of additional base-cases that failed in both cases with generating unit that were made unscheduleable. These were excluded from further analysis as in the previous section. This meant that some experiments had more base cases than others, to keep the results consistent only the bases cases that weren't problematic in any experiment were included in the final analysis. For example, if a base case had passed when there was 30 \% unscheduleable generation then it would be excluded from the analysis of all other experiments including 15 \% unscheduleable where it might have actually passed the simulation. This reduction left a total of 813 base cases that could be analysed in all experiments.
 
 
+\image{pacc-unsch15}{Percentage of Contingencies that Failed with 15\% Unscheduleable Generation}{pacc-unsch15.png}
+\image{pacc-unsch30}{Percentage of Contingencies that Failed with 30\% Unscheduleable Generation}{pacc-unsch30.png}
+
+
+\todo{
+talk about what graphs show
+talk about table in wind section here (well the unsch parts anyway.)
+}
+
+
 \section{Wind Variability}
 
 The final stage is to take into account the stochastic nature of wind. Again the bases cases were not changed, only the contingencies were modified. The power output of the selected generators was randomly perturbed based on the figures in the one hour forecast delay of Table \ref{table_forecast_error}. 
@@ -3148,6 +3158,24 @@ This additional variability changed the number of samples that were duplicates, 
 
 There is two ways to look at how the introduction of unscheduleable or stochastic generating units has changed the stability. The first is to look at the number of contingencies failing in each base-case. The summary for these is given in Table \ref{XXX}. The second is to compare two different experiments to see for instance in how many base cases the network with less unscheduleable generation is more secure, this is shown in Table \ref{XXX}. Note that for two runs of the same data one would expect there to be 50 \%  of the cases to be more secure and 50 \% to be less secure.
 
+\begin{table}[htbp]
+\caption{Summary of Failure Rates in all Experiments}
+\begin{tabular}{l|r|r|r|r|r|r}
+\bfseries & \multicolumn{3}{c|}{ \bfseries Absolute Value} & \multicolumn{3}{c}{ \bfseries Probability} \\
+\bfseries & \bfseries Min & \bfseries Average & \bfseries Max & \bfseries Min & \bfseries Average & \bfseries Max \\
+\hline \hline
+\bfseries Conventional & 911 & 9206 & 1473545 & 0.03 & 0.29 & 47.14 \\
+\bfseries 15\% Unscheduleable & 903 & 6514 & 1199363 & 0.03 & 0.21 & 37.80 \\
+\bfseries 30\% Unscheduleable & 934 & 84142 & 1978514 & 0.03 & 2.65 & 62.36 \\
+\bfseries 15\% Stochastic & - & - & - & - & - & - \\
+\bfseries 30\% Stochastic & 4 & 1018 & 6236 & 0.04 & 10.16 & 62.29 \\
+\hline
+\end{tabular}
+\label{table_pacc_final}
+\end{table}
+
+\missingimage{pacc-wind15}{Percentage of Contingencies that Failed with 15\% Stochastic Generation}{pacc-wind15.png}
+\image{pacc-wind30}{Percentage of Contingencies that Failed with 30\% Stochastic Generation}{pacc-wind30.png}
 
 \section{Chapter Summary}
 
