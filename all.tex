@@ -3156,7 +3156,7 @@ This additional variability changed the number of samples that were duplicates, 
 
 \todo{ hopefully the results looks right, if so say it here and move on}
 
-There is two ways to look at how the introduction of unscheduleable or stochastic generating units has changed the stability. The first is to look at the number of contingencies failing in each base-case. The summary for these is given in Table \ref{XXX}. The second is to compare two different experiments to see for instance in how many base cases the network with less unscheduleable generation is more secure, this is shown in Table \ref{XXX}. Note that for two runs of the same data one would expect there to be 50 \%  of the cases to be more secure and 50 \% to be less secure.
+There is two ways to look at how the introduction of unscheduleable or stochastic generating units has changed the stability. The first is to look at the number of contingencies failing in each base-case. The summary for these is given in Table \ref{table_pacc_final}. The second is to compare two different experiments to see for instance in how many base cases the network with less unscheduleable generation is more secure, this is shown in Table \ref{XXX}. Note that for two runs of the same data one would expect there to be 50 \%  of the cases to be more secure and 50 \% to be less secure.
 
 \begin{table}[htbp]
 \caption{Summary of Failure Rates in all Experiments}
@@ -3164,18 +3164,50 @@ There is two ways to look at how the introduction of unscheduleable or stochasti
 \bfseries & \multicolumn{3}{c|}{ \bfseries Absolute Value} & \multicolumn{3}{c}{ \bfseries Probability} \\
 \bfseries & \bfseries Min & \bfseries Average & \bfseries Max & \bfseries Min & \bfseries Average & \bfseries Max \\
 \hline \hline
-\bfseries Conventional & 911 & 9206 & 1473545 & 0.03 & 0.29 & 47.14 \\
-\bfseries 15\% Unscheduleable & 903 & 6514 & 1199363 & 0.03 & 0.21 & 37.80 \\
-\bfseries 30\% Unscheduleable & 934 & 84142 & 1978514 & 0.03 & 2.65 & 62.36 \\
-\bfseries 15\% Stochastic & - & - & - & - & - & - \\
-\bfseries 30\% Stochastic & 4 & 1018 & 6236 & 0.04 & 10.16 & 62.29 \\
+\bfseries Conventional & 911 & 9372 & 1473545 & 0.03 & 0.30 & 47.14 \\
+\bfseries 15\% Unscheduleable & 903 & 6326 & 1199363 & 0.03 & 0.20 & 37.80 \\
+\bfseries 30\% Unscheduleable & 934 & 80950 & 1958134 & 0.03 & 2.55 & 61.71 \\
+\bfseries 15\% Stochastic & 4 & 146 & 10590 & 0.02 & 0.62 & 45.35 \\
+\bfseries 30\% Stochastic & 4 & 1007 & 6236 & 0.04 & 10.06 & 62.29 \\
 \hline
 \end{tabular}
 \label{table_pacc_final}
 \end{table}
 
-\missingimage{pacc-wind15}{Percentage of Contingencies that Failed with 15\% Stochastic Generation}{pacc-wind15.png}
+\image{pacc-wind15}{Percentage of Contingencies that Failed with 15\% Stochastic Generation}{pacc-wind15.png}
 \image{pacc-wind30}{Percentage of Contingencies that Failed with 30\% Stochastic Generation}{pacc-wind30.png}
+
+\begin{table}[htbp]
+\caption{Relative Failure Rates}
+\begin{tabular}{l|r|r|r|r|r}
+\bfseries & \bfseries Conventional & \multicolumn{2}{c|}{ \bfseries Unscheduleable} & \multicolumn{2}{c}{ \bfseries Stochastic} \\
+\bfseries & \bfseries & \bfseries 15\% & \bfseries 30\% & \bfseries 15\% & \bfseries 30\% \\
+\hline \hline
+\bfseries Conventional & 0 & 195 & 574 & 271 & 744 \\ \hline
+\bfseries 15\% Unscheduleable & 600 & 0 & 635 & 290 & 752 \\ \hline
+\bfseries 30\% Unscheduleable & 221 & 160 & 0 & 208 & 758 \\ \hline
+\bfseries 15\% Stochastic & 522 & 505 & 587 & 0 & 727 \\ \hline
+\bfseries 30\% Stochastic & 51 & 43 & 37 & 68 & 0 \\ \hline
+\hline
+\end{tabular}
+\label{table_relative_failure}
+\end{table}
+
+\begin{table}[htbp]
+\caption{Relative Failure Rates (as percentage of base cases)}
+\begin{tabular}{l|r|r|r|r|r}
+\bfseries & \bfseries Conventional & \multicolumn{2}{c|}{ \bfseries Unscheduleable} & \multicolumn{2}{c}{ \bfseries Stochastic} \\
+\bfseries & \bfseries & \bfseries 15\% & \bfseries 30\% & \bfseries 15\% & \bfseries 30\% \\
+\hline \hline
+\bfseries Conventional        &  0 & 25 & 72 & 34 & 94 \\
+\bfseries 15\% Unscheduleable & 75 &  0 & 80 & 36 & 95 \\
+\bfseries 30\% Unscheduleable & 28 & 20 &  0 & 26 & 95 \\
+\bfseries 15\% Stochastic     & 66 & 64 & 74 &  0 & 91 \\
+\bfseries 30\% Stochastic     &  6 &  5 &  5 &  9 &  0 \\
+\hline
+\end{tabular}
+\label{table_relative_failure_percent}
+\end{table}
 
 \section{Chapter Summary}
 
