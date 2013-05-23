@@ -46,6 +46,8 @@ modelled modeled modaled modal model
 severe sever
 asses assess
 parallelise parallelize
+base-case, basecase, base case => (change to scenario)
+Image => Figure
 
 form / from
 affect, effect

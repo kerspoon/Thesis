@@ -2651,7 +2651,7 @@ The column that is of most interest is the third one. This is the number of unac
 
 An intuitive feel for the normal state of system operation can be gained from Table  \ref{table_results_summary}. In most of the cases there were a number of components out of service; these were almost all generators. This is what was expected from the probabilities these are based upon but by viewing it this way it becomes easier to visualise. 
 
-\subsubsection{Load Level Forecast}
+\subsection{Load Level Forecast}
 
 The load level mostly hovers at around half the maximum output, indeed it is the modal value with between 14 and 16\% of base-cases having a power level of 0.5 times the maximum. The range of powers spanned from 0.35 at the lowest to 1 at the highest. It is interesting to note that the median value was around 0.6 meaning that on average 40\% of installed capacity was unused. This is shown in Table \ref{table_load_levels}. It is shown graphically in Figure \ref{aggregateforecast} in an earlier chapter.
 
@@ -2682,7 +2682,7 @@ The load level mostly hovers at around half the maximum output, indeed it is the
 
 Interestingly if the forecast was high in the base-case, a contingency may cause the power required to be higher than the power available. This is a clear example of an adequacy issue. Not very surprising as the system in question is used in a lot of adequacy studies.
 
-\subsubsection{Number of Components on Outage in Base Cases}
+\subsection{Number of Components on Outage in Base Cases}
 
 The number of components that are out for repair or maintenance in each base case ranges from 0 to 13, the exact frequencies are shown in Figure \ref{outagefrequencies1000} and Table \ref{table_outage_frequency}. One surprising result is that in one base-case 13 separate components were unavailable. This does not take into account the fact that the loss of a single busbar may remove a number of generating units, which could make that result higher. The modal value of component outages was 4 with 5 coming in a close second. The median was also between 4 and 5 meaning, for this system, at any given time one would expect 4 components to be non-functioning.
 
@@ -2716,7 +2716,7 @@ The number of components that are out for repair or maintenance in each base cas
 \end{table}
 
 
-\subsubsection{Excluded Base Cases}
+\subsection{Excluded Base Cases} \label{section_excluded_bases}
 
 There were 13 bases cases that were excluded from further analysis (see Table \ref{table_unacceptable_base_cases}). These were ones that were not stable or they had limit violations even before contingencies were applied. For example, there is no reason to run all the contingency tests on a base case that is already islanded. Unless random failures manage to remove all but the main island it will never have any acceptable cases and will simply skew the results without adding to them.
 
@@ -3027,16 +3027,14 @@ Another way of looking at the data is to plot the percentage of failed contingen
 
 These results bring in to question the value of performing a full N-2 simulation. It can highlight problematic areas of a system but it will not take into account the probabilities enough potentially leading to securing the wrong parts of the system. Risk is likelihood times consequence and N-2 doesn't consider the likelihood accurately enough. A probabilistic model such as the one used here can give more accurate results in less simulation time. In can even be used to find problematic areas of the system. The current results tell you that for a given system what the likelihood is that it will become problematic. This can be inverted by counting the number of times a component is in an unacceptable system verses an acceptable one. This will give a measure of which components are problematic.
 
-
-
 \image{scatter-n1-n2}{Scatter Plot of Percentage of Failed Contingencies using N-1 and N-2}{scatter-n1-n2.png}
 \image{scatter-mc-n2}{Scatter Plot of Percentage of Failed Contingencies using N-1 and Monte Carlo}{scatter-mc-n2.png}
 \image{mc-n1-n2}{Percentage of Failed Contingencies using N-1, N-2 and Monte Carlo}{mc-n1-n2.png}
-
+\clearpage
 
 \section{Unscheduleable Generators and Wind Power}
 
-In the following two sections renewable energy is added in to the equation, specifically wind power. There are two things notably different about wind power that matters to this application. Firstly the power output of wind cannot be set like it can with a conventional generator. Secondly the wind forecast is often wrong by some extent meaning the predicted value will be partly wrong. The extent to which it is wrong has been looked at in detail by Bathurst et. al. \cite{Bathurst2002}. Table \ref{table_forecast_error} is taken from that paper and shows how likely it is that wind power will deviate from it's current value. 
+In the following two sections renewable energy is added in to the equation, specifically wind power. There are two things notably different about wind power that matters to this application. Firstly the power output of wind cannot be set like it can with a conventional generator i.e. it is \emph{unscheduleable}. Secondly the wind forecast is often wrong by some extent meaning the predicted value will be partly wrong i.e. it is \emph{stochastic}. The extent to which it is wrong has been looked at in detail by Bathurst et. al. \cite{Bathurst2002}. Table \ref{table_forecast_error} is taken from that paper and shows how likely it is that wind power will deviate from it's current value. 
 
 \begin{table}[htbp]
 \caption{Probability of Various Expected Energy Generation with Increasing Forecast Delay \cite{Bathurst2002}}
@@ -3070,18 +3068,18 @@ Wind power is not easy to model in the general case. For the purposes of this wo
 \begin{itemize}
 \item where on the network should wind power be added, 
 \item what installed capacity should each wind farm be given, 
-\item how is the power level for each wind farm is determined in the base-cases,
+\item how is the power level for each wind farm determined in the base-cases,
 \item how does the wind forecast error get determined in the contingencies,
 \item what should the be total penetration of wind generation.
 \end{itemize}
 
 \subsection{Adding Wind To The IEEE-RTS-96}
 
-The first two points will be addressed at the same time as they are related. If new generation was added to the network it would change the adequacy of the system, this would greatly reduce the validity of the comparison between a system with no wind and one with. It would mean that the total installed capacity was greatly increased but that lines were more likely to be overloaded as the installed capacity at the busbars with new generating units would be higher. 
+The first two points will be addressed at the same time as they are related. If new generation was added to the network it would change the adequacy of the system, this would greatly reduce the validity of the comparison between a system with no wind turbines and one with. It would mean that the total installed capacity was greatly increased but that lines were more likely to be overloaded. This is the installed capacity at the busbars with new generating units would be higher. 
 
 Another option is to replace certain generating units with the same installed capacity of wind generation. But wind power cannot replace conventional generation on a megawatt by megawatt basis \cite{Strbac2007}. It therefore makes more sense to put in wind turbines such that when it is at the average load factor it produces the same amount of generation as the unit it is replacing. Unfortunately this changes the adequacy of the lines. By having the same power after the load factor is taking into account the new wind generator must have an installed capacity much higher than the conventional generator it replaced; if the wind generator ever happens to produce near its installed capacity the line will surely be overloaded. 
 
-It is not the purpose of this comparison to see how the power profiles of very similar electrical networks cause differences in security. The aim is to find out how the same network is affected by having the added uncertainty of wind turbines. 
+It is not the purpose of this work to see how the power profiles of very similar electrical networks cause differences in security. The aim is to find out how the same network is affected by having the added uncertainty of wind turbines. 
 
 The easiest way to do this is to not change the network or base-cases at all. Simply take the assumption that some generating units behave like wind generation, in-that their output cannot change to smooth out errors in the load-forecast or take up slack following faults on other components. 
 
@@ -3089,23 +3087,25 @@ The changes that are required only modify the Monte Carlo Generation of continge
 
 \begin{enumerate}
 
-\item Change the power output of each generating unit that is designated as renewable by an amount that correlated with the probabilities in \cite{Bathurst2002}. This represents the error in wind forecasting. Although to some extent the errors for each site will cancel out in terms of the total power generated the difference will have to be made up by the conventional generators.
+\item Make some generators \emph{unscheduleable} by excluding each them from the \texttt{fix-mismatch} function. This means that those generators will not be able to change power in response to changes in the network. 
 
-\item Exclude each generating unit that is designated renewable from the \texttt{fix-mismatch} function. This means that those generators will not be able to change power in response to changes in the network. 
+\item Make the designated generators' power vary \emph{stochastic}ally. Change the power output of each generating unit that is designated as renewable by an amount correlated with the probabilities in Table \ref{table_forecast_error} from \cite{Bathurst2002}. This represents the error in wind forecasting. Although to some extent the errors for each site will cancel out in terms of the total power generated the difference will have to be made up by the conventional generators\footnote{Given a real power network it would be preferable to model the covariance of geographically close wind farms}.
 
 \end{enumerate}
 
-This allow easy comparison between the results in previous sections with those that include wind generation. 
+This allow easy comparison between the results in previous sections with those that include wind generation. It also enables the two parts to be computed separately to determine which has a bigger role in security. 
 
 \subsection{Location of Wind Generation}
 
-Although wind power is not currently included in the IEEE-RTS a number of published papers have done so \cite{XXX XXX}. Most of these papers have added wind in addition to the current generating units which is not ideal for the current application. Because of this, wind has to be added based on other criteria. As the IEEE-RTS does not represent a real system the location cannot be chosen on factors such as wind availability as it would in reality. All that is required is to adequately mimic what one might see. It is neither possible or desirable to place all wind generation at one busbar, the desired wind penetration is too high to allow that. It also does not makes sense to evenly distribute the wind to all busbars, a real system is likely to have a number of busbars that contain just conventional generation.
+Although wind power is not currently included in the IEEE-RTS a number of published papers have done so. Most of these papers have added wind in addition to the current generating units which is not ideal for the current application as discussed previously. Because of this, wind has to be added based on other criteria. As the IEEE-RTS does not represent a real system the location cannot be chosen on factors such as wind availability as it would in reality. All that is required is to adequately mimic what one might see. It is neither possible or desirable to place all wind generation at one busbar, the desired wind penetration is too high to allow that. It also does not makes sense to evenly distribute the wind to all busbars, a real system is likely to have a number of busbars that contain just conventional generation.
+
+The possible location is further reduced by the desired penetration level.
 
 \subsection{Choosing Wind Penetration}
 
-As discussed in the introductory chapters many studies have looked at a penetration of wind such that on average 20 \% of the power come from renewable generators. Because of this 2 different penetration levels were chosen one just below at 15 \% and one above at 30 \%. Having the one penetration level to be exactly double the other allows a better comparison. There are certain generating units that are identical on some busbars. The location of the win generators was chosen such that the location of the wind did not change at all by selecting only busbars where there were matched units. 
+As discussed in the introductory chapters many studies have looked at a penetration of wind such that on average 20 \% of the power comes from renewable generators. Because of this 2 different penetration levels were chosen. One just below at 15\%, and one above at 30\%. Having the one penetration level to be exactly double the other allows a better comparison. There are certain generating units that are identical on some busbars. The location of the wind generators was chosen such that changin the penetration level did not change which busbars contained wind generation. This was done by selecting only busbars where there were two identical units on the same busbar. 
 
-By further restricting the selection of wind location to be around the desired penetration level and that there should be one of the three areas with no wind generation at all there were only a few options available. The one that matched the desired penetration levels the closest was chosen. There were 12 generating units that made up the 15 \% penetration level selection. These are shown in Table \ref{table_unsch_generators}.
+By further restricting the selection of wind location to be around the desired penetration level there were only a few options available. The one that matched the desired penetration levels the closest was chosen. There were 12 generating units that made up the 15\% penetration level selection. These are shown in Table \ref{table_unsch_generators}. The 30\% penetration level consisted of converting another generating unit of the same type on each of the busbars listed.
 
 \begin{table}[htbp]
 \caption{Unschedulable Generators at 15 \% penetration}
@@ -3133,49 +3133,116 @@ G97 & 223 & U155 \\
 
 \subsection{Simulation Results}
 
-As the same base cases are used there is only one interesting column in the output summary. This is the number of unacceptable contingencies. Once again 10,000 contingencies were generated from Monte Carlo sampling. These are different to the continences in the case without unscheduleable generation but, as was shown in an earlier section there are enough samples to make the output reliable across runs. It would have been possible to use the same contingencies in this case but in the latter cases when a wind forecast error is present in the contingencies they need to be different.
+As the same scenarios are used here as in the experiment with only conventional generators. Because of this there is only one interesting column in the output file for this experiment - the number of unacceptable contingencies. Once again 10,000 contingencies were generated from Monte Carlo sampling. These are different to the continences in the case without unscheduleable generation but, as was shown in an earlier section there are enough samples to make the output reliable across runs. It would have been possible to use the same contingencies in this experiment but in the latter experiment, when a wind forecast error is present in the contingencies, they need to be different.
 
-There were a number of additional base-cases that failed in both cases with generating unit that were made unscheduleable. These were excluded from further analysis as in the previous section. This meant that some experiments had more base cases than others, to keep the results consistent only the bases cases that weren't problematic in any experiment were included in the final analysis. For example, if a base case had passed when there was 30 \% unscheduleable generation then it would be excluded from the analysis of all other experiments including 15 \% unscheduleable where it might have actually passed the simulation. This reduction left a total of 813 base cases that could be analysed in all experiments.
+There were a number of base-cases that failed in to simulate properly. These were excluded from further analysis as was done at the end of Section \ref{section_excluded_bases}. This meant that some experiments had more base cases than others, to keep the results consistent only the bases cases that weren't problematic in any experiment were included in the final analysis. For example, if a base case had failed to simulate when there was 30 \% unscheduleable generation then it would be excluded from the analysis of all other experiments including 15 \% unscheduleable where it might have actually passed the simulation. This reduction left a total of 795 base cases that could be analysed in all experiments.
 
+\begin{table}[htbp]
+\caption{Summary of Failure Rates in Unscheduleable Experiments}
+\begin{tabular}{l|r|r|r|r|r|r}
+\bfseries & \multicolumn{3}{c|}{ \bfseries Absolute Value} & \multicolumn{3}{c}{ \bfseries Probability} \\
+\bfseries & \bfseries Min & \bfseries Median & \bfseries Max & \bfseries Min & \bfseries Median & \bfseries Max \\
+\hline \hline
+\bfseries Conventional & 911 & 9372 & 1473545 & 0.03 & 0.30 & 47.14 \\
+\bfseries 15\% Unscheduleable & 903 & 6326 & 1199363 & 0.03 & 0.20 & 37.80 \\
+\bfseries 30\% Unscheduleable & 934 & 80950 & 1958134 & 0.03 & 2.55 & 61.71 \\
+\hline
+\end{tabular}
+\label{table_pacc_unsch}
+\end{table}
+
+As in Figure \ref{probacceptable} the percentage of contingencies that are unacceptable in each scenario is plotted in Figure \ref{pacc-unsch15} and \ref{pacc-unsch30} for penetrations of 15\% and 30\% respectively. To make the graphs clearer the scenarios are sorted by the percentage of contingencies that are unacceptable.
 
 \image{pacc-unsch15}{Percentage of Contingencies that Failed with 15\% Unscheduleable Generation}{pacc-unsch15.png}
+
+The shape of the graph for the 15\% penetration level is very similar to the one with no unscheduleable generation, curiously it is also of a similar magnitude; the modal value appears to be the same in both figures. Looking at the summary table for this data Table \ref{table_pacc_unsch} (also show along with the other experiments in Table \ref{table_pacc_final}) shows that the system actually becomes more secure with small number of unscheduleable generation. This is counter-intuitive and if not for the further analysis might be put down to an artefact of the few cases with a very low security happen to skew the results. The clearer finding is in the graphs, that adding a moderate amount of unscheduleable generation does not adversely affect the security of the system in this experiment.
+
+\begin{table}[htbp]
+\caption{Relative Failure Rates in Unscheduleable Experiments}
+\begin{tabular}{l|r|r|r}
+\bfseries & \bfseries Conventional & \multicolumn{2}{c}{ \bfseries Unscheduleable} \\
+\bfseries & \bfseries & \bfseries 15\% & \bfseries 30\% \\
+\hline \hline
+\bfseries Conventional & - & 195 & 574 \\ 
+\bfseries 15\% Unscheduleable & 600 & - & 635  \\
+\bfseries 30\% Unscheduleable & 221 & 160 & -  \\ 
+\hline
+\end{tabular}
+\label{table_relative_failure_unsch}
+\end{table}
+
+\begin{table}[htbp]
+\caption{Relative Failure Rates in Unscheduleable Experiments (as percentage of base cases)}
+\begin{tabular}{l|r|r|r}
+\bfseries & \bfseries Conventional & \multicolumn{2}{c}{ \bfseries Unscheduleable} \\
+\bfseries & \bfseries & \bfseries 15\% & \bfseries 30\% \\
+\hline \hline
+\bfseries Conventional        &  - & 25 & 72 \\
+\bfseries 15\% Unscheduleable & 75 &  - & 80 \\
+\bfseries 30\% Unscheduleable & 28 & 20 &  - \\
+\hline
+\end{tabular}
+\label{table_relative_failure_percent_unsch}
+\end{table}
+
+As the scenarios and network remained constant between experiments and the number of simulations produces a consistent result another form of comparison can be used. Table \ref{table_relative_failure_unsch} and Table \ref{table_relative_failure_percent_unsch} compare the number of scenarios that are more secure in each experiment; if there were no differences between the experiments there would be around 50:50. It is more easily seen in the second table where the number is expressed as a percentage of the number of scenarios tested. 
+
+For example, 75\% of the scenarios were more secure with 15\% of the generation coming from unscheduleable generation when compared to the case of all conventional generation. This again give further weight to the finding that under these specific conditions having a reduced number of generators that change their output in response to the network is actually a stabilising factor. This may however be due to a factory of the simulation method or of the simplified way in which a pick-up of power mismatch is modelled. 
+
 \image{pacc-unsch30}{Percentage of Contingencies that Failed with 30\% Unscheduleable Generation}{pacc-unsch30.png}
 
+When the penetration level was doubled there was a noticeable difference in the resulting output. Figure \ref{pacc-unsch30} shows the profile of security across scenarios as it did for the four experiments to come before it. 
 
-\todo{
-talk about what graphs show
-talk about table in wind section here (well the unsch parts anyway.)
-}
+With the most stable contingencies the result is comparable to the experiment with conventional generation and with a 15\% penetration of unscheduleable generation. This can also be seen in Table \ref{table_pacc_unsch} where the minimum probability is the same to two decimal places (at a level of 0.03\%). However the graph becomes quite different in the less stable cases. There are many more cases that are less secure and the least secure 15\% of scenarios is considerably less secure than those in the other experiments so far. For this system at least having 30\% of the system unable to react to power changes results is a much less secure system. In Table \ref{table_relative_failure_percent_unsch} it shows that 72\% of the scenarios were less secure than a system with all conventional generation and 80\% were less secure than a system with a small number of unscheduleable generators.
 
+\clearpage
 
 \section{Wind Variability}
 
 The final stage is to take into account the stochastic nature of wind. Again the bases cases were not changed, only the contingencies were modified. The power output of the selected generators was randomly perturbed based on the figures in the one hour forecast delay of Table \ref{table_forecast_error}. 
 
-This additional variability changed the number of samples that were duplicates, in the case of 30 \% stochastic generators 10011 samples resulted in only 11 that were duplicated. This does mean that results are not quite as accurate but ... 
-
-\todo{ hopefully the results looks right, if so say it here and move on}
-
-There is two ways to look at how the introduction of unscheduleable or stochastic generating units has changed the stability. The first is to look at the number of contingencies failing in each base-case. The summary for these is given in Table \ref{table_pacc_final}. The second is to compare two different experiments to see for instance in how many base cases the network with less unscheduleable generation is more secure, this is shown in Table \ref{XXX}. Note that for two runs of the same data one would expect there to be 50 \%  of the cases to be more secure and 50 \% to be less secure.
+This additional variability changed the number of samples that were duplicates, in the case of 30 \% stochastic generators 10011 samples resulted in only 11 that were duplicated. This does mean that results are not quite as accurate as in earlier experiments but based upon the analysis in the tests of the previous chapter they should be enough to draw conclusions from. The number of contingencies sampled in each scenario is shown in Table \ref{table_pacc_final}.
 
 \begin{table}[htbp]
+\centering
 \caption{Summary of Failure Rates in all Experiments}
-\begin{tabular}{l|r|r|r|r|r|r}
-\bfseries & \multicolumn{3}{c|}{ \bfseries Absolute Value} & \multicolumn{3}{c}{ \bfseries Probability} \\
-\bfseries & \bfseries Min & \bfseries Average & \bfseries Max & \bfseries Min & \bfseries Average & \bfseries Max \\
+\begin{tabular}{l|c|c|c|c}
+&                                & \multicolumn{3}{c}{ \bfseries Failure Rate} \\
+& \bfseries Number Contingencies & \bfseries Min & \bfseries Median & \bfseries Max \\
 \hline \hline
-\bfseries Conventional & 911 & 9372 & 1473545 & 0.03 & 0.30 & 47.14 \\
-\bfseries 15\% Unscheduleable & 903 & 6326 & 1199363 & 0.03 & 0.20 & 37.80 \\
-\bfseries 30\% Unscheduleable & 934 & 80950 & 1958134 & 0.03 & 2.55 & 61.71 \\
-\bfseries 15\% Stochastic & 4 & 146 & 10590 & 0.02 & 0.62 & 45.35 \\
-\bfseries 30\% Stochastic & 4 & 1007 & 6236 & 0.04 & 10.06 & 62.29 \\
+\bfseries Conventional        & 3125913 & 911 &  9372 & 1473545 \\
+\bfseries 15\% Unscheduleable & 3172811 & 903 &  6326 & 1199363 \\
+\bfseries 30\% Unscheduleable & 3172925 & 934 & 80950 & 1958134 \\
+\bfseries 15\% Stochastic     &   23353 &   4 &   146 &   10590 \\
+\bfseries 30\% Stochastic     &   10011 &   4 &  1007 &    6236  \\
 \hline
 \end{tabular}
 \label{table_pacc_final}
 \end{table}
 
+\begin{table}[htbp]
+\centering
+\caption{Summary of Percentage Failure Rates in all Experiments}
+\begin{tabular}{l|r|r|r}
+\bfseries & \bfseries Min & \bfseries Median & \bfseries Max \\
+\hline \hline
+\bfseries Conventional        & 0.03 & 0.30 & 47.14 \\
+\bfseries 15\% Unscheduleable & 0.03 & 0.20 & 37.80 \\
+\bfseries 30\% Unscheduleable & 0.03 & 2.55 & 61.71 \\
+\bfseries 15\% Stochastic     & 0.02 & 0.62 & 45.35 \\
+\bfseries 30\% Stochastic     & 0.04 & 10.06 & 62.29 \\
+\hline
+\end{tabular}
+\label{table_pacc_final_percent}
+\end{table}
+
+As with the experiments with unscheduleable generation the results are shown in three forms: as a graph of the number of unacceptable contingencies for each scenarios Figure \ref{pacc_wind15} and Figure \ref{pacc_wind30}; as a table summarising the percentage of unacceptable contingencies in Table \ref{table_pacc_final} and as percentages in Table \ref{table_pacc_final_percent}; and finally as a comparison showing which scenarios were more stable in which experiment, again shown as raw values in Table \ref{table_relative_failure} and as percentages in Table \ref{table_relative_failure_percent}.
+
+Curiously the case with only 15\% penetration again seems to be more secure in some ways than the system with all conventional generation. There are two point to this, firstly the modal level of unacceptable scenarios is lower as can be seen from Figure \ref{pacc_wind15}, secondly the number of scenarios in which it was more secure was higher than in any other experiment, this is shown in the fourth row of Table \ref{table_relative_failure_percent}. Given more time it would be interesting to see if this artefact holds true with a different underlying network or a more accurate simulation model is used. While it is not strong enough evidence to conclude that having wind power makes the system more secure it does at least show that at low penetrations the addition of renewable power is unlikely to case a problem to the security of the network.
+
+The other interesting point is that in a certain number of cases the number of unacceptable contingencies is much higher than in the same penetration where the generators were simply unscheduleable (Figure \ref{pacc_unsch15}). This means that if the system happens to be in a scenario that is less secure than average the variability of wind will exaggerate that effect. 
+
 \image{pacc-wind15}{Percentage of Contingencies that Failed with 15\% Stochastic Generation}{pacc-wind15.png}
-\image{pacc-wind30}{Percentage of Contingencies that Failed with 30\% Stochastic Generation}{pacc-wind30.png}
 
 \begin{table}[htbp]
 \caption{Relative Failure Rates}
@@ -3183,11 +3250,11 @@ There is two ways to look at how the introduction of unscheduleable or stochasti
 \bfseries & \bfseries Conventional & \multicolumn{2}{c|}{ \bfseries Unscheduleable} & \multicolumn{2}{c}{ \bfseries Stochastic} \\
 \bfseries & \bfseries & \bfseries 15\% & \bfseries 30\% & \bfseries 15\% & \bfseries 30\% \\
 \hline \hline
-\bfseries Conventional & 0 & 195 & 574 & 271 & 744 \\ \hline
-\bfseries 15\% Unscheduleable & 600 & 0 & 635 & 290 & 752 \\ \hline
-\bfseries 30\% Unscheduleable & 221 & 160 & 0 & 208 & 758 \\ \hline
-\bfseries 15\% Stochastic & 522 & 505 & 587 & 0 & 727 \\ \hline
-\bfseries 30\% Stochastic & 51 & 43 & 37 & 68 & 0 \\ \hline
+\bfseries Conventional & - & 195 & 574 & 271 & 744 \\ 
+\bfseries 15\% Unscheduleable & 600 & - & 635 & 290 & 752 \\
+\bfseries 30\% Unscheduleable & 221 & 160 & - & 208 & 758 \\ 
+\bfseries 15\% Stochastic & 522 & 505 & 587 & - & 727 \\ 
+\bfseries 30\% Stochastic & 51 & 43 & 37 & 68 & - \\ 
 \hline
 \end{tabular}
 \label{table_relative_failure}
@@ -3199,19 +3266,40 @@ There is two ways to look at how the introduction of unscheduleable or stochasti
 \bfseries & \bfseries Conventional & \multicolumn{2}{c|}{ \bfseries Unscheduleable} & \multicolumn{2}{c}{ \bfseries Stochastic} \\
 \bfseries & \bfseries & \bfseries 15\% & \bfseries 30\% & \bfseries 15\% & \bfseries 30\% \\
 \hline \hline
-\bfseries Conventional        &  0 & 25 & 72 & 34 & 94 \\
-\bfseries 15\% Unscheduleable & 75 &  0 & 80 & 36 & 95 \\
-\bfseries 30\% Unscheduleable & 28 & 20 &  0 & 26 & 95 \\
-\bfseries 15\% Stochastic     & 66 & 64 & 74 &  0 & 91 \\
-\bfseries 30\% Stochastic     &  6 &  5 &  5 &  9 &  0 \\
+\bfseries Conventional        &  - & 25 & 72 & 34 & 94 \\
+\bfseries 15\% Unscheduleable & 75 &  - & 80 & 36 & 95 \\
+\bfseries 30\% Unscheduleable & 28 & 20 &  - & 26 & 95 \\
+\bfseries 15\% Stochastic     & 66 & 64 & 74 &  - & 91 \\
+\bfseries 30\% Stochastic     &  6 &  5 &  5 &  9 &  - \\
 \hline
 \end{tabular}
 \label{table_relative_failure_percent}
 \end{table}
 
+The clearest finding of all the experiments is the one with 30\% of the generation being stochastic in nature. Figure \ref{pacc-wind30} shows that it is significantly less secure. It also does not level of to a clear modal value like the others did. This is reflected in Table \ref{table_relative_failure_percent} where over 90\% of scenarios were less stable under these conditions. The average percentage of scenarios that were problematic was four times higher than the next worse as shown in Table \ref{table_pacc_final_percent}.
+
+\image{pacc-wind30}{Percentage of Contingencies that Failed with 30\% Stochastic Generation}{pacc-wind30.png}
+
 \section{Chapter Summary}
 
-\todo{results chapter summary}
+Scenarios (or base-cases) were generated and analysed by simulating them under a number of different conditions. The conditions for generating contingencies and analysing scenarios were:
+
+\begin{enumerate}
+\item N-1: All single component failures
+\item N-2: All combinations of two components failing
+\item MCS (Monte Carlo Sampling) where all supply is conventional
+\item MCS where 15\% of supply came from unscheduleable generators
+\item MCS where 30\% of supply came from unscheduleable generators
+\item MCS where 15\% of supply came from stochastic generators
+\item MCS where 30\% of supply came from stochastic generators
+\end{enumerate}
+
+The first three conditions assumed all generation was conventional i.e. it could be scheduled to produce a given amount of power and would produces that unless the component completely failed. Under these conditions three experiments were run, the first two tested all single and double component failures, the third used Monte Carlo Sampling (MCS) to generate the contingencies. It was shown that there was not a high degree of correlation between the number of contingencies that failed with MCS and the number that failed with N-2. 
+
+The next two conditions assumed a certain percentage of the supply could no longer be scheduled i.e. the unit would not respond to changes in the system and simply had a set power output. This was run at 15\% and 30\% of supply. At 15\% there was not much change in the output compared to conventional whereas at 30\% many more scenarios had a high number of problematic contingencies.
+
+The remaining two conditions modified the same generators again to simulate errors in the power level expected. This represents how wind has to be forecast and that the forecast can be wrong. Again this was run at 15\% and 30\% of supply. At 15\%-stochastic the results were relatively similar to the 15\%-unscheduleable, whereas almost all contingencies were significantly less secure when 30\% of their power came from stochastic generation.
+
 
 % ================================================================== %
 % ================================================================== %
