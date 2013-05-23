@@ -91,11 +91,10 @@ The penetration of unscheduleable generation will increase due to legislation an
 In other words a power system with a high penetration of renewables is likely to require a new type of security assessment scheme. Before that is done we must be able to compare and evaluate existing and proposed schemes.
 
 
-This thesis has two goals. Firstly, to be able to compare two security assessment schemes to determine which is better for the current system. In this thesis power system security means a power system's ability to withstand changes. The work details a computer program that combines a two stage Monte Carlo Sampler and a power system simulator to generate a level of security. This level is then used to see which security assessment scheme better matches this level of security.
+This thesis has two goals. Firstly, to be able to compare two security assessment schemes to determine which is better for the current system. In this thesis power system security means a power system's ability to withstand changes. The work details a computer program that combines a two stage Monte Carlo Sampler and a power system simulator to generate a level of security. The number of simulations that fail to converge within limits in N-1 and N-2 was compared to the calculated level of security and found to not be a good predictor.
 
 
-The second goal is to detail a novel proposed security assessment scheme designed to cope with unscheduleable generation better than conventional schemes. This builds on the comparison program to create a probabilistic security assessment scheme that uses Genetic Algorithms to quickly determine if the current state of a power system is acceptable.
-
+The second goal is to see how the level of security changes as the uncertainties of renewable generation get added into a given power system. In doing this, the effect of adding renewables can be quantified. The work found that if 15\% of the generation power comes from generators the are unscheduleable or stochastic the security of supply does not greatly change. Whereas if the penetration is increased to 30\% especially if the power output varies stochastically the security level become significantly worse in almost all tested scenarios. 
 
 \end{abstract}
 % ================================================================== %
@@ -169,7 +168,7 @@ I would like to firstly thank my supervisor Dr.~Rod Dunn. It was through discuss
 
 Thanks are due to my colleagues Dr.~M. El-Werfelli and Mr.~G. Edwards for their technical expertise, challenging discussions and for keeping me sane in the lab.
 
-I would not have been able to complete this work without the continued support of Ms.~M. Young and of my parents. Their patience and understanding has been invaluable.
+I would not have been able to complete this work without the continued support of my parents. Their patience and understanding has been invaluable.
 
 Finally this works is based upon open source tools and programs so my thank go to the developers of Latex, Python, Jab-ref, Open-office and any other tools I have used in the course of my research.
 
@@ -248,13 +247,13 @@ This will direct the changing face of electricity generation and transmission. T
 
 \subsection{This Work}
 
-This work is an intermediate step, at a time when there is a large number of unpredictable generators and a reliance on a power grid of lines and pylons. It is intended as a comprehensive account of how to look at power system security in such a system. It aims to show how the current method of analysing power systems will not be the most effective, and provides both a scheme to compare methods of security assessment and a new scheme itself.
+This work is an intermediate step, at a time when there is a large number of unpredictable generators and a reliance on a power grid of lines and pylons. It is intended as a comprehensive account of how to look at power system security in such a system. It aims to show how the current method of analysing power systems will not be the most effective, and provides a scheme to compare methods of security assessment.
 
 The system operator has the overall responsibility for ensuring the system is in an acceptable state, that is, everyone receives enough power. They can make predictions but only receive details on generation and demand half an hour before power is to be delivered. In this time they must perform simulation and analysis, then if required contact the generators telling them to change their output to make the system acceptable.
 
 The current method to do this does not consider intermittent generation and hence will not be optimal in a system with a high penetration of renewables.
 
-Before a new security assessment schemes is used it must be tested. The primary goal of this thesis is to create a method to compare security assessment schemes. This require significant computer power and an advanced power system simulator hence this thesis details work that has been done in modifying simulation tools to increase their speed. Finally, a new scheme is briefly introduced.
+Before a new security assessment schemes is used it must be tested. The primary goal of this thesis is to create a method to compare security assessment schemes. This require significant computer power and an advanced power system simulator hence this thesis details work that has been done in modifying simulation tools to increase their speed.
 
 \section{Aims \& Objectives}
 
@@ -263,7 +262,6 @@ This thesis can be broken down into a few main areas of research. These inevitab
 \begin{itemize}
 \item To see how unscheduleable generation, such as wind farms, effect system wide \emph{security of supply}.
 \item To see how the \emph{security assessment scheme}, \emph{N-1}\footnote{Although N-1 is used throughout this thesis to mean only single outages are considered in reality system operators are more likely to use a modified form of N-1 or N-2. A better example is the requirements laid out in National Grid's SQSS document.}, is affected by a high penetration of \emph{unscheduleable generation}.
-\item To see if a non-deterministic security assessment scheme can be developed that is better than N-1.
 \item To do this requires the ability to compare different security assessment schemes, which is a useful tool in its own right.
 \end{itemize}
 
@@ -274,8 +272,9 @@ This work has four main areas of contribution in the area of power system securi
 \begin{itemize}
 \item Highlight the need for a change in security assessment,
 \item Develop a new way to assess a security assessment scheme,
+\item See if N-1 is a good predictor of system security,
 \item Create a novel method for comparing security assessment schemes, and
-\item Design a new SAS that does not disadvantage renewables.
+\item Compare the security of power systems with differing penetrations of wind power.
 \end{itemize}
 
 \section{Structure of This Thesis}
@@ -284,9 +283,9 @@ Following this introductory chapter, the thesis first describes current power sy
 
 The next part looks at how one assesses security. Chapter 5 looks in detail at two simulation methods for power systems as well as issues to consider when including wind power generation. This includes the authors extensive modifications to both dynamic and static simulators.
 
-Following that, in Chapter 6, SAS are introduced looking at both how they are currently implemented as well as proposed modifications in the literature. The chapter ends by highlighting the limitations of deterministic methods for systems with a high wind penetration. The method of analysis in this chapter leads to the creation of a tool for comparing SAS which is introduced in Chapter 7. Chapter 7 ends by listing limitations to the proposed method as well as possible applications. The Monte Carlo sampler developed for the comparison program is explained and tested in Chapter 8.
+Following that, in Chapter 6, SAS are introduced looking at both how they are currently implemented as well as proposed modifications in the literature. The chapter ends by highlighting the limitations of deterministic methods for systems with a high wind penetration. The method of analysis in this chapter leads to the creation of a tool for comparing SAS which is introduced in Chapter 7. Chapter 7 ends by listing limitations to the proposed method as well as possible applications. 
 
-In Chapter 9 a novel SAS is briefly described as a possible scheme to use on the comparison method developed in the preceding chapters. Regrettably, for reasons detailed in the conclusion, the testing of the novel SAS was not possible.
+Chapter 8 details the computer software used to form the results. It also contains details of various test procedures used to verify the accuracy of the work.  The next chapter, Chapter 9, contains the results and discussion of various experiments that use the previously discussed computer program. It includes an analysis to see if N-1 or N-2 is a good predictor of overall system security and a study into the effect of the introduction wind generation into a system.
 
 The thesis ends with an a conclusion and proposed further work.
 
