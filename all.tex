@@ -84,17 +84,13 @@
 % ================================================================== %
 \begin{abstract}
 
-
 The penetration of unscheduleable generation will increase due to legislation and eventually saving on fuel cost. This will cause an increase in uncertainty of power-flow and drive up balancing market costs, the safety margin for N-1 will have to increase. i.e.\ N-1 will not accurately represent the state of the system. A security assessment scheme (SAS) that considers probabilistic uncertainty could give financial savings and/or better security of supply.
-
 
 In other words a power system with a high penetration of renewables is likely to require a new type of security assessment scheme. Before that is done we must be able to compare and evaluate existing and proposed schemes.
 
+This thesis has two goals. Firstly, to be able to compare two security assessment schemes to determine which is better for the current system. The work details a computer program that combines a two stage Monte Carlo Sampler and a power system simulator to generate a level of security. The number of simulations that fail to converge within limits in N-1 and N-2 was compared to the calculated level of security and found to not be a good predictor.
 
-This thesis has two goals. Firstly, to be able to compare two security assessment schemes to determine which is better for the current system. In this thesis power system security means a power system's ability to withstand changes. The work details a computer program that combines a two stage Monte Carlo Sampler and a power system simulator to generate a level of security. The number of simulations that fail to converge within limits in N-1 and N-2 was compared to the calculated level of security and found to not be a good predictor.
-
-
-The second goal is to see how the level of security changes as the uncertainties of renewable generation get added into a given power system. In doing this, the effect of adding renewables can be quantified. The work found that if 15\% of the generation power comes from generators the are unscheduleable or stochastic the security of supply does not greatly change. Whereas if the penetration is increased to 30\% especially if the power output varies stochastically the security level become significantly worse in almost all tested scenarios. 
+The second goal is to see how the level of security changes as the uncertainties of renewable generation get added into a given power system. In doing this, the effect of adding renewables can be quantified. The work found that if 15\% of the generation power comes from generators the are unscheduleable or stochastic the security of supply does not greatly change. Whereas if the penetration is increased to 30\% the security level become significantly worse in almost all tested scenarios. 
 
 \end{abstract}
 % ================================================================== %
@@ -170,7 +166,7 @@ Thanks are due to my colleagues Dr.~M. El-Werfelli and Mr.~G. Edwards for their 
 
 I would not have been able to complete this work without the continued support of my parents. Their patience and understanding has been invaluable.
 
-Finally this works is based upon open source tools and programs so my thank go to the developers of Latex, Python, Jab-ref, Open-office and any other tools I have used in the course of my research.
+Finally this works is based upon open source tools and programs so my thanks go to the developers of Latex, Python, Jab-ref, Open-office and any other tools I have used in the course of my research.
 
 
 
@@ -287,7 +283,7 @@ Following that, in Chapter 6, SAS are introduced looking at both how they are cu
 
 Chapter 8 details the computer software used to form the results. It also contains details of various test procedures used to verify the accuracy of the work.  The next chapter, Chapter 9, contains the results and discussion of various experiments that use the previously discussed computer program. It includes an analysis to see if N-1 or N-2 is a good predictor of overall system security and a study into the effect of the introduction wind generation into a system.
 
-The thesis ends with an a conclusion and proposed further work.
+The thesis ends with a conclusion and proposed further work.
 
 \pagebreak
 \section{Exemplary Background Texts}
@@ -3315,33 +3311,33 @@ The remaining two conditions modified the same generators again to simulate erro
 \chapter{Conclusion}
 % ================================================================== %
 
-This thesis aims to show that the introduction of renewable power will adversely effect the security of the system at high levels of penetration. It also aims to show the inadequacy of N-1 in a system with a high penetration of renewables. 
+This thesis aims to show that the introduction of renewable power will adversely effect the security of a power system at high levels of penetration. It also aims to show the inadequacy of N-1 in a system with a high penetration of renewables. 
 
-Before that question was posed a literature review of future power system determined that wind farms will make up a large proportion of the system mix in the future. Due to their inherent inability to be scheduled and their stochastic generation they are also significantly different in operation to conventional generation. This brought about the more specific question of how the introduction of wind power will change the security of the system.
+Before that question was posed a literature review of future power systems determined that wind farms will make up a large proportion of the system mix in the future. Due to their inherent inability to be scheduled and their stochastic generation they are also significantly different in operation to conventional generation. This brought about the more specific question of how the introduction of wind power will change the security of the system.
 
-To analyse the security of the system current simulation techniques were reviewed based upon the requirements of the work. A number of avenues for further work were identified to increase the speed of the simulations. A load-flow simulator was chosen and integrated into a suite of tools that can be used to analyse security or compare security assessment schemes. 
+To analyse the security of the system, current simulation techniques were reviewed based upon the requirements of the work. A number of avenues for further work were identified to increase the speed of the simulations. A load-flow simulator was chosen and integrated into a suite of tools that can be used to analyse security or compare security assessment schemes. 
 
 These computer programs were extensively tested to ensure their correct and fast operation. Experiments were also done to determine the number of samples required in each scenario to ensure reliable results. 
 
-The program works by taking a probabilistic model of the network including failure rate of various types of components as well as load forecasting and models of error rates in wind forecasts. This data is fed into a Monte Carlo sampler to produce a number of contingencies. These represent likely changes to the system in the one hour delivery period. By simulating these contingencies and categorising them as acceptable or unacceptable a measure of the level of security is obtained. For instance if one scenario had 100/1,000,000 contingencies that were acceptable then it would be more secure than a scenario with 500/1,000,000 unacceptable scenarios. 
+The program works by taking a probabilistic model of the network including failure rate of various types of components as well as load forecasting and models of error rates in wind forecasts. This data is fed into a Monte Carlo sampler to produce a number of contingencies. These represent likely changes to the system in the one hour delivery period. By simulating these contingencies and categorising them as acceptable or unacceptable a measure of the level of security is obtained. For instance if one scenario had 100/1,000,000 contingencies that were unacceptable then it would be more secure than a scenario with 500/1,000,000 unacceptable scenarios. 
 
 The scenarios themselves were also generated through Monte Carlo simulation, in total 1000 scenarios were generated, of which over 700 were used in the final analysis.
 
-This program was used in two ways. 
+This program was used in two ways: 
 
-\begin{itemize}
+\begin{enumerate}
 
 \item Each scenario was tested with N-1 and N-2 and the results of the simulations were again categorised as acceptable or unacceptable. If N-1 was a good predictor of system security then there would be a high degree of correlation between the level of security calculated earlier and the number of N-1 contingencies that were unacceptable. This was found not to be the case. N-1 and N-2 do however have a high degree of correlation between each other. 
 
-\item The underlying system and scenarios were modified to gradually introduce renewable generation. This was done in two ways. Firstly a certain set of generators that account for 15\% of total generation had their output power fixed, i.e. they became unscheduleable. The next stage was to take the same generators and vary their power stochastically based upon normal error levels in wind forecasts. Both parts were run again at double the penetration (30\%) to see how that changed the security level. If the introduction of renewables has no effect on the security then the results from each of the four tests should be the same as the first set of test where all generators were conventional. In fact there were significant differences found between all 5 different experiments.
+\item The underlying system and scenarios were modified to gradually introduce renewable generation. This was done in two ways. Firstly a certain set of generators that account for 15\% of total generation had their output power fixed, i.e. they became unscheduleable. The next stage was to take the same generators and vary their power stochastically based upon normal error levels in wind forecasts. Both parts were run again at double the penetration (30\%) to see how that changed the security level. If the introduction of renewables has no effect on the security then the results from each of the four tests should be the same as the first set of test where all generators were conventional. In fact there were significant differences found between the experiments.
 
-\end{itemize}
+\end{enumerate}
 
-When the penetration was low the introduction of renewables, either in the form of unscheduleable or stochastic generation, had a small stabilising effect. This is highly counter-intuitive and good cause for further study but that is a significant undertaking given that each experiment requires millions of simulations to be run. It may be that this counter-intuitive effect disappears when the network is changed to be based upon a real system. 
+When the penetration was low the introduction of renewables had a small stabilising effect. This was true both in the form of unscheduleable and stochastic generation. This is highly counter-intuitive and good cause for further study. That further study is a significant undertaking given that each experiment requires millions of simulations to be run. It may be that this counter-intuitive effect disappears when the network is changed to be based upon a real system. 
 
-Although most scenarios were fairly comparable between the experiment with 15\% unscheduleable generation and the one with 30\% unscheduleable generation there were some that noticeable differences. Certain scenarios are inherently less secure than others, looking only at the least secure the difference seems to be much larger in the experiment with higher penetration. In other words if the power system is already weakened then having fewer generators that can be called upon to pick-up the mismatch causes a them to become even worse.
+Although most scenarios were fairly comparable between the experiment with 15\% unscheduleable generation and the one with 30\% unscheduleable generation there were some noticeable differences. Certain scenarios are inherently less secure than others, looking only at the least secure the difference seems to be much larger in the experiment with higher penetration. In other words if the power system is already weakened then having fewer generators that can be called upon to pick-up the mismatch causes a them to become even worse.
 
-The most noticeable effect come from the experiment where 30\% vary stochastically. Almost all scenarios were significantly less secure than in any of the other experiments. 
+The most noticeable effect of all experiments comes from the one where 30\% of generators vary stochastically. Almost all scenarios were significantly less secure than in any of the other experiments. 
 
 This work echoes the findings discussed in the first chapter of the thesis, that at low penetrations the introduction of renewable generation is not likely to pose a significant problem to the security of the system, but as the penetration increases the number of problems will too, especially if the wind forecasts are inaccurate.  
 
@@ -3364,23 +3360,24 @@ This work echoes the findings discussed in the first chapter of the thesis, that
 
 As with all research this work opens up many avenues for further work. This chapter expands on a few of those ideas to present possible avenues of research. In general the literature review on power system simulation identified a number of areas where potential improvements were possible. The computer program also provides two areas for expansion. Firstly the computer program itself can be improved to provide a more accurate simulation. Secondly, the program can be used for a number of additional areas of study. These were introduced in the relevant chapters but will be re-examined here. One final area for further work comes from the conclusions themselves. The findings discussed naturally open up more questions as to the nature of power system security analysis.
 
-\section{Improvements to Power System Simulation - GPGPU ODE Solver}
+\section{Improvements to Power System Simulation}
 
+\subsection{GPGPU ODE Solver}
 The proposed work demands a large number of simulations to be performed quickly. It was for this reason that so much energy was spent on creating a dynamic simulator that has a faster execution speed than those currently available. There are still great advances to be made in this area and the one that looked the most promising is moving the ODE solver to the graphics cards (GPU). Huge increases in speed have been reported using this method but, as the GPGPU programming is very new, it is an underdeveloped area. It not only allows the speedup to come from the specialised hardware but it will require a redesign that would necessitate being able to calculate different machine equations in parallel. This should have a near linear speed-up due to the low overheads involved.
+
+\subsection{New Simulation Software}
+
+While it was not possible in this body of work due to the simulation time, it should be possible to replace the load-flow program with a dynamic simulator. This would enable the work to take into account a much wider range of issues which can not be represented by a load-flow.
 
 \section{Improvements to the Developed Computer Software}
 
 \subsection{Parallelisiation}
 
-As each simulation is independent of any other it should be possible to compute many different simulations at the same time. This would result in a linear speed-up of execution time allowing many more experiments to be run. For example, if 5 computers each with 2 processor cores were set-up to perform the simulation then it should operate at nearly 10 times the speed. This would have enabled the work to contain 50 different experiments rather than five. If this was possible it would be interesting to increase the penetration level in small steps of say 5\% to see exactly how the results differed.
-
-\subsection{New Simulation Software}
-
-While it ws not possible in this body of work due to the simulation time, it should be possible to replace the load-flow program with a dynamic simulator. This would enable the work to take into account a much wider range of issues which can not be represented by a load-flow.
+As each simulation is independent of any other it should be possible to compute many different simulations at the same time. This would result in a linear speed-up of execution time allowing many more experiments to be run. For example, if five computers each with two processor cores were set-up to perform the simulation then it should operate at nearly 10 times the speed. This would have enabled the work to contain 50 different experiments rather than five. If this was possible it would be interesting to increase the penetration level in small steps of around 5\% to see exactly how the results differed.
 
 \subsection{Better Accounting for Consequence in the Comparison Program}
 
-One of the main limitations of this work is its poor treatment of consequence. A line overload is treated as equally bad as system collapse. This is simply unrealistic. One way to overcome this was briefly mentioned in Section \ref{sec_limit_severity}. This scheme involves tripping loads until the system is stable and in-limit. The amount of load that needs to be shed is a measure of how severe that scenario was.
+One of the limitations of this work is its poor treatment of consequence. A line overload is treated as equally bad as system collapse. This is simply unrealistic. One way to overcome this was briefly mentioned in Section \ref{sec_limit_severity}. This scheme involves tripping loads until the system is stable and in-limit. The amount of load that needs to be shed is a measure of how severe that scenario was.
 
 
 
@@ -3388,11 +3385,11 @@ One of the main limitations of this work is its poor treatment of consequence. A
 
 \subsection{Testing of Planned Network Changes}
 
-If a new piece of power system plant is about to be introduced it is vital to know how it will effect the security level. The tools used in this thesis are already suitable for this work without modification. for instance it might be interesting to see how a HVDC line running down the centre of the UK would change the security. 
+If a new piece of power system plant is about to be introduced it is vital to know how it will effect the security level. The tools used in this thesis are already suitable for this work without modification. For instance it might be interesting to see how a HVDC line running down the centre of the UK would change the security. 
 
 \subsection{Catalogue of Problematic Network Sections}
 
-If every simulation perform on a network was saved to a database there are a number of interested queries that can be answered by it. The most obvious, and potentially useful, is to find the components that are good predictors of a unstable scenario. One might find that when a certain component is on outage it greatly reduces the overall security of the system. this would be valuable information for the system planner.
+If every simulation performed on a network was saved to a database there are a number of interested queries that can be answered by it. The most obvious, and potentially useful, is to find the components that are good predictors of a unstable scenario. One might find that when a certain component is on outage it greatly reduces the overall security of the system. This would be valuable information for the system planner.
 
 
 % ================================================================== %
