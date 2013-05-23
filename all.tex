@@ -3315,33 +3315,35 @@ The remaining two conditions modified the same generators again to simulate erro
 \chapter{Conclusion}
 % ================================================================== %
 
-In this thesis the future of electrical power systems was discussed. It concluded that wind power is likely to greatly increase in penetration level in the coming years.
+This thesis aims to show that the introduction of renewable power will adversely effect the security of the system at high levels of penetration. It also aims to show the inadequacy of N-1 in a system with a high penetration of renewables. 
 
-The impact of that change was reviewed concluding that at a low penetration level there is no negative impact to security of supply but at higher penetrations balancing costs and security are likely to change for the worse.
+Before that question was posed a literature review of future power system determined that wind farms will make up a large proportion of the system mix in the future. Due to their inherent inability to be scheduled and their stochastic generation they are also significantly different in operation to conventional generation. This brought about the more specific question of how the introduction of wind power will change the security of the system.
 
-One way to combat that change is to change the method of assessing security, therefore security assessment was analysed reaching the conclusion that a probabilistic scheme is likely to fair better in a system with high wind penetration.
+To analyse the security of the system current simulation techniques were reviewed based upon the requirements of the work. A number of avenues for further work were identified to increase the speed of the simulations. A load-flow simulator was chosen and integrated into a suite of tools that can be used to analyse security or compare security assessment schemes. 
 
-The aims of security assessment were detailed and it was decided that the main goal for the introduction of a new security assessment schemes has to be to maintain or improve security while keeping down costs.
+These computer programs were extensively tested to ensure their correct and fast operation. Experiments were also done to determine the number of samples required in each scenario to ensure reliable results. 
 
-This led to the development of a novel method of comparing security assessment schemes based upon two stage Monte Carlo sampling combined with power system simulation. Although the idea was sound its implementation was challenging and, like all speculative research, suffers from limitations.
+The program works by taking a probabilistic model of the network including failure rate of various types of components as well as load forecasting and models of error rates in wind forecasts. This data is fed into a Monte Carlo sampler to produce a number of contingencies. These represent likely changes to the system in the one hour delivery period. By simulating these contingencies and categorising them as acceptable or unacceptable a measure of the level of security is obtained. For instance if one scenario had 100/1,000,000 contingencies that were acceptable then it would be more secure than a scenario with 500/1,000,000 unacceptable scenarios. 
 
-The simulator and data requirements are significant. This led to the development of a new dynamic simulator aimed at fast execution. This was never finished due to its complexity but many areas for improvement were highlighted. It is the author's opinion that dynamic power system simulators can become many times faster than they currently are through these improvements.
+The scenarios themselves were also generated through Monte Carlo simulation, in total 1000 scenarios were generated, of which over 700 were used in the final analysis.
 
-After the scrapping of the dynamic simulator an existing load-flow simulator was used. It was noted that this is far from ideal for the application but owing to its simplicity and fast execution speed it was still the best choice. A modified distributed slack but was added to make simulating faulted systems more realistic.
+This program was used in two ways. 
 
-PSAT, a Matlab toolbox, was chosen as the load-flow implementation. Unfortunately it was not designed to be run inside another program. The difficulties of inter-program communication meant there were no results obtained.
+\begin{itemize}
 
-Although the final comparison program had no results the Monte Carlo sampler was created and, when tested against analytical results, was found to be accurate.
+\item Each scenario was tested with N-1 and N-2 and the results of the simulations were again categorised as acceptable or unacceptable. If N-1 was a good predictor of system security then there would be a high degree of correlation between the level of security calculated earlier and the number of N-1 contingencies that were unacceptable. This was found not to be the case. N-1 and N-2 do however have a high degree of correlation between each other. 
 
-Finally, a novel and unusual security assessment scheme was developed based around genetic algorithms as well as the probability data from the comparison program. It was the aim to test this scheme using the novel comparison method but as it was never completed no such tests were performed.
+\item The underlying system and scenarios were modified to gradually introduce renewable generation. This was done in two ways. Firstly a certain set of generators that account for 15\% of total generation had their output power fixed, i.e. they became unscheduleable. The next stage was to take the same generators and vary their power stochastically based upon normal error levels in wind forecasts. Both parts were run again at double the penetration (30\%) to see how that changed the security level. If the introduction of renewables has no effect on the security then the results from each of the four tests should be the same as the first set of test where all generators were conventional. In fact there were significant differences found between all 5 different experiments.
 
-This work provides three areas that have been advanced:
+\end{itemize}
 
-\begin{enumerate}
-\item Firstly, the work into creating a faster dynamic simulator has shown many promising ideas. Some of which have been tested in other contexts but if combined are likely to make a much faster simulator than current implementations.
-\item Secondly, the under explored area of finding a level of security was examined leading to the creation of a novel method to compare security assessment schemes.
-\item Finally, a novel security assessment scheme was developed based upon the ideas of the comparison program.
-\end{enumerate}
+When the penetration was low the introduction of renewables, either in the form of unscheduleable or stochastic generation, had a small stabilising effect. This is highly counter-intuitive and good cause for further study but that is a significant undertaking given that each experiment requires millions of simulations to be run. It may be that this counter-intuitive effect disappears when the network is changed to be based upon a real system. 
+
+Although most scenarios were fairly comparable between the experiment with 15\% unscheduleable generation and the one with 30\% unscheduleable generation there were some that noticeable differences. Certain scenarios are inherently less secure than others, looking only at the least secure the difference seems to be much larger in the experiment with higher penetration. In other words if the power system is already weakened then having fewer generators that can be called upon to pick-up the mismatch causes a them to become even worse.
+
+The most noticeable effect come from the experiment where 30\% vary stochastically. Almost all scenarios were significantly less secure than in any of the other experiments. 
+
+This work echoes the findings discussed in the first chapter of the thesis, that at low penetrations the introduction of renewable generation is not likely to pose a significant problem to the security of the system, but as the penetration increases the number of problems will too, especially if the wind forecasts are inaccurate.  
 
 
 
