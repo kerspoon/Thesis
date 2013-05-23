@@ -3361,23 +3361,38 @@ This work echoes the findings discussed in the first chapter of the thesis, that
 \chapter{Further Work}
 % ================================================================== %
 
-More so than most this research opens up many avenues for further work. Much of the work done in this thesis is theoretical hence an obvious extension is to test the ideas presented, particularly in the area of optimising run time speed of a dynamic simulator (Section \ref{sec_dynamic_sim}) and the limitations and applications of the newly developed method of comparison SAS (Section \ref{sec_compsas}). As part of improving the comparison method the new SAS can be tested (Section \ref{sec_newsas}). This chapter expands on a few of those ideas to present possible avenues of research.
 
-\section{GPGPU ODE Solver}
+As with all research this work opens up many avenues for further work. This chapter expands on a few of those ideas to present possible avenues of research. In general the literature review on power system simulation identified a number of areas where potential improvements were possible. The computer program also provides two areas for expansion. Firstly the computer program itself can be improved to provide a more accurate simulation. Secondly, the program can be used for a number of additional areas of study. These were introduced in the relevant chapters but will be re-examined here. One final area for further work comes from the conclusions themselves. The findings discussed naturally open up more questions as to the nature of power system security analysis.
 
-The proposed work demands a large number of simulations to be performed quickly. It was for this reason that so much energy was spent on creating a dynamic simulator that has a faster execution speed than those currently available. There are still great advances to be made in this area and the one that looked the most promising is moving the ODE solver to the graphics cards (GPU). Huge increases in speed have been reported using this method but, as the GPGPU programming is very new, it is an underdeveloped area. It not only allows the speedup to come from the specialised hardware but it we require a redesign that would necessitate being able to calculate different machine equations in parallel. This should have a near linear speed-up due to the low overheads involved.
+\section{Improvements to Power System Simulation - GPGPU ODE Solver}
 
-\section{Assessing the Impact of Wind Variability on Security}
+The proposed work demands a large number of simulations to be performed quickly. It was for this reason that so much energy was spent on creating a dynamic simulator that has a faster execution speed than those currently available. There are still great advances to be made in this area and the one that looked the most promising is moving the ODE solver to the graphics cards (GPU). Huge increases in speed have been reported using this method but, as the GPGPU programming is very new, it is an underdeveloped area. It not only allows the speedup to come from the specialised hardware but it will require a redesign that would necessitate being able to calculate different machine equations in parallel. This should have a near linear speed-up due to the low overheads involved.
 
-Regardless of the type of wind data used the forecast error can be reduced by changing the actual value to be closer to the predicted value. If the comparison program was run twice, one with very high wind variability and the other with very low then the effect on security should be apparent. As there is significant work in the literature on the effect of wind variability on security the new data can be compared to the literature hopefully further validating the proposed comparison method.
+\section{Improvements to the Developed Computer Software}
 
-\section{Better Accounting for Consequence in the Comparison Program}
+\subsection{Parallelisiation}
+
+As each simulation is independent of any other it should be possible to compute many different simulations at the same time. This would result in a linear speed-up of execution time allowing many more experiments to be run. For example, if 5 computers each with 2 processor cores were set-up to perform the simulation then it should operate at nearly 10 times the speed. This would have enabled the work to contain 50 different experiments rather than five. If this was possible it would be interesting to increase the penetration level in small steps of say 5\% to see exactly how the results differed.
+
+\subsection{New Simulation Software}
+
+While it ws not possible in this body of work due to the simulation time, it should be possible to replace the load-flow program with a dynamic simulator. This would enable the work to take into account a much wider range of issues which can not be represented by a load-flow.
+
+\subsection{Better Accounting for Consequence in the Comparison Program}
 
 One of the main limitations of this work is its poor treatment of consequence. A line overload is treated as equally bad as system collapse. This is simply unrealistic. One way to overcome this was briefly mentioned in Section \ref{sec_limit_severity}. This scheme involves tripping loads until the system is stable and in-limit. The amount of load that needs to be shed is a measure of how severe that scenario was.
 
-\section{Comparing N-1 to the Proposed SAS}
 
-If all major limitations are overcome and the new SAS is implemented the obvious test for both pieces of work is to compare them to the current de-facto standard SAS N-1. This should be done in a system with a high wind penetration and a high wind variability to reflect the likely future of power systems.
+
+\section{Other uses for the Developed Computer Software}
+
+\subsection{Testing of Planned Network Changes}
+
+If a new piece of power system plant is about to be introduced it is vital to know how it will effect the security level. The tools used in this thesis are already suitable for this work without modification. for instance it might be interesting to see how a HVDC line running down the centre of the UK would change the security. 
+
+\subsection{Catalogue of Problematic Network Sections}
+
+If every simulation perform on a network was saved to a database there are a number of interested queries that can be answered by it. The most obvious, and potentially useful, is to find the components that are good predictors of a unstable scenario. One might find that when a certain component is on outage it greatly reduces the overall security of the system. this would be valuable information for the system planner.
 
 
 % ================================================================== %
