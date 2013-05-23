@@ -3311,63 +3311,7 @@ The remaining two conditions modified the same generators again to simulate erro
 
 
 % ================================================================== %
-\chapter{A Novel Security Assessment Scheme}\label{sec_newsas}
-% ================================================================== %
 
-The objective of this chapter is to introduce the novel SAS developed by the author. This chapter also talks generally about GA which forms the basis of the novel SAS, henceforth known as XYZ.
-
-XYZ is a probabilistic SAS that uses the Monte Carlo sampler developed in Chapter \ref{sec_mc_results}. In essence, it specifies changes that will not cause problems to the system. This is in the same way that N-1 states that as long as only one failure occurs at a time the system is acceptable. It differs from N-1 in the number of possible changes and the method used to test if a system is secure.
-
-\section{The Parameters}
-
-\subsubsection{X}
-
-The first parameter `X' is the number of failures to consider. The list of failures contains not only single component outages but also doubles, triples and so on. This list is then sorted by probability before making the selection of the items to consider.
-
-Therefore the first item on this probability list is the most likely outage to occur during the next delivery period. It is likely that the top of the list will be all the single line outages followed by generating unit outages. But, because of the low probability of an entire busbar failing, certain correlated or even non-correlated double line outage will be ranked higher.
-
-Once this list is generated only the most probably `X' are used where X is the first of the three parameters of the proposed SAS.
-
-Even if this was the only parameter to consider there is already an advantage over N-1 SAS. Not only can the X parameter be tuned to set the desired level of security but there are simply more states considered. Ranking by probability ensures that the system is more accurately represented than purely considering the number of outage components.
-
-\subsubsection{Y}
-
-The second parameter is more complex; it is the allowed variation in wind speed at any site. What this means is that as long as no wind farm experiences a change in wind speed greater than `Y', the system will remain in an acceptable state. This combines with the first parameter meaning the last sentence must be true during any of the considered outages.
-
-This is not a global property of wind but chosen on a per farm basis. Suppose `Y' was 20\% and, for example, there were three large wind farms. These all could be -10\%, or one could be -10, another 0 and the third +10\%. The wind speed can be quantised to the nearest m/s to reduce the computational load. This simplification means the result can be memoized. With a more realistic number of wind farms there are more simulations than can be expected to run in a SAS. But the result of every simulation is not needed. All that needs to be determined is if the worst state is still acceptable. For this reason a searching technique can be used to find the combination of likely outages and wind speed variations that cause the most problems. If this worse case is an acceptable system then the SAS passes the current state, otherwise it fails.
-
-Possibly it would have been preferable to use probability in the same way that it was used in the first part of this SAS. That is to say, only variations that are more likely than `Y', where Y is a probability. Unfortunately without a huge number of samples or a very accurate synthetic model this is not possible.
-
-\subsubsection{Z}
-
-The third and final parameter is the change in total load forecast to be considered. Unlike the second parameter `Y' this is a global value. In other words, individual demand groups stay proportionally the same but move up or down by the factor `Z'.
-
-These three parameters combine to cover the likely set of changes to the system. The system passes as long as the least acceptable of these is good enough.
-
-\section{Analysis}
-
-One advantage that this method brings is that it can be configured for the requirements of the system. If there is no wind power then the `Y' parameter can be set to zero. In fact setting the three parameters to (N,0,0) produces that is very similar to N-1. A realistic starting point for the parameters would see a small fluctuation in load and wind forecast errors as well as slightly more than N failures, where N is the number of system components.
-
-These parameters can be tuned one of two ways. Either by repeatedly using the comparison program until the optimal values are chosen or by probability alone. As we only want to consider likely events a statistical analysis could provide a level for the parameters, this could the be set by determining a financial threshold.
-
-
-\section{Chapter Summary}
-
-Here, a new SAS is presented that takes into account three parameters. Firstly, outages on the system; secondly, errors in wind forecast; and finally, errors in load forecast. The method is applied by running a genetic algorithm to find the least stable state. If the system in the least stable state is still acceptable then the overall system is also acceptable.
-
-
-
-% ================================================================== %
-% ================================================================== %
-% ================================================================== %
-
-
-
-
-
-
-
-% ================================================================== %
 \chapter{Conclusion}
 % ================================================================== %
 
