@@ -1400,7 +1400,30 @@ This has been discussed previously in Section \ref{lbl_sec_model_wind}. The simp
 
 If historic data was used for forecast, then finding the forecast error is simply a case of taking the difference between two successive samples. Persistence forecasting is the name given to the assumption that the wind will stay the same over the time period. At such a short timescale, persistence forecasting is not far behind numerical weather prediction (NWP) methods and is far simpler.
 
-If synthetic wind data was used, then a method such as the one proposed in \cite{Bathurst2002} could be used. This creates a statistical model of the change in wind speed. The report `Operating in 2020' by National Grid \cite{Grid2009} shows that there is a correlation between time of day and wind forecast error, though this may be more due to the difference in load level at those times.
+If synthetic wind data was used, then a method such as the one proposed in \cite{Bathurst2002} could be used. This creates a statistical model of the change in wind speed. Table \ref{table_forecast_error} is taken from that paper and shows how likely it is that wind power will deviate from it's current value. The report `Operating in 2020' by National Grid \cite{Grid2009} shows that there is a correlation between time of day and wind forecast error, though this may be more due to the difference in load level at those times. 
+
+\begin{table}[htbp]
+\caption{Probability of Various Expected Energy Generation with Increasing Forecast Delay \cite{Bathurst2002}}
+\label{table_forecast_error}
+\centering
+\begin{tabular}{c||c|c|c|c|c|c|c|c}
+\bfseries  & \multicolumn{8}{c}{ \bfseries Forecast Delay (hours)} \\
+\bfseries Expected Energy & \bfseries 0.5h & \bfseries 1h & \bfseries 1.5h & \bfseries 2h & \bfseries 2.5h & \bfseries 3h & \bfseries 3.5h & \bfseries 4h \\
+\hline \hline
+0.00-0.05 &  - &  - &  - &  1 &  2 &  2 &  2 &  3 \\
+0.05-0.15 &  - &  1 &  2 &  3 &  4 &  5 &  5 &  6 \\
+0.15-0.25 &  2 &  4 &  5 &  6 &  6 &  6 & 10 & 10 \\
+0.25-0.35 &  7 & 10 & 12 & 13 & 13 & 14 & 14 & 13 \\
+0.35-0.45 & 24 & 22 & 20 & 19 & 18 & 16 & 14 & 14 \\
+0.45-0.55 & 40 & 29 & 25 & 20 & 19 & 19 & 18 & 17 \\
+0.55-0.65 & 21 & 19 & 17 & 16 & 15 & 14 & 12 & 12 \\
+0.65-0.75 & 21 & 19 & 17 & 16 & 15 & 14 & 12 & 12 \\
+0.75-0.85 &  5 & 10 & 10 & 11 & 11 &  9 & 11 & 10 \\
+0.85-0.95 &  1 &  4 &  5 &  5 &  6 &  6 &  7 &  7 \\
+0.95-1.05 &  - &  - &  - &  1 &  1 &  1 &  2 &  2 \\
+\hline
+\end{tabular}
+\end{table}
 
 \subsection{Load Forecasting \& Load Forecast Error}
 
@@ -1489,7 +1512,9 @@ Failure rates of components, even in such a simple form as MTTF \& MTTR, are not
 
 Because of the large number of samples that are used the accuracy of the input data will have a massive effect on the result. Real failure rates are correlated with weather, usage and component age. It would be interesting to see  how much of a difference a more detailed failure model would have no the results but it is outside the scope of this work.
 
-Wind speed data is often available in some form but is rarely as required. Missing entries are common but the least of the problem. Historic wind data is rarely available at the specific sites where wind farms are built. The main tool for assessing the wind resource at a site is "measure, correlate, predict" (MCP) analysis \cite{Economist2010}. This involves matching a short-term sample of wind data from the site to longer term data nearby. But this method is fraught with inaccuracy as the article states. Sensitivity to the shape of the landscape as well as nearby forests and the change in wind speed with altitude (the height of the wind hub) mean that there may be little correlation. Techniques do exist to mitigate some of these issues including using NWP (numerical weather prediction methods) or ANN (artificial neural networks) to effectively fill in the gaps in the data. Weather stations take the wind at a relatively low altitude, the calculations for 'wind shear' aim to account for the difference but these can be far from accurate and even a change of four kph results in a 15\% change in turbine output. This resulted from an altitude change of 50 meters but modern turbines can have a hub height of approaching 100 meters. The new estimates for wind resource by National Renewable Energy Laboratory \cite{NationalRenewableEnergyLaboratory2010} are three times what previous studies have estimated based upon these new larger, taller wind turbines.
+Wind speed data is often available in some form but is rarely as required. Missing entries are common but the least of the problem. Historic wind data is rarely available at the specific sites where wind farms are built. The main tool for assessing the wind resource at a site is "measure, correlate, predict" (MCP) analysis \cite{Economist2010}. This involves matching a short-term sample of wind data from the site to longer term data nearby. But this method is fraught with inaccuracy as the article states. Sensitivity to the shape of the landscape as well as nearby forests and the change in wind speed with altitude (the height of the wind hub) mean that there may be little correlation. Techniques do exist to mitigate some of these issues including using NWP (numerical weather prediction methods) or ANN (artificial neural networks) to effectively fill in the gaps in the data. Weather stations take the wind at a relatively low altitude, the calculations for 'wind shear' aim to account for the difference but these can be far from accurate and even a change of four kph results in a 15\% change in turbine output. This resulted from an altitude change of 50 meters but modern turbines can have a hub height of over 100 meters (see Figure \ref{HistoricBladeSize2}). The new estimates for wind resource by National Renewable Energy Laboratory \cite{NationalRenewableEnergyLaboratory2010} are three times what previous studies have estimated based upon these new larger, taller wind turbines.
+
+\image{HistoricBladeSize2}{Wind Turbine Hub Heights \cite{BWEA2005f}}{windhubheight.png}
 
 All this means that although wind data may be available, converting it into a form that can be used for taking millions of samples is not simple. There is work at the University of Edinburgh under the EPSRC SuperGen project (see \url{http://www.see.ed.ac.uk/research/IES/supergen}) to develop a computer program that generates a sample-able set of data given the historic power of the area. This would be a perfect compliment for the work here as even 20 years of data, which is available from many sites in the UK, is not enough if we realise that we have to sample by day or year and hour of day. This leaves only 20 samples. This limitation could be partly mitigated by quantisation at larger intervals. By taking the months or even quarters of a year and splitting the day into three hours rather than single hour blocks we have many more samples available to select from.
 
@@ -1628,9 +1653,15 @@ Here the sources of data used in the final program, as well as external tools, a
 
 \subsection{Network - The IEEE Reliability Test System 96\label{lbl_RTS}}
 
-The IEEE Reliability Test System 96 (IEEE-RTS) \cite{Grigg1999} is a sample power system with a thorough set of data for operation, emissions, and reliability. It was for this reason that it was chosen as the test system for this work. For the bulk of the simulation the three area version was used, which is composed of 99 generating units, 73 busbars, 120 lines, 51 loads and two voltage levels, see Figure \ref{rts96} for details.
+The IEEE Reliability Test System 96 (IEEE-RTS) \cite{Grigg1999} is a sample power system with a thorough set of data for operation, emissions, and reliability. It was for this reason that it was chosen as the test system for this work. For the bulk of the simulation the three area version was used, which is composed of 99 generating units, 73 busbars, 120 lines, 51 loads and two voltage levels. The network diagram is shown in Figure \ref{rts96}.
 
-\image{rts96}{Network Diagram for IEEE-RTS-96}{rts96.png}
+  \begin{sidewaysfigure}[!p]
+    \begin{center}
+      \includegraphics[scale=0.8]{rts96.png}
+      \caption{Network Diagram for IEEE-RTS-96 \cite{Grigg1999}}
+      \label{rts96}
+    \end{center}
+  \end{sidewaysfigure}
 
 It was not meant to be representative of any particular power system but aimed to represent all the different technologies and requirements that could be encountered. Because of this it has been updated to include new technologies as the sector advances. The first version of this system was developed in 1979 \cite{IEEERTSTaskForceofAPMSubcommittee1979} it was then updated in 1986 \cite{Allan1986} and once again in 1996 \cite{Grigg1999}.
 
@@ -3060,30 +3091,7 @@ It can even be used to find problematic areas of the system. The current results
 
 \section{Unscheduleable Generators and Wind Power}
 
-In the following two sections renewable energy is added in to the equation, specifically wind power. There are two things notably different about wind power that matters to this application. Firstly the power output of wind cannot be set like it can with a conventional generator i.e. it is \emph{unscheduleable}. Secondly the wind forecast is often wrong by some extent meaning the predicted value will be partly wrong i.e. it is \emph{stochastic}. The extent to which it is wrong has been looked at in detail by Bathurst et. al. \cite{Bathurst2002}. Table \ref{table_forecast_error} is taken from that paper and shows how likely it is that wind power will deviate from it's current value. 
-
-\begin{table}[htbp]
-\caption{Probability of Various Expected Energy Generation with Increasing Forecast Delay \cite{Bathurst2002}}
-\label{table_forecast_error}
-\centering
-\begin{tabular}{c||c|c|c|c|c|c|c|c}
-\bfseries  & \multicolumn{8}{c}{ \bfseries Forecast Delay (hours)} \\
-\bfseries Expected Energy & \bfseries 0.5h & \bfseries 1h & \bfseries 1.5h & \bfseries 2h & \bfseries 2.5h & \bfseries 3h & \bfseries 3.5h & \bfseries 4h \\
-\hline \hline
-0.00-0.05 &  - &  - &  - &  1 &  2 &  2 &  2 &  3 \\
-0.05-0.15 &  - &  1 &  2 &  3 &  4 &  5 &  5 &  6 \\
-0.15-0.25 &  2 &  4 &  5 &  6 &  6 &  6 & 10 & 10 \\
-0.25-0.35 &  7 & 10 & 12 & 13 & 13 & 14 & 14 & 13 \\
-0.35-0.45 & 24 & 22 & 20 & 19 & 18 & 16 & 14 & 14 \\
-0.45-0.55 & 40 & 29 & 25 & 20 & 19 & 19 & 18 & 17 \\
-0.55-0.65 & 21 & 19 & 17 & 16 & 15 & 14 & 12 & 12 \\
-0.65-0.75 & 21 & 19 & 17 & 16 & 15 & 14 & 12 & 12 \\
-0.75-0.85 &  5 & 10 & 10 & 11 & 11 &  9 & 11 & 10 \\
-0.85-0.95 &  1 &  4 &  5 &  5 &  6 &  6 &  7 &  7 \\
-0.95-1.05 &  - &  - &  - &  1 &  1 &  1 &  2 &  2 \\
-\hline
-\end{tabular}
-\end{table}
+In the following two sections renewable energy is added in to the equation, specifically wind power. There are two things notably different about wind power that matters to this application. Firstly the power output of wind cannot be set like it can with a conventional generator i.e. it is \emph{unscheduleable}. Secondly the wind forecast is often wrong by some extent meaning the predicted value will be partly wrong i.e. it is \emph{stochastic}. 
 
 One would expect that when the added uncertainty of wind power gets added to a network the security would decrease. However, as this is a complex system with many interacting parts, what is expected can be quite different from what is experienced. 
 
