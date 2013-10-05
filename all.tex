@@ -57,6 +57,10 @@
 \newcommand{\mainmatter}{\cleardoublepage\pagenumbering{arabic}}
 \newcommand{\backmatter}{\cleardoublepage}
 
+\newenvironment{viva_corrections}
+{\color{red}}
+{}
+
 % Redefines \@ptsize to make setspace happy
 \makeatletter
 \renewcommand{\@ptsize}{0}
@@ -273,15 +277,15 @@ This work has four main areas of contribution in the area of power system securi
 \item Compare the security of power systems with differing penetrations of wind power.
 \end{itemize}
 
-% changes 4-10-2013 { %
+\begin{viva_corrections}
 
 The software that was created to achieve the aims has a number of other potential uses. In addition to being able to compare different SAS it is itself a security assessment scheme. In it's current form it would have to be used more like a planning tool but with enough computing power it could become a powerful tool for the control room. 
 
-Another facet of the computer program is to aid in planning decisions. If there is a proposed change to the network it can show how that changed will affect the security of supply. This was done in this thesis to compare a system with and without wind generation but could just as easily be used to look at changes such as the addition of a new transmission line or an analysis of how storage should improve security of supply. In Section \ref{XXX - 7.5.2} further applications of the computer program are discussed. 
+Another facet of the computer program is to aid in planning decisions. If there is a proposed change to the network the program can be used to show how that change will affect the security of supply. This was done in this thesis to compare a system with and without wind generation but could just as easily be used to look at changes such as the addition of a new transmission line or an analysis of how storage should improve security of supply. In Section \ref{sec_program_applications} further applications of the computer program are discussed. 
 
-One final feature of the program is to locate components of the network that are likely to cause security problems. In the large number of simulations that are run certain components will invariably cause problems more than others, this data could be very useful for network planners. 
+One final feature of the program is to locate components of the network that are likely to cause security problems. In the large number of simulations that are run certain components will invariably cause problems more often than others, this data could be very useful for network planners. 
 
-% } 4-10-2013 %
+\end{viva_corrections}
 
 \section{Structure of This Thesis}
 
@@ -1189,11 +1193,12 @@ An accurate scheme should take into account both likelihood and consequence of e
   R = \sum\limits_{i}^{} L (e_i) \times C(e_i)
 \end{equation}
 
-% changes { %
+\begin{viva_corrections}
 
-Where $R$ is Risk, $e$ is an event, $L$ is likelihood, and $C$ is consequence. This equation is used in a number of fields in different ways. In event planning consequence and likelihood are rated on a five point scale. In the financial industry likelihood can be seen as a probability and consequence financial (e.g lost income in dollars). Power systems can also use the equation in this way or consequence could be treated as MW of lost load.
+Where $R$ is Risk, $e$ is an event, $L$ is likelihood, and $C$ is consequence. This equation is used in a number of fields in different ways. In event planning consequence and likelihood are rated on a five point scale. In the financial industry likelihood can be seen as a probability and consequence financial (i.e. lost income in dollars). Power systems can also use the equation in this way alternatively consequence could be treated as MW of lost load.
 
-% } %
+\end{viva_corrections}
+
 
 A further definition of security \cite{Balu1992} gives further insight into the problem:
 
@@ -1233,11 +1238,11 @@ Given this definition it not easy to quantify the security not only due to the n
 
 \image{perfectSAS}{Example of a Perfect SAS}{perfectsas.png}
 
-% changes { %
+\begin{viva_corrections}
 
-This can be visualised as follows: Assume that the security level of a power system in a given state can be represented by a probability that the system will, due to the unexpected changes during delivery, be in an unacceptable state such as a blackout. Further, let us assume that the security threshold is to have less than one blackout every 25 years. If there were more than this there would be severe financial penalties from the regulator, less and the operator could be paying more than is necessary to secure the system. An ideal SAS would report a pass for all system with a probability of a blackout being less than one in 25 years. This is shown in Fig \ref{perfectSAS}.
+This can be visualised as follows: Assume that the security level of a power system in a given state can be represented by a probability that the system will, due to the unexpected changes during delivery, be in an unacceptable state such as a blackout. Further, let us assume that the security threshold is set to 'less than one blackout every 25 years' . If there were more than this there would be severe financial penalties from the regulator, less and the operator could be paying more than is necessary to secure the system. An ideal SAS would report a pass for all systems with a probability of blackout being less than one in 25 years. This is shown in Fig \ref{perfectSAS}.
 
-% } %
+\end{viva_corrections}
 
 Fig \ref{SAScomparison} shows a number of different theoretical SAS marked against the same set of system operating conditions. We can see that \ref{SAScomparison}-a is perfectly accurate and precise. It only ever reports a pass to those over 50. This is impossible to achieve in practise due to time constraints.
 
@@ -1362,9 +1367,13 @@ We can also see whether the operating conditions that were in disagreement were 
 
 By looking at the specific operating conditions that were in disagreement it may be possible to determine whether the SAS is lacking in some respects. It may, for instance, misrepresent only systems where the wind variability is high.
 
-We can also gather information by looking at the difference between each of the points in disagreement and the threshold. This gives an indication of how badly the SAS is when errors do occur. If a very insecure system, where a blackout has a one in a thousand change of occurring, is reported as a success by a SAS then this is a larger problem than one with a change of one in ten thousand. In other words it would be a very poor SAS if it reported that a few very insecure scenarios were actually acceptable. 
+\begin{viva_corrections}
 
-If we allow such a system to run in that state then we are open to the financial cost of whatever stability or limits violation will occur. We can sum up the difference between each operating condition in disagreement and the threshold to come up with a value for the severity of error in the SAS. It should be noted that this number is not meant to represent anything in reality but is simply an indication of how well the SAS is for those operating conditions tested on that specific system. It can however be compared to another SAS run over the same operating conditions on the same system, to see which is best.
+We can also gather information by looking at the difference between each of the points in disagreement and the threshold. This gives an indication of how badly the SAS performs when errors do occur. If a very insecure system, where a blackout has a one in a thousand change of occurring, is reported as a success by a SAS then this is a larger problem than one with a chance of one in ten thousand. In other words it would be a very poor SAS if it reported that a few very insecure scenarios were actually acceptable. 
+
+If we allow such a system to run in that state then we are open to the financial cost of whatever stability or limit violations that occur. We can sum up the difference between each operating condition in disagreement and the threshold to come up with a value for the severity of error in the SAS. It should be noted that this number is not meant to represent anything in reality but is simply an indication of how well the SAS is for those operating conditions tested on that specific system. It can however be compared to another SAS run over the same operating conditions on the same system, to see which is best.
+
+\end{viva_corrections}
 
 \section{Monte Carlo Sampling}\label{lbl_sec_mcs}
 
@@ -1516,7 +1525,9 @@ Wind speed data is often available in some form but is rarely as required. Missi
 
 \image{HistoricBladeSize2}{Wind Turbine Hub Heights \cite{BWEA2005f}}{windhubheight.png}
 
-All this means that although wind data may be available, converting it into a form that can be used for taking millions of samples is not simple. There is work at the University of Edinburgh under the EPSRC SuperGen project (see \url{http://www.see.ed.ac.uk/research/IES/supergen}) to develop a computer program that generates a sample-able set of data given the historic power of the area. This would be a perfect compliment for the work here as even 20 years of data, which is available from many sites in the UK, is not enough if we realise that we have to sample by day or year and hour of day. This leaves only 20 samples. This limitation could be partly mitigated by quantisation at larger intervals. By taking the months or even quarters of a year and splitting the day into three hours rather than single hour blocks we have many more samples available to select from.
+\begin{viva_corrections}
+All this means that although wind data may be available, converting it into a form that can be used for taking millions of samples is not simple.  There is work at the University of Edinburgh under the EPSRC SuperGen project (see \url{http://www.see.ed.ac.uk/research/IES/supergen}) to develop a computer program that generates a sample-able set of data given the historic power of the area. This would be a perfect compliment for the work here as even 20 years of data, which is available from many sites in the UK, is not enough if we realise that we have to sample by day or year and hour of day. This leaves only 20 samples. This limitation could be partly mitigated by quantisation at larger intervals. By taking the months or even quarters of a year and splitting the day into three hours rather than single hour blocks we have many more samples available to select from.
+\end{viva_corrections}
 
 \subsubsection{2. Computing Power}
 
@@ -1564,7 +1575,7 @@ As with any non-deterministic simulation this one also has a chance of giving mi
 
 This method does not aim to make general claims about the ability of different security assessment schemes.
 
-\subsection{Applications}
+\subsection{Applications} \label{sec_program_applications}
 
 This method gives us one measure of security of a number of possible scenarios. From this a number of useful applications can be envisaged. Secondly, the method creates a database of likely consequences of certain system states. Below is a few possible applications that the method could be used for. Note that some of these will require changes and would require further testing.
 
@@ -1639,7 +1650,9 @@ This chapter covers how security assessment schemes are themselves assessed. It 
 \chapter{Computer Program}
 % ================================================================== %
 
+\begin{viva_corrections}
 The aim of this chapter is to detail the development of a computer program made to test and compare SAS. It is then tested using approximate analytical calculations.
+\end{viva_corrections}
 
 \section{Program Data Sources}
 
@@ -1666,11 +1679,6 @@ The IEEE Reliability Test System 96 (IEEE-RTS) \cite{Grigg1999} is a sample powe
 It was not meant to be representative of any particular power system but aimed to represent all the different technologies and requirements that could be encountered. Because of this it has been updated to include new technologies as the sector advances. The first version of this system was developed in 1979 \cite{IEEERTSTaskForceofAPMSubcommittee1979} it was then updated in 1986 \cite{Allan1986} and once again in 1996 \cite{Grigg1999}.
 
 In addition to new data the system has increased in size to incorporate three almost identical areas. As they are almost identical only the details of the components in the first area are shown in the following tables, a full listing is given in Appendix \ref{paper_rts}.
-
-b) Over-optimistic
-
-
-
 
 There have been many changes to power systems in the last 14 years and it would be good if the IEEE-RTS could be updated to incorporate these changes. The largest of the changes is the increase in penetration of renewable generation. As it stands the IEEE-RTS includes no renewable generators. Although the literature is showing examples of individuals who have added wind turbines there is no consensus or standard forming on where and how much renewable power should be added.
 
@@ -1826,7 +1834,10 @@ The sampling program is based around four main data types, each associated with 
 \item \underline{SimulationBatch} files hold a list of scenarios. Each scenario contains the changes that have occurred such as a line outage or a change in demand. Batch files can optionally contain simplified simulation results. Batch files end in \underline{.bch}.
 \end{itemize}
 
-Ultimately, PSAT was dropped as the power system simulator and a simpler, faster tool was used. The software that used PSAT was never fully finished, but a number of parts are complete and available (at \url{http:\\github.com\kerspoon\laos}). This could be used as a starting point for further work using PSAT for security analysis.
+
+\begin{viva_corrections}
+Ultimately, PSAT was dropped as the power system simulator and a simpler, faster tool was used. The software that used PSAT was never fully finished, but a number of parts are complete and available at \url{http:\\github.com\kerspoon\laos}. This could be used as a starting point for further work using PSAT for security analysis.
+\end{viva_corrections}
 
 \subsubsection{CPF}
 
@@ -3080,9 +3091,12 @@ It would be very useful to see if N-1 or N-2 is a good predictor of the results 
 
 Another way of looking at the data is to plot the percentage of failed contingencies for each base case. This is done in Figure \ref{mc-n1-n2}, in this figure the base cases are sorted by the percentage of Monte Carlo sampled contingencies that failed. If N-1 was a good predictor of the Monte Carlo results it would in some way match the curve of the Monte Carlo results. This doesn't happen enough for N-1 to become a useful predictor. There is some change in the N-1 data point in the right of the figure, although it seems just to be a higher variance.
 
-These results bring in to question the value of performing a full N-2 simulation. It can highlight problematic areas of a system but it will not take into account the probabilities enough potentially leading to securing the wrong parts of the system. Risk is likelihood times consequence and N-2 doesn't consider the likelihood accurately enough. A probabilistic model such as the one used here can give more accurate results in less simulation time. 
+\begin{viva_corrections}
+These results bring in to question the value of performing a full N-2 simulation. It can highlight problematic areas of a system but it will not take into account the probabilities enough, potentially leading to securing the wrong parts of the system. Risk is likelihood times consequence and N-2 doesn't consider the likelihood accurately enough. A probabilistic model such as the one used here can give more accurate results in less simulation time. 
 
-It can even be used to find problematic areas of the system. The current results tell you for a given system what the likelihood is that it will become problematic. This can be inverted by counting the number of times a component is in an unacceptable system verses an acceptable one. This will give a measure of which components are problematic. To use the software in such a way requires simply running a large MCS and simulating each contingency. Then for each unacceptable contingency mark each component that failed. The total number of marks that a component has across all contingencies tell a system planner how often that component is problematic. 
+It can even be used to find problematic areas of the system. The current results tell you for a given system what the likelihood is that it will become problematic. This can be inverted by counting the number of times a component is in an unacceptable system verses an acceptable one. This will give a measure of which components are problematic. To use the software in such a way requires simply running a large MCS and simulating each contingency. Then, for each unacceptable contingency, mark each component that failed. The total number of marks that a component has across all contingencies tell a system planner how often that component is problematic. 
+
+\end{viva_corrections}
 
 \image{scatter-n1-n2}{Scatter Plot of Percentage of Failed Contingencies using N-1 and N-2}{scatter-n1-n2.png}
 \image{scatter-mc-n2}{Scatter Plot of Percentage of Failed Contingencies using N-1 and Monte Carlo}{scatter-mc-n2.png}
