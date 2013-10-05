@@ -57,9 +57,12 @@
 \newcommand{\mainmatter}{\cleardoublepage\pagenumbering{arabic}}
 \newcommand{\backmatter}{\cleardoublepage}
 
-\newenvironment{viva_corrections}
+\newenvironment{vivacorrections}
 {\color{red}}
 {}
+
+\newcommand{\cmdvivacorrections}[1]
+{\textcolor{red}{#1}}
 
 % Redefines \@ptsize to make setspace happy
 \makeatletter
@@ -277,7 +280,7 @@ This work has four main areas of contribution in the area of power system securi
 \item Compare the security of power systems with differing penetrations of wind power.
 \end{itemize}
 
-\begin{viva_corrections}
+\begin{vivacorrections}
 
 The software that was created to achieve the aims has a number of other potential uses. In addition to being able to compare different SAS it is itself a security assessment scheme. In it's current form it would have to be used more like a planning tool but with enough computing power it could become a powerful tool for the control room. 
 
@@ -285,7 +288,7 @@ Another facet of the computer program is to aid in planning decisions. If there 
 
 One final feature of the program is to locate components of the network that are likely to cause security problems. In the large number of simulations that are run certain components will invariably cause problems more often than others, this data could be very useful for network planners. 
 
-\end{viva_corrections}
+\end{vivacorrections}
 
 \section{Structure of This Thesis}
 
@@ -1193,11 +1196,11 @@ An accurate scheme should take into account both likelihood and consequence of e
   R = \sum\limits_{i}^{} L (e_i) \times C(e_i)
 \end{equation}
 
-\begin{viva_corrections}
+\begin{vivacorrections}
 
 Where $R$ is Risk, $e$ is an event, $L$ is likelihood, and $C$ is consequence. This equation is used in a number of fields in different ways. In event planning consequence and likelihood are rated on a five point scale. In the financial industry likelihood can be seen as a probability and consequence financial (i.e. lost income in dollars). Power systems can also use the equation in this way alternatively consequence could be treated as MW of lost load.
 
-\end{viva_corrections}
+\end{vivacorrections}
 
 
 A further definition of security \cite{Balu1992} gives further insight into the problem:
@@ -1238,11 +1241,11 @@ Given this definition it not easy to quantify the security not only due to the n
 
 \image{perfectSAS}{Example of a Perfect SAS}{perfectsas.png}
 
-\begin{viva_corrections}
+\begin{vivacorrections}
 
 This can be visualised as follows: Assume that the security level of a power system in a given state can be represented by a probability that the system will, due to the unexpected changes during delivery, be in an unacceptable state such as a blackout. Further, let us assume that the security threshold is set to 'less than one blackout every 25 years' . If there were more than this there would be severe financial penalties from the regulator, less and the operator could be paying more than is necessary to secure the system. An ideal SAS would report a pass for all systems with a probability of blackout being less than one in 25 years. This is shown in Fig \ref{perfectSAS}.
 
-\end{viva_corrections}
+\end{vivacorrections}
 
 Fig \ref{SAScomparison} shows a number of different theoretical SAS marked against the same set of system operating conditions. We can see that \ref{SAScomparison}-a is perfectly accurate and precise. It only ever reports a pass to those over 50. This is impossible to achieve in practise due to time constraints.
 
@@ -1334,7 +1337,7 @@ This chapter sets out exactly what is required in a security assessment scheme. 
 
 
 % ================================================================== %
-\chapter{Criteria for Security Assessment Schemes}\label{sec_compsas}
+\chapter{\cmdvivacorrections{Criteria for Security Assessment Schemes}}\label{sec_compsas}
 % ================================================================== %
 
 This chapter covers how security assessment schemes are assessed and compared then proceeds to detail the creation of a new method for comparing security assessment schemes. Finally, results are presented showing the novel method in action.
@@ -1367,13 +1370,13 @@ We can also see whether the operating conditions that were in disagreement were 
 
 By looking at the specific operating conditions that were in disagreement it may be possible to determine whether the SAS is lacking in some respects. It may, for instance, misrepresent only systems where the wind variability is high.
 
-\begin{viva_corrections}
+\begin{vivacorrections}
 
 We can also gather information by looking at the difference between each of the points in disagreement and the threshold. This gives an indication of how badly the SAS performs when errors do occur. If a very insecure system, where a blackout has a one in a thousand change of occurring, is reported as a success by a SAS then this is a larger problem than one with a chance of one in ten thousand. In other words it would be a very poor SAS if it reported that a few very insecure scenarios were actually acceptable. 
 
 If we allow such a system to run in that state then we are open to the financial cost of whatever stability or limit violations that occur. We can sum up the difference between each operating condition in disagreement and the threshold to come up with a value for the severity of error in the SAS. It should be noted that this number is not meant to represent anything in reality but is simply an indication of how well the SAS is for those operating conditions tested on that specific system. It can however be compared to another SAS run over the same operating conditions on the same system, to see which is best.
 
-\end{viva_corrections}
+\end{vivacorrections}
 
 \section{Monte Carlo Sampling}\label{lbl_sec_mcs}
 
@@ -1409,7 +1412,11 @@ This has been discussed previously in Section \ref{lbl_sec_model_wind}. The simp
 
 If historic data was used for forecast, then finding the forecast error is simply a case of taking the difference between two successive samples. Persistence forecasting is the name given to the assumption that the wind will stay the same over the time period. At such a short timescale, persistence forecasting is not far behind numerical weather prediction (NWP) methods and is far simpler.
 
+\begin{vivacorrections}
+
 If synthetic wind data was used, then a method such as the one proposed in \cite{Bathurst2002} could be used. This creates a statistical model of the change in wind speed. Table \ref{table_forecast_error} is taken from that paper and shows how likely it is that wind power will deviate from it's current value. The report `Operating in 2020' by National Grid \cite{Grid2009} shows that there is a correlation between time of day and wind forecast error, though this may be more due to the difference in load level at those times. 
+
+\end{vivacorrections}
 
 \begin{table}[htbp]
 \caption{Probability of Various Expected Energy Generation with Increasing Forecast Delay \cite{Bathurst2002}}
@@ -1433,6 +1440,7 @@ If synthetic wind data was used, then a method such as the one proposed in \cite
 \hline
 \end{tabular}
 \end{table}
+
 
 \subsection{Load Forecasting \& Load Forecast Error}
 
@@ -1521,13 +1529,13 @@ Failure rates of components, even in such a simple form as MTTF \& MTTR, are not
 
 Because of the large number of samples that are used the accuracy of the input data will have a massive effect on the result. Real failure rates are correlated with weather, usage and component age. It would be interesting to see  how much of a difference a more detailed failure model would have no the results but it is outside the scope of this work.
 
-Wind speed data is often available in some form but is rarely as required. Missing entries are common but the least of the problem. Historic wind data is rarely available at the specific sites where wind farms are built. The main tool for assessing the wind resource at a site is "measure, correlate, predict" (MCP) analysis \cite{Economist2010}. This involves matching a short-term sample of wind data from the site to longer term data nearby. But this method is fraught with inaccuracy as the article states. Sensitivity to the shape of the landscape as well as nearby forests and the change in wind speed with altitude (the height of the wind hub) mean that there may be little correlation. Techniques do exist to mitigate some of these issues including using NWP (numerical weather prediction methods) or ANN (artificial neural networks) to effectively fill in the gaps in the data. Weather stations take the wind at a relatively low altitude, the calculations for 'wind shear' aim to account for the difference but these can be far from accurate and even a change of four kph results in a 15\% change in turbine output. This resulted from an altitude change of 50 meters but modern turbines can have a hub height of over 100 meters (see Figure \ref{HistoricBladeSize2}). The new estimates for wind resource by National Renewable Energy Laboratory \cite{NationalRenewableEnergyLaboratory2010} are three times what previous studies have estimated based upon these new larger, taller wind turbines.
+Wind speed data is often available in some form but is rarely as required. Missing entries are common but the least of the problem. Historic wind data is rarely available at the specific sites where wind farms are built. The main tool for assessing the wind resource at a site is "measure, correlate, predict" (MCP) analysis \cite{Economist2010}. This involves matching a short-term sample of wind data from the site to longer term data nearby. But this method is fraught with inaccuracy as the article states. Sensitivity to the shape of the landscape as well as nearby forests and the change in wind speed with altitude (the height of the wind hub) mean that there may be little correlation. Techniques do exist to mitigate some of these issues including using NWP (numerical weather prediction methods) or ANN (artificial neural networks) to effectively fill in the gaps in the data. Weather stations take the wind at a relatively low altitude, the calculations for 'wind shear' aim to account for the difference but these can be far from accurate and even a change of four kph results in a 15\% change in turbine output. This resulted from an altitude change of 50 meters but modern turbines can have a hub height of over 100 meters \cmdvivacorrections{(see Figure \ref{HistoricBladeSize2})}. The new estimates for wind resource by National Renewable Energy Laboratory \cite{NationalRenewableEnergyLaboratory2010} are three times what previous studies have estimated based upon these new larger, taller wind turbines.
 
 \image{HistoricBladeSize2}{Wind Turbine Hub Heights \cite{BWEA2005f}}{windhubheight.png}
 
-\begin{viva_corrections}
+\begin{vivacorrections}
 All this means that although wind data may be available, converting it into a form that can be used for taking millions of samples is not simple.  There is work at the University of Edinburgh under the EPSRC SuperGen project (see \url{http://www.see.ed.ac.uk/research/IES/supergen}) to develop a computer program that generates a sample-able set of data given the historic power of the area. This would be a perfect compliment for the work here as even 20 years of data, which is available from many sites in the UK, is not enough if we realise that we have to sample by day or year and hour of day. This leaves only 20 samples. This limitation could be partly mitigated by quantisation at larger intervals. By taking the months or even quarters of a year and splitting the day into three hours rather than single hour blocks we have many more samples available to select from.
-\end{viva_corrections}
+\end{vivacorrections}
 
 \subsubsection{2. Computing Power}
 
@@ -1650,9 +1658,9 @@ This chapter covers how security assessment schemes are themselves assessed. It 
 \chapter{Computer Program}
 % ================================================================== %
 
-\begin{viva_corrections}
+\begin{vivacorrections}
 The aim of this chapter is to detail the development of a computer program made to test and compare SAS. It is then tested using approximate analytical calculations.
-\end{viva_corrections}
+\end{vivacorrections}
 
 \section{Program Data Sources}
 
@@ -1835,9 +1843,9 @@ The sampling program is based around four main data types, each associated with 
 \end{itemize}
 
 
-\begin{viva_corrections}
+\begin{vivacorrections}
 Ultimately, PSAT was dropped as the power system simulator and a simpler, faster tool was used. The software that used PSAT was never fully finished, but a number of parts are complete and available at \url{http:\\github.com\kerspoon\laos}. This could be used as a starting point for further work using PSAT for security analysis.
-\end{viva_corrections}
+\end{vivacorrections}
 
 \subsubsection{CPF}
 
@@ -3091,12 +3099,12 @@ It would be very useful to see if N-1 or N-2 is a good predictor of the results 
 
 Another way of looking at the data is to plot the percentage of failed contingencies for each base case. This is done in Figure \ref{mc-n1-n2}, in this figure the base cases are sorted by the percentage of Monte Carlo sampled contingencies that failed. If N-1 was a good predictor of the Monte Carlo results it would in some way match the curve of the Monte Carlo results. This doesn't happen enough for N-1 to become a useful predictor. There is some change in the N-1 data point in the right of the figure, although it seems just to be a higher variance.
 
-\begin{viva_corrections}
+\begin{vivacorrections}
 These results bring in to question the value of performing a full N-2 simulation. It can highlight problematic areas of a system but it will not take into account the probabilities enough, potentially leading to securing the wrong parts of the system. Risk is likelihood times consequence and N-2 doesn't consider the likelihood accurately enough. A probabilistic model such as the one used here can give more accurate results in less simulation time. 
 
 It can even be used to find problematic areas of the system. The current results tell you for a given system what the likelihood is that it will become problematic. This can be inverted by counting the number of times a component is in an unacceptable system verses an acceptable one. This will give a measure of which components are problematic. To use the software in such a way requires simply running a large MCS and simulating each contingency. Then, for each unacceptable contingency, mark each component that failed. The total number of marks that a component has across all contingencies tell a system planner how often that component is problematic. 
 
-\end{viva_corrections}
+\end{vivacorrections}
 
 \image{scatter-n1-n2}{Scatter Plot of Percentage of Failed Contingencies using N-1 and N-2}{scatter-n1-n2.png}
 \image{scatter-mc-n2}{Scatter Plot of Percentage of Failed Contingencies using N-1 and Monte Carlo}{scatter-mc-n2.png}
